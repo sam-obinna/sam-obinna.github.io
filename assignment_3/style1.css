@@ -216,8 +216,8 @@ section.pay_info {
         input:nth-child(1) {
             width: 65%;
             border: transparent;
-            bo
-        };
+        
+        }
 
         input:nth-child(2) {
             width: 20%;

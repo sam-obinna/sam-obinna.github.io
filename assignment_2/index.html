@@ -1,104 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style1.css">
-    <script src="script.js" defer></script>
-    <title>Wp-Pusher Checkout</title>
-  </head>
-  <body>
-    <main class="wrapper">
-      <section >
-        <div class="top">
-        <nav class="navbar">
-          <div class="logo"><img src="wppusher-logo copy.svg" alt="Logo"/></div>
-          <a href="#" class="toggle-button">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-          </a>
-          <div class="navbar-links">
-            <ul>
-              <li><a href="#">Download</a></li>
-              <li><a href="#">Learn More</a></li>
-              <li><a href="#">Pricing</a></li>
-              <li><a href="#">Help</a></li>
-              <li><a href="#">Account</a></li>
-            </ul>
-          </div>
-        </nav>
-    </div>
-      </section>
-      <section class="wrapper2">
-        <section class="sect1">
-          <section class="check">
-          <h2>Checkout</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style5.css">
+</head>
+<body>
+    
+
+    <main id="main" class="main">
+        <section class="info">
+        <img src="assets/Logo.svg" alt="Logo" class="logo">
+        <h2 class="heading">For 
+            Individual</h2>
+        <p class="para1">Start benefiting  from  the wellness  experience.   For <br> companies looking on increasing productivity, and improving organization wellness.</p>
+        <p class="para2">Inspiring wholesome harmony for the mind, body and spirit, for everyone, everywhere.</p>
+
         </section>
-        
-        <section class="pers_info">
-          <h3>Your Basic Information</h3>
-          <form action="">
-            <div class="name">
-              <p class="name1">
-                <label for="">First Name</label> <br>
-                <input type="text" placeholder="Samuel">
-              </p>
-              <p class="name">
-                <label for="">Last Name</label> <br>
-                <input type="text" placeholder="Obinna">
-              </p>
+        <section class="s1">
+            <form action="get" class="form">
+            <div class="c1">
+                <p class="top"><label for="firstName" id="details">First Name</label> <br>
+                <input type="text" placeholder="Samuel" required>
+                </p>
+
+
+                <p class="top" id="details"><label for="lastName">Last Name</label> <br>
+                <input type="text" placeholder="Obinna" required>
+                </p>
             </div>
-            
-              <p>
-              <label for="">E-mail</label> <br>
-              <input type="email" name="email" id="email" placeholder="seriousspeak@example.com">
-            </p>
-            
-          </form>
-        </section>
-        <section class="pay_info">
-          <h3>Your Payment Information</h3>
-          <form action="">
-            <div>
-            <label for="">Credit Card</label>
-            <p>
-              <input type="text" placeholder="Card Number" maxlength="15">
-              <input type="text" placeholder="MM/YY" maxlength="4">
-              <input type="text" placeholder="CVV" maxlength="3">
-            </p>
-          </div>
-          </form>
-        </section>
-        <section class="pay">
-          <button>Buy WP Pusher</button>
-          <p><span>Need any help? </span>Don't hesitate to <span>contact&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> <br>  support</p>
-          <div class="stripe"><img src="./assets/logo.svg" alt="stripe"></div>
-        </section>
+
+            <div class="c2">
+                <p>
+                <label for="Gender" id="details">Gender</label> <br>
+                <select name="Gender" id="gender-list" required>
+                <option value="" disable selected hidden>Select here</option>
+                <option value="male">Male</option>
+                <option value="female">feMale</option>
+                <option value="others">others</option>
+                </select>
+             </p>
+
+                <p><label for="dob" id="details">Date of Birth</label> <br>
+                <input type="date"  required>
+                </p>
+            </div>
+            <div class="c2">
+                <p><label for="weight" id="details">WEIGHT(KG)</label> <br>
+                <input type="text" placeholder="Enter weight here..." required>
+                </p>
+
+                <p><label for="height" id="details">HEIGHT(KG)</label> <br>
+                <input type="text" placeholder="Enter height here..." required>
+                </p>
+            </div>
+            <div class="c3">
+                <p>
+                    <label for="activity">Activity Level</label> <br>
+                    <select name="activity-level" id="activity-level-list" required>
+                    <option value="" disable selected hidden>Select here</option>
+                    <option value="male">Slightly Active</option>
+                    <option value="female">Moderately Active</option>
+                    <option value="others">Active</option>
+                    <option value="others">Very Active</option>
+                    </select>
+                 </p>
+                 </div>
+                 <div class="c3">
+                 <p>
+                    <label for="password">Password</label>
+                    <input type="password" minlength="8">
+                    </p>
+                </div>
+                
+                 <div class="c3">
+                 <button>Register</button>
+            </div>
+            <footer class="footer1"> By clicking Register, you agree to our <a href="https://en.wikipedia.org/wiki/Terms_of_service#:~:text=Terms%20of%20service%20(also%20known,to%20use%20the%20offered%20service.">Terms of Use</a> and our <a href="https://en.wikipedia.org/wiki/Terms_of_service#:~:text=Terms%20of%20service%20(also%20known,to%20use%20the%20offered%20service.">Privacy Policy</a></footer>
+            </form>
+
         
         </section>
-        <section class="sect2">
-          <section  class="free">
-          <h2>Freelancer</h2>
-          <p class="first"><span>$</span><span>99</span><span>/year</span></p>
-          <p class="font">Automatically renews <br>after 1 year</p>
-          <div class="mark">
-            <p>Use on 5 clients sites</p>
-            <p>Private repositories</p>
-            <p>Email Support</p>
-          </div>
-          <p class="need"><br>Need <span class="twenty">20</span> client sites <br><span><br>Switch to the <span id="agent"> Agency</span> plan</span></p>
-        </section>
-        <section>
-          <p class="message">FTP is horrible to deal with. 
-          <span>WP Pusher</span> solves that issue, and the customer support is awesome</p>
-          <section class="footer">
-            <img src="./assets/Bitmap.jpg" alt="Kirk Berd">
-            <p>Kirk Berd</p></section>
-        </section>
-        </section>
-      </section>
-  
+     
+    <footer class="footer2"> By clicking Register, you agree to our <a href="https://en.wikipedia.org/wiki/Terms_of_service#:~:text=Terms%20of%20service%20(also%20known,to%20use%20the%20offered%20service.">Terms of Use</a> <br>and our <a href="https://en.wikipedia.org/wiki/Terms_of_service#:~:text=Terms%20of%20service%20(also%20known,to%20use%20the%20offered%20service.">Privacy Policy</a></footer>
+    </form>
+        
     </main>
-  </body>
+
+
+</body>
 </html>
