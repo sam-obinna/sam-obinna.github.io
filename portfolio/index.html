@@ -47,6 +47,32 @@
             font-weight: bold;
             margin-top: 20px;
         }
+        /* Hide the nav menu by default */
+        #nav {
+            display: none;
+        }
+        /* Show the nav menu when the menu icon is clicked */
+        #nav.show {
+            display: block;
+        }
+        /* Style for the menu icon */
+        #menu-icon {
+            display: block;
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+        @media (min-width: 600px) {
+            #menu-icon {
+                display: none; /* Hide the menu icon on larger screens */
+            }
+            #nav {
+                display: block; /* Show the nav menu on larger screens */
+            }
+        }
+        /* Add space between nav items */
+        #nav ul.icons li {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body class="is-preload">
@@ -56,7 +82,7 @@
 
         <!-- Intro -->
         <section id="intro">
-            <h1>Samuggggeel Nwafor<br></h1>
+            <h1>Samuel Nwafor<br></h1>
             <h3>Workflow Automation Specialist</h3>
             <br><br>
             <p>I am a <strong>workflow automation specialist</strong> with extensive experience in utilizing no-code and low-code tools to streamline business operations and optimize processes. My solid background in software engineering has provided me with the expertise to excel in this field. I am adept at creating efficient, automated solutions that enhance productivity and drive business success..</p>
@@ -70,17 +96,16 @@
         <!-- Header -->
         <header id="header">
             <a href="index.html" class="logo">Projects</a>
+            <span id="menu-icon" class="icon solid fa-bars"></span>
         </header>
 
         <!-- Nav -->
-        <!--
         <nav id="nav">
             <ul class="icons">
-                <li><a href="https://www.linkedin.com/in/samuelobinna/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-                <li><a href="https://github.com/sam-obinna" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
+                <li><a href="#main" class="button">Projects</a></li>
+                <li><a href="#contact" class="button">Contact</a></li>
             </ul>
         </nav>
-        -->
 
         <!-- Main -->
         <main id="main">
@@ -140,7 +165,8 @@
                 
             </section>
 
-            <section class="split contact">
+            <!-- Contact Section -->
+            <section id="contact" class="split contact">
                 <section class="alt">
                     <h3>Address</h3>
                     <p>Abuja, Nigeria</p>
@@ -167,7 +193,6 @@
 
         <!-- Footer -->
         <footer>
-           
         </footer>
     </div>
 
@@ -179,6 +204,17 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        // JavaScript to toggle the navigation menu on mobile
+        document.getElementById('menu-icon').addEventListener('click', function() {
+            var nav = document.getElementById('nav');
+            if (nav.classList.contains('show')) {
+                nav.classList.remove('show');
+            } else {
+                nav.classList.add('show');
+            }
+        });
+    </script>
 
 </body>
 </html>
