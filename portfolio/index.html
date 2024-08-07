@@ -27,6 +27,26 @@
         footer a:hover {
             text-decoration: underline;
         }
+        .resume-section {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 20px;
+        }
+        .resume-section h2 {
+            margin-top: 0;
+        }
+        .resume-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .resume-section ul li {
+            margin-bottom: 10px;
+        }
+        .resume-section .section-title {
+            font-weight: bold;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body class="is-preload">
@@ -36,8 +56,12 @@
 
         <!-- Intro -->
         <section id="intro">
-            <h1>Samuel Obinna Nwafor<br>Portfolio</h1>
-            <p><strong>Python Programmer</strong> with a solid understanding of Machine Learning and Cloud Computing.</p>
+            <h1>Samuel Nwafor<br></h1>
+            <h3>Workflow Automation Specialist</h3>
+            <br><br>
+            <p>I am a <strong>workflow automation specialist</strong> with extensive experience in utilizing no-code and low-code tools to streamline business operations and optimize processes. My solid background in software engineering has provided me with the expertise to excel in this field. I am adept at creating efficient, automated solutions that enhance productivity and drive business success..</p>
+
+            <br><br>
             <ul class="actions">
                 <li><a href="#main" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
             </ul>
@@ -59,57 +83,82 @@
         <!-- Main -->
         <main id="main">
 
-            <!-- Featured Post -->
-            <article class="post featured">
-                <header class="major">
-                    <h2><a href="#">Image Classification Application</a></h2>
-                    <p>In this project, we employed the VGG11 convolutional neural network architecture, pre-trained on hundreds of thousands of images. Our primary objective was to train an image classifier for various species of flowers. We created a new untrained feed-forward network as a classifier and trained the classifier layers using backpropagation on the VGG11 (pretrained model).</p>
-                </header>
-                <a href="#" class="image main"><img src="images/flowers2_image.jpg" alt="Flower Classification"></a>
-                <ul class="actions special">
-                    <li><a href="https://github.com/sam-obinna/portfolio/blob/main/Image_classifier/image_project2.ipynb" class="button large">View Project</a></li>
-                </ul>
-            </article>
+            <!-- Resume Section
+            <section class="resume-section">
+                <h2>Resume</h2>
+                <p><strong>Samuel Nwafor</strong></p>
+                <p>Abuja, Nigeria | <a href="mailto:nsamuel0003@gmail.com">nsamuel0003@gmail.com</a></p>
+                <p>Portfolio: <a href="https://sam-obinna.github.io" target="_blank">sam-obinna.github.io</a></p>
+                <p><a href="https://linkedin.com/in/samuelobinna/" target="_blank">linkedin.com/in/samuelobinna/</a> | <a href="https://github.com/sam-obinna" target="_blank">github.com/sam-obinna</a></p>
+
+                <h3 class="section-title">SKILLS</h3>
+                <p><strong>Technical Skills:</strong> Python, HTML, CSS, JavaScript, Excel</p>
+                <p><strong>Tools:</strong> Airtable, Make.com (Integromat), Zapier</p>
+
+              
+
+                <h3 class="section-title">EDUCATION</h3>
+                <p><strong>Bachelor of Science (B.Sc.) - Mathematics</strong><br>Mar 2021 - Aug 2024<br>Prince Abubakar Audu University (Nigeria)</p>
+
+                <h3 class="section-title">CERTIFICATIONS</h3>
+                <p><strong>Udacity Nanodegree - Artificial Intelligence with Python</strong><br><a href="#" target="_blank">View credentials</a></p>
+            </section> -->
 
             <!-- Posts -->
             <section class="posts">
                 <article>
                     <header>
-                        <h2><a href="#">Image Processing</a></h2>
+                        <h2><a href="#">E-commerce Inventory System</a></h2>
                     </header>
-                    <a href="https://github.com/sam-obinna/portfolio/tree/main/Image_Processing" class="image main"><img src="images/dogs3.jpg" alt="Dog Breed Data Set"></a>
-                    <p>Used a pre-trained Image Classifier to identify dog breeds. We explored three different CNN architectures (AlexNet, VGG, and ResNet) for this image classification task, utilizing a deep learning model known as a convolutional neural network (CNN) trained on the ImageNet dataset.</p>
+                    <a href="#" class="image main"><img src="images/inventory11.png" alt="Dog Breed Data Set"></a>
+                    <p>This is a comprehensive inventory system designed to:
+                        Monitor order statuses, including whether they have been shipped or not.
+                        Provide up-to-date insights into current stock levels.
+                        Offer crucial performance metrics to help assess business performance.</p>
                     <ul class="actions special">
-                        <li><a href="https://github.com/sam-obinna/portfolio/tree/main/Image_Processing" class="button large">View Project</a></li>
+                        <!-- <li><a href="https://github.com/sam-obinna/portfolio/tree/main/Image_Processing" 
+                            class="button large">View Project</a></li> -->
+                    </ul>
+                </article>
+                <article>
+                    <header>
+                        <h2><a href="#">Automated Hiring System</a></h2>
+                    </header>
+                    <a href="#" class="image fit"><img src="images/hiring.png" alt="Distribution Package"></a>
+                    <p>This Automated System is crafted to oversee the staff hiring process efficiently.
+                        It reviews applications to ensure they meet all eligibility criteria, qualifying those that do and disqualifying the rest.
+                        The system keeps applicants informed about their application status and next steps.</p>
+                    <ul class="actions special">
+                        <!-- <li><a href="https://github.com/sam-obinna/portfolio/tree/main/Python-Distribution-Package" class="button">View Project</a></li> -->
                     </ul>
                 </article>
 
                 <article>
                     <header>
-                        <h2><a href="#">Movie Correlation with Python</a></h2>
+                        <h2><a href="#">Customer Complaint and Feedback Management System</a></h2>
                     </header>
-                    <a href="#" class="image fit"><img src="images/movies.jpg" alt="Movie Correlation"></a>
-                    <p>Employed a Jupyter notebook in Python to examine variables impacting the gross revenue generated by movies.</p>
+                    <a href="#" class="image fit"><img src="images/comp.png" alt="Movie Correlation"></a>
+                    <p>
+                        This is an automated system designed to manage customer complaints and feedback. It automatically assigns support agents to each customer, keeps customers informed about the status of their complaints, and tracks support performance. Additionally, the system monitors feedback and complaints to identify areas for improvement in customer service</p>
                     <ul class="actions special">
-                        <li><a href="https://github.com/sam-obinna/portfolio/tree/main/MOVIE_CORRELATION_WITH_PYTHON" class="button">View Project</a></li>
+                        <!-- <li><a href="https://github.com/sam-obinna/portfolio/tree/main/MOVIE_CORRELATION_WITH_PYTHON" class="button">View Project</a></li> -->
                     </ul>
                 </article>
 
                 <article>
                     <header>
-                        <h2><a href="#">Python Package for Gaussian and Binomial Distribution</a></h2>
+                        <h2><a href="#">TK Management System</a></h2>
                     </header>
-                    <a href="https://github.com/sam-obinna/portfolio/tree/main/Python-Distribution-Package" class="image fit"><img src="images/distribution.webp" alt="Distribution Package"></a>
-                    <p>Developed a Python package aimed at streamlining the computation of Gaussian and binomial distributions, leveraging popular Python libraries like NumPy and Matplotlib to enhance functionality and versatility.</p>
+                    <a href="#" class="image fit"><img src="images/Try.png" alt="Distribution Package"></a>
+                    <p>Try Kibo (TK) is an online tech certification program. I developed a management system for handling applications to the Try Kibo program. This system sends notifications via WhatsApp and email to applicants, tracking their progress from the signup stage until enrollment.</p>
                     <ul class="actions special">
-                        <li><a href="https://github.com/sam-obinna/portfolio/tree/main/Python-Distribution-Package" class="button">View Project</a></li>
+                        <!-- <li><a href="https://github.com/sam-obinna/portfolio/tree/main/Python-Distribution-Package" class="button">View Project</a></li> -->
                     </ul>
                 </article>
+
+                
             </section>
-        </main>
 
-        <!-- Footer -->
-        <footer>
             <section class="split contact">
                 <section class="alt">
                     <h3>Address</h3>
@@ -132,7 +181,12 @@
                     </ul>
                 </section>
             </section>
-            <p>&copy; Samuel Obinna Nwafor</p>
+            <p>&copy; Samuel Nwafor</p>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+           
         </footer>
     </div>
 
