@@ -1,220 +1,526 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samuel O. Portfolio</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
-    <style>
-        /* Inline CSS for testing */
-        body {
-            background-color: #f8f8f8; /* Light background for contrast */
-            color: #333; /* Dark text color */
-        }
-        footer {
-            background-color: #fff; /* White background for footer */
-            color: #333; /* Dark text color */
-            padding: 20px;
-            border-top: 1px solid #e0e0e0;
-        }
-        footer h3 {
-            margin-top: 0;
-        }
-        footer a {
-            color: #1e90ff; /* Link color */
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
-        .resume-section {
-            background-color: #fff;
-            padding: 20px;
-            border: 1px solid #e0e0e0;
-            margin-bottom: 20px;
-        }
-        .resume-section h2 {
-            margin-top: 0;
-        }
-        .resume-section ul {
-            list-style: none;
-            padding: 0;
-        }
-        .resume-section ul li {
-            margin-bottom: 10px;
-        }
-        .resume-section .section-title {
-            font-weight: bold;
-            margin-top: 20px;
-        }
-        /* Hide the nav menu by default */
-        #nav {
-            display: none;
-        }
-        /* Show the nav menu when the menu icon is clicked */
-        #nav.show {
-            display: block;
-        }
-        /* Style for the menu icon */
-        #menu-icon {
-            display: block;
-            cursor: pointer;
-            font-size: 1.5em;
-        }
-        @media (min-width: 600px) {
-            #menu-icon {
-                display: none; /* Hide the menu icon on larger screens */
-            }
-            #nav {
-                display: block; /* Show the nav menu on larger screens */
-            }
-        }
-        /* Add space between nav items */
-        #nav ul.icons li {
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body class="is-preload">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Samuel N. Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+  <body>
+    <nav id="desktop-nav">
+      <div class="logo">Samuel Nwafor</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav id="hamburger-nav">
+      <div class="logo">Samuel Nwafor</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
+    <section id="profile">
+      <div class="section__pic-container">
+        <img
+          src="./assets/cropped-image (1).jpg"
+          alt="Samuel Nwafor profile picture"
+        />
+      </div>
+      <div class="section__text">
+        <p class="section__text__p1">Hello, I'm</p>
+        <h1 class="title">Samuel Nwafor</h1>
+        <p class="section__text__p2">Workflow Automation Specialist</p>
+        <div class="btn-container">
+          <button
+            class="btn btn-color-2"
+            onclick="window.open('./assets/Sam_Resume.pdf')"
+          >
+            Download CV
+          </button>
+          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+            Contact Info
+          </button>
+        </div>
+        <div id="socials-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="My LinkedIn profile"
+            class="icon"
+            onclick="location.href='https://www.linkedin.com/in/samuelnwafor/'"
+          />
+          <img
+            src="./assets/github.png"
+            alt="My Github profile"
+            class="icon"
+            onclick="location.href='http://github.com/sam-obinna/'"
+          />
+        </div>
+      </div>
+    </section>
+  <br>
+    <section id="about">
+      <p class="section__text__p1">Get To Know More</p>
+      <h1 class="title">About Me</h1>
+      <div class="section-container">
+        <!-- <div class="section__pic-container">
+          <img
+            src="./assets/profile_4.png"
+            alt="Profile picture"
+            class="about-pic"
+          />
+        </div> -->
 
-    <!-- Wrapper -->
-    <div id="wrapper" class="fade-in">
+        <div class="about-details-container">
+          <div class="about-containers">
+            <div class="details-container">
+              <img
+                src="./assets/experience.png"
+                alt="Experience icon"
+                class="icon"
+              />
+              <h3>Work History</h3>
+              <p>Automation Assistant - <strong>Kibo School</strong></p>
+            </div>
+            <div class="details-container">
+              <img
+                src="./assets/education.png"
+                alt="Education icon"
+                class="icon"
+              />
+              <h3>Education</h3>
+              <p>B.Sc. Mathematics Science<br /></p>
+            </div>
+          </div>
+          <div class="text-container">
+            <p id="intro">
+              I am a workflow automation specialist with extensive experience in
+              utilizing no-code and low-code tools to streamline business
+              operations and optimize processes.  My solid background in software
+              engineering has provided me with the expertise to excel in this
+              field. I am adept at creating efficient, automated solutions that
+              enhance productivity and drive business success.
+            </p>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#experience'"
+      />
+    </section>
+    <section id="experience">
+      <p class="section__text__p1">Explore My</p>
+      <h1 class="title">Experience</h1>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container">
+            <h2 class="experience-sub-title">Automation (Platforms)</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Airtable</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Zapier</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Make.com</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>TypeForm</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Google Sheets</h3>
+                  <p>Experienced</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Glide</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="details-container">
+            <h2 class="experience-sub-title">Automation (Skills)</h2>
+            <div class="article-container">
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Project Management</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Data Analysis</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>JavaScript</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Python</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>HTML & CSS</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+              <article>
+                <img
+                  src="./assets/checkmark.png"
+                  alt="Experience icon"
+                  class="icon"
+                />
+                <div>
+                  <h3>Webhooks and APIs</h3>
+                  <p>Intermediate</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#projects'"
+      />
+    </section>
+    <br>
+    <section id="projects">
+      <p class="section__text__p1">Browse My Recent</p>
+      <h1 class="title">Projects</h1>
 
-        <!-- Intro -->
-        <section id="intro">
-            <h1>Samuel Nwafor<br></h1>
-            <h3>Workflow Automation Specialist</h3>
-            <br><br>
-            <p>I am a <strong>workflow automation specialist</strong> with extensive experience in utilizing no-code and low-code tools to streamline business operations and optimize processes. My solid background in software engineering has provided me with the expertise to excel in this field. I am adept at creating efficient, automated solutions that enhance productivity and drive business success..</p>
+      <div class="experience-details-container">
+        <div class="about-containers">
 
-            <br><br>
-            <ul class="actions">
-                <li><a href="#main" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-            </ul>
-        </section>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/inventory11.png"
+                alt="Project 1"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">
+              E-COMMERCE INVENTORY SYSTEM
+            </h2>
+            <p>
+              This is a comprehensive inventory system designed to: Monitor
+              order statuses, including whether they have been shipped or not.
+              Provide up-to-date insights into current stock levels. Offer
+              crucial performance metrics to help assess business performance.
+            </p>
+            <br>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://www.loom.com/share/f484aaa1804540ae953bfd9e6ecf0d3c?sid=8b4d07b5-5b1c-4ed2-a422-120a6a085646'"
+              >
+              Live Demo
+              <!-- </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Documentation -->
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/hiring.png"
+                alt="Project 2"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">
+              AUTOMATED HIRING SYSTEM
+            </h2>
+            <p>
+              This Automated System is crafted to oversee the staff hiring
+              process efficiently. It reviews applications to ensure they meet
+              all eligibility criteria, qualifying those that do and
+              disqualifying the rest. The system keeps applicants informed about
+              their application status and next steps.
+            </p>
+            <br>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://youtu.be/UkMPOibKxqM'"
+              >
+              Live Demo
+              </button>
+              <!-- <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Documentation
+              </button> -->
+            </div>
+          </div>
+<!--           
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-3.png"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Project Three</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+              Live Demo
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Documentation
+              </button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div class="experience-details-container">
+        <div class="about-containers">
+          
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/comp.png"
+                alt="Project 1"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">
+              CUSTOMER COMPLAINT AND FEEDBACK MANAGEMENT SYSTEM
+            </h2>
+            <p>
+              This is an automated system designed to manage customer complaints
+              and feedback. It automatically assigns support agents to each
+              customer, keeps customers informed about the status of their
+              complaints, and tracks support performance.</p>
+              <br>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://youtu.be/aMC55lMK6z0'"
+              >
+              Live Demo
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://docs.google.com/document/d/11uAG88bpW7CW_mFJKLe3IknKkSTae_gbtWSFoTcMUuM/edit?usp=sharing'"
+              >
+                Documentation
+              </button>
+            </div>
+          </div>
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/image.png"
+                alt="Project 2"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">
+              TK Management System
+            </h2>
+            <p>
+              Try Kibo (TK) is an online tech certification program. I developed a management system for handling applications to the Try Kibo program. This system sends notifications via WhatsApp and email to applicants, tracking their progress from the signup stage until enrollment.
+            </p>
+            <br>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://youtu.be/8odCyJL4-TA'"
+              >
+              Live Demo
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Documentation
+              </button>
+            </div>
+          </div>
 
-        <!-- Header -->
-        <header id="header">
-            <a href="index.html" class="logo">Projects</a>
-            <span id="menu-icon" class="icon solid fa-bars"></span>
-        </header>
+          <!-- <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/project-3.png"
+                alt="Project 3"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">Project Three</h2>
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+              Live Demo
+              </button>
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://github.com/'"
+              >
+                Documentation
+              </button>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#contact'"
+      />
+    </section>
 
-        <!-- Nav -->
-        <nav id="nav">
-            <ul class="icons">
-                <li><a href="#main" class="button">Projects</a></li>
-                <li><a href="#contact" class="button">Contact</a></li>
-            </ul>
-        </nav>
-
-        <!-- Main -->
-        <main id="main">
-
-            <!-- Posts -->
-            <section class="posts">
-                <article>
-                    <header>
-                        <h2><a href="#">E-commerce Inventory System</a></h2>
-                    </header>
-                    <a href="#" class="image main"><img src="images/inventory11.png" alt="Dog Breed Data Set"></a>
-                    <p>This is a comprehensive inventory system designed to:
-                        Monitor order statuses, including whether they have been shipped or not.
-                        Provide up-to-date insights into current stock levels.
-                        Offer crucial performance metrics to help assess business performance.</p>
-                    <ul class="actions special">
-                        <!-- <li><a href="https://github.com/sam-obinna/portfolio/tree/main/Image_Processing" 
-                            class="button large">View Project</a></li> -->
-                    </ul>
-                </article>
-                <article>
-                    <header>
-                        <h2><a href="#">Automated Hiring System</a></h2>
-                    </header>
-                    <a href="#" class="image fit"><img src="images/hiring.png" alt="Distribution Package"></a>
-                    <p>This Automated System is crafted to oversee the staff hiring process efficiently.
-                        It reviews applications to ensure they meet all eligibility criteria, qualifying those that do and disqualifying the rest.
-                        The system keeps applicants informed about their application status and next steps.</p>
-                    <ul class="actions special">
-                        <!-- <li><a href="https://github.com/sam-obinna/portfolio/tree/main/Python-Distribution-Package" class="button">View Project</a></li> -->
-                    </ul>
-                </article>
-
-                <article>
-                    <header>
-                        <h2><a href="#">Customer Complaint and Feedback Management System</a></h2>
-                    </header>
-                    <a href="#" class="image fit"><img src="images/comp.png" alt="Movie Correlation"></a>
-                    <p>
-                        This is an automated system designed to manage customer complaints and feedback. It automatically assigns support agents to each customer, keeps customers informed about the status of their complaints, and tracks support performance. Additionally, the system monitors feedback and complaints to identify areas for improvement in customer service</p>
-                    <ul class="actions special">
-                        <!-- <li><a href="https://github.com/sam-obinna/portfolio/tree/main/MOVIE_CORRELATION_WITH_PYTHON" class="button">View Project</a></li> -->
-                    </ul>
-                </article>
-
-                <article>
-                    <header>
-                        <h2><a href="#">TK Management System</a></h2>
-                    </header>
-                    <a href="#" class="image fit"><img src="images/Try.png" alt="Distribution Package"></a>
-                    <p>Try Kibo (TK) is an online tech certification program. I developed a management system for handling applications to the Try Kibo program. This system sends notifications via WhatsApp and email to applicants, tracking their progress from the signup stage until enrollment.</p>
-                    <ul class="actions special">
-                        <!-- <li><a href="https://github.com/sam-obinna/portfolio/tree/main/Python-Distribution-Package" class="button">View Project</a></li> -->
-                    </ul>
-                </article>
-
-                
-            </section>
-
-            <!-- Contact Section -->
-            <section id="contact" class="split contact">
-                <section class="alt">
-                    <h3>Address</h3>
-                    <p>Abuja, Nigeria</p>
-                </section>
-                <section>
-                    <h3>Phone</h3>
-                    <p><a href="tel:+2348069735063">+2348069735063</a></p>
-                    <p><a href="tel:+2348133833837">+2348133833837</a></p>
-                </section>
-                <section>
-                    <h3>Email</h3>
-                    <p><a href="mailto:nsamuel0003@gmail.com">nsamuel0003@gmail.com</a></p>
-                </section>
-                <section>
-                    <h3>Socials</h3>
-                    <ul class="icons alt">
-                        <li><a href="https://www.linkedin.com/in/samuelobinna/" class="icon brands alt fa-linkedin"><span class="label">LinkedIn</span></a></li>
-                        <li><a href="https://github.com/sam-obinna" class="icon brands alt fa-github"><span class="label">GitHub</span></a></li>
-                    </ul>
-                </section>
-            </section>
-            <p>&copy; Samuel Nwafor</p>
-        </main>
-
-        <!-- Footer -->
-        <footer>
-        </footer>
-    </div>
-
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script>
-        // JavaScript to toggle the navigation menu on mobile
-        document.getElementById('menu-icon').addEventListener('click', function() {
-            var nav = document.getElementById('nav');
-            if (nav.classList.contains('show')) {
-                nav.classList.remove('show');
-            } else {
-                nav.classList.add('show');
-            }
-        });
-    </script>
-
-</body>
-</html>
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:nsamuel0003@gmail.com<">nsamuel0003@gmail.com</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p><a href="https://www.linkedin.com/in/samuelnwafor/">LinkedIn</a></p>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <nav>
+        <div class="nav-links-containerr">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>Copyright &#169; 2024 Samuel Nwafor. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>-->
+  
+</html> 
