@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Samuel N. Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="mediaqueries.css" />
+  </head>
+  <body>
+    <!-- NAVIGATION -->
+    <nav id="desktop-nav">
+      <div class="logo">Samuel Nwafor</div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <nav id="hamburger-nav">
+      <!-- 
+        <div class="logo">Samuel Nwafor</div>
+        <div class="hamburger-menu">
+          <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="menu-links">
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>
+            <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+          </div>
+        </div>
+      -->
+    </nav>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./assets/inventory11.png"
+                alt="Project 1"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">The Creator</h2>
+            <p>
+              <strong>1. Overview</strong><br/>
+              The Creator is an AI-powered writing assistant that specializes in drafting clear, engaging, and impactful text for various contexts. It can craft polished emails, compelling stories, blog content, marketing copy, and more. By leveraging specialized tools, The Creator guides users through the entire writing process—from brainstorming to final proofreading—delivering professional and brand-consistent communication.
+              <br/><br/>
+
+              <strong>2. Key Features</strong><br/>
+              <ul>
+                <li>
+                  <strong>Versatile Writing Styles</strong> — Adapts to different tones—formal, conversational, friendly, or persuasive—to match your audience and purpose.
+                </li>
+                <li>
+                  <strong>Drafting & Editing Tools</strong>:
+                  <ul>
+                    <li><em>draftEmail</em>: Creates concise and professional emails, including subject lines and calls to action.</li>
+                    <li><em>draftContent</em>: Crafts blog posts, newsletters, landing page copy, and more.</li>
+                    <li><em>draftStory</em>: Focuses on storytelling, developing characters, plots, and narratives.</li>
+                    <li><em>rewriteWizard</em>: Refines existing text to enhance clarity, tone, or style without losing the original essence.</li>
+                    <li><em>languageCheck</em>: Conducts grammar and spelling checks for high-quality, error-free content.</li>
+                  </ul>
+                </li>
+                <li><strong>Scalable Workflows</strong> — Integrates seamlessly with Slack, Teams, WhatsApp, Discord, Telegram, or your own website, and can be extended to handle new writing formats or custom brand voice guidelines.</li>
+                <li><strong>User-Friendly Guidance</strong> — Prompts users for clarifications and provides suggestions to improve readability and impact.</li>
+                <li><strong>Professional Tone & Branding</strong> — Maintains brand consistency by following style guides or tone requirements set by the user.</li>
+              </ul>
+              <br/>
+
+              <strong>3. How It Works</strong><br/>
+              <ol>
+                <li><em>Natural Language Understanding</em>: Users request content in plain language, and The Creator interprets whether it needs to draft an email, story, or something else.</li>
+                <li><em>Tool Invocation</em>: The Creator invokes the appropriate tool (e.g., <em>draftEmail</em>, <em>draftStory</em>, etc.) to handle the request.</li>
+                <li><em>Draft Generation</em>: It produces an initial draft that reflects the specified style and context.</li>
+                <li><em>Refinement & Checks</em>: Uses <em>languageCheck</em> to ensure grammatical accuracy and can refine drafts upon user feedback.</li>
+                <li><em>Delivery</em>: Provides the final text in a clean format, ready to be copied or used in emails, documents, or web pages.</li>
+              </ol>
+              <br/>
+
+              <strong>4. Integrations</strong><br/>
+              <ul>
+                <li><em>Slack</em> — Quickly draft messages for teams or channels and collaborate in real time.</li>
+                <li><em>WhatsApp / Teams</em> — Chat with The Creator on mobile or desktop, perfect for on-the-go writing tasks.</li>
+                <li><em>Telegram / Discord</em> — Use slash commands or mentions to produce or refine content instantly.</li>
+                <li><em>Website / Intranet</em> — Embed The Creator as a chatbot or web-based assistant on portals for 24/7 writing support.</li>
+              </ul>
+              <br/>
+
+              <strong>5. Prompt Design & Structure</strong><br/>
+              <ul>
+                <li><em>Role Definition</em> — Positions The Creator as an AI-driven content generator and writing specialist.</li>
+                <li><em>Important Information</em> — Gathers context like current date/time or user ID for personalization.</li>
+                <li><em>Tools & Usage</em> — Lists the various tools (e.g., <em>draftEmail</em>, <em>draftStory</em>) and how to invoke them.</li>
+                <li><em>Rules</em> — Ensures consistency in voice and style, asking for clarifications if instructions are incomplete.</li>
+                <li><em>Examples</em> — Provides sample requests and how The Creator responds.</li>
+                <li><em>Knowledge</em> — Encourages referencing style guides, policy documents, or brand guidelines for accuracy.</li>
+              </ul>
+              <br/>
+
+              <strong>6. Technical Stack</strong><br/>
+              <ul>
+                <li><em>AI Model</em> — Built on an LLM (e.g., GPT-based architecture), fine-tuned for creative and technical writing.</li>
+                <li><em>Orchestration Layer</em> — Uses Python or Node.js to process user queries, manage conversation state, and route to the correct tools.</li>
+                <li><em>APIs & Databases</em> — May save drafted content or fetch style guidelines, integrating with Slack, Teams, or web frameworks.</li>
+                <li><em>Security & Permissions</em> — Protects private or proprietary data using secure tokens and authorized access for sensitive content.</li>
+              </ul>
+              <br/>
+
+              <strong>7. Project Impact</strong><br/>
+              <ul>
+                <li><em>Elevated Communication</em> — Ensures all emails, announcements, and marketing copy are well-crafted and error-free.</li>
+                <li><em>Creative Empowerment</em> — Helps anyone produce high-quality stories, messages, and web copy, regardless of writing ability.</li>
+                <li><em>Time & Resource Savings</em> — Automates routine writing tasks, reducing editing time and reliance on external copywriters.</li>
+                <li><em>Easy Collaboration</em> — Allows for real-time drafting and editing within popular chat environments.</li>
+              </ul>
+              <br/>
+
+              <strong>8. Future Enhancements</strong><br/>
+              <ul>
+                <li><em>Multilingual Support</em> — Extend capabilities to other languages for global teams.</li>
+                <li><em>Advanced Style Guides</em> — Integrate deeper brand guidelines or style preferences, including voice analyzers for formal vs. casual tone.</li>
+                <li><em>Document Generation</em> — Draft entire proposals, whitepapers, or other large documents.</li>
+                <li><em>Tone Adaptation with Context</em> — Incorporate sentiment analysis to fine-tune content for empathy, enthusiasm, or urgency.</li>
+              </ul>
+              <br/>
+
+              <strong>9. Conclusion</strong><br/>
+              The Creator transforms the way teams handle writing tasks, offering a single hub for generating email drafts, short stories, blog posts, and persuasive marketing copy. Its specialized tools simplify the entire writing process and ensure consistent, high-quality outputs. Implementing The Creator in your workflow showcases expertise in prompt engineering, system integration, and AI-driven content generation—all while helping users communicate with clarity, creativity, and impact.
+            </p>
+            <br />
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='https://www.loom.com/share/f484aaa1804540ae953bfd9e6ecf0d3c?sid=8b4d07b5-5b1c-4ed2-a422-120a6a085646'"
+              >
+                Live Demo
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="./assets/arrow.png"
+        alt="Arrow icon"
+        class="icon arrow"
+        onclick="location.href='./#contact'"
+      />
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+      <p class="section__text__p1">Get in Touch</p>
+      <h1 class="title">Contact Me</h1>
+      <div class="contact-info-upper-container">
+        <div class="contact-info-container">
+          <img
+            src="./assets/email.png"
+            alt="Email icon"
+            class="icon contact-icon email-icon"
+          />
+          <p><a href="mailto:nsamuel0003@gmail.com">nsamuel0003@gmail.com</a></p>
+        </div>
+        <div class="contact-info-container">
+          <img
+            src="./assets/linkedin.png"
+            alt="LinkedIn icon"
+            class="icon contact-icon"
+          />
+          <p>
+            <a href="https://www.linkedin.com/in/samuelnwafor/" target="_blank"
+              >LinkedIn</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <nav>
+        <div class="nav-links-containerr">
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+      <p>Copyright &#169; 2024 Samuel Nwafor. All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>

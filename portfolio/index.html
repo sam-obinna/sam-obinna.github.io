@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="mediaqueries.css" />
   </head>
+
   <body>
+    <!-- NAVIGATION -->
     <nav id="desktop-nav">
       <div class="logo">Samuel Nwafor</div>
       <div>
@@ -20,6 +22,7 @@
         </ul>
       </div>
     </nav>
+
     <nav id="hamburger-nav">
       <div class="logo">Samuel Nwafor</div>
       <div class="hamburger-menu">
@@ -36,6 +39,8 @@
         </div>
       </div>
     </nav>
+
+    <!-- PROFILE SECTION -->
     <section id="profile">
       <div class="section__pic-container">
         <img
@@ -45,16 +50,16 @@
       </div>
       <div class="section__text">
         <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">Samuel Nwafor</h1>
-        <p class="section__text__p2">Workflow Automation Specialist</p>
+        <h1 class="title">Samuel</h1>
+        <p class="section__text__p2">AI and Automation Specialist</p>
         <div class="btn-container">
           <button
             class="btn btn-color-2"
-            onclick="window.open('./assets/Sam_Resume.pdf')"
+            onclick="window.open('https://docs.google.com/document/d/19Ci_oXA07dX89sjcWcCDuxdfu_4eI4YhnRfzwHHzaB0/edit?usp=sharing')"
           >
             Download CV
           </button>
-          <button class="btn btn-color-1" onclick="location.href='./#contact'">
+          <button class="btn btn-color-1" onclick="location.href='#contact'">
             Contact Info
           </button>
         </div>
@@ -74,19 +79,14 @@
         </div>
       </div>
     </section>
-  <br> <br>
+
+    <br /><br />
+
+    <!-- ABOUT SECTION -->
     <section id="about">
       <p class="section__text__p1">Get To Know More</p>
       <h1 class="title">About Me</h1>
       <div class="section-container">
-        <!-- <div class="section__pic-container">
-          <img
-            src="./assets/profile_4.png"
-            alt="Profile picture"
-            class="about-pic"
-          />
-        </div> -->
-
         <div class="about-details-container">
           <div class="about-containers">
             <div class="details-container">
@@ -97,7 +97,8 @@
               />
               <h3>Work History</h3>
               <p>Automation Assistant - <strong>Kibo School</strong></p>
-              <p>Project Support Specialist - <strong>Process Architect</strong></p>
+              <p>Project Specialist - <strong>Process Architect</strong></p>
+              <p>Ai Automation Specialist - <strong>Automaly</strong></p>
             </div>
             <div class="details-container">
               <img
@@ -111,12 +112,13 @@
           </div>
           <div class="text-container">
             <p id="intro">
-              I am a workflow automation specialist with extensive experience in
-              utilizing no-code and low-code tools to streamline business
-              operations and optimize processes.  My solid background in software
-              engineering has provided me with the expertise to excel in this
-              field. I am adept at creating efficient, automated solutions that
-              enhance productivity and drive business success.
+              I am an AI Automation Specialist with extensive experience in
+              leveraging no-code and low-code tools to develop AI-driven
+              workflow automation, GPT-powered solutions, and virtual assistants
+              across various industries. Whether it's building chatbots,
+              automating e-commerce support, or integrating AI-driven data
+              pipelines, I'm passionate about harnessing the power of modern
+              technology to deliver tangible results for clients and end-users.
             </p>
           </div>
         </div>
@@ -125,14 +127,17 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#experience'"
+        onclick="location.href='#experience'"
       />
     </section>
+
+    <!-- EXPERIENCE SECTION -->
     <section id="experience">
       <p class="section__text__p1">Explore My</p>
       <h1 class="title">Experience</h1>
       <div class="experience-details-container">
         <div class="about-containers">
+          <!-- Automation (Platforms) -->
           <div class="details-container">
             <h2 class="experience-sub-title">Automation (Platforms)</h2>
             <div class="article-container">
@@ -204,6 +209,7 @@
               </article>
             </div>
           </div>
+          <!-- Automation (Skills) -->
           <div class="details-container">
             <h2 class="experience-sub-title">Automation (Skills)</h2>
             <div class="article-container">
@@ -281,17 +287,88 @@
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#projects'"
+        onclick="location.href='#projects'"
       />
     </section>
-    <br>
+
+    <br />
+
+    <!-- PROJECTS SECTION -->
     <section id="projects">
       <p class="section__text__p1">Browse My Recent</p>
       <h1 class="title">Projects</h1>
 
+      <!-- First Row: Office Ally & The Creator -->
       <div class="experience-details-container">
         <div class="about-containers">
+          <!-- Office Ally -->
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./images/chatbot.webp"
+                alt="Project 1"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">
+              Office Ally (Ai Agent)
+            </h2>
+            <p>
+              Office Ally is an AI Agent designed to serve as an office
+              assistant to help streamline internal operations and
+              communication. By integrating seamlessly with platforms such as
+              Slack, Teams, WhatsApp, Telegram, Discord, and custom websites,
+              Office Ally responds to employee inquiries and carries out tasks
+              like sending and replying to emails, scheduling calendar events,
+              and more.
+            </p>
+            <br />
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='./assets/officeally.pdf'"
+              >
+                Documentation
+              </button>
+            </div>
+          </div>
 
+          <!-- The Creator -->
+          <div class="details-container color-container">
+            <div class="article-container">
+              <img
+                src="./images/writer.webp"
+                alt="Project 1"
+                class="project-img"
+              />
+            </div>
+            <h2 class="experience-sub-title project-title">
+              The Creator (Ai Agent)
+            </h2>
+            <p>
+              The Creator is an AI-based writing assistant built to draft
+              engaging emails, compelling stories, polished content, and
+              powerful messages. From formal business communication to creative
+              copywriting, The Creator adapts to any tone or style, guiding
+              users with clarity, structure, and a professional finish.
+            </p>
+            <br />
+            <div class="btn-container">
+              <button
+                class="btn btn-color-2 project-btn"
+                onclick="location.href='./assets/thecreator.pdf'"
+              >
+                Documentation
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Row: E-Commerce & Automated Hiring -->
+      <div class="experience-details-container">
+        <div class="about-containers">
+          <!-- E-Commerce Inventory System -->
           <div class="details-container color-container">
             <div class="article-container">
               <img
@@ -304,27 +381,22 @@
               E-COMMERCE INVENTORY SYSTEM
             </h2>
             <p>
-              This is a comprehensive inventory system designed to: Monitor
-              order statuses, including whether they have been shipped or not.
-              Provide up-to-date insights into current stock levels. Offer
-              crucial performance metrics to help assess business performance.
+              This is a comprehensive inventory system designed to monitor order
+              statuses (including shipping), track stock levels, and provide
+              performance metrics for better business insights.
             </p>
-            <br>
+            <br />
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
-                onclick="location.href='https://www.loom.com/share/f484aaa1804540ae953bfd9e6ecf0d3c?sid=8b4d07b5-5b1c-4ed2-a422-120a6a085646'"
+                onclick="location.href='./assets/ecommerce.pdf'"
               >
-              Live Demo
-              <!-- </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Documentation -->
+                Documentation
               </button>
             </div>
           </div>
+
+          <!-- Automated Hiring System -->
           <div class="details-container color-container">
             <div class="article-container">
               <img
@@ -337,58 +409,28 @@
               AUTOMATED HIRING SYSTEM
             </h2>
             <p>
-              This Automated System is crafted to oversee the staff hiring
-              process efficiently. It reviews applications to ensure they meet
-              all eligibility criteria, qualifying those that do and
-              disqualifying the rest. The system keeps applicants informed about
-              their application status and next steps.
+              This automated system efficiently oversees the staff hiring
+              process: it reviews applications for eligibility, qualifies or
+              disqualifies applicants based on criteria, and keeps them
+              informed about next steps.
             </p>
-            <br>
+            <br />
             <div class="btn-container">
               <button
                 class="btn btn-color-2 project-btn"
-                onclick="location.href='https://youtu.be/UkMPOibKxqM'"
-              >
-              Live Demo
-              </button>
-              <!-- <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
+                onclick="location.href='./assets/hiring.pdf'"
               >
                 Documentation
-              </button> -->
+              </button>
             </div>
           </div>
-<!--           
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-3.png"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Project Three</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-              Live Demo
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Documentation
-              </button>
-            </div>
-          </div> -->
         </div>
       </div>
+
+      <!-- Third Row: Customer Complaint & TK Management -->
       <div class="experience-details-container">
         <div class="about-containers">
-          
+          <!-- Customer Complaint System -->
           <div class="details-container color-container">
             <div class="article-container">
               <img
@@ -401,18 +443,12 @@
               CUSTOMER COMPLAINT AND FEEDBACK MANAGEMENT SYSTEM
             </h2>
             <p>
-              This is an automated system designed to manage customer complaints
-              and feedback. It automatically assigns support agents to each
-              customer, keeps customers informed about the status of their
-              complaints, and tracks support performance.</p>
-              <br>
+              This automated system manages customer complaints and feedback by
+              assigning support agents, keeping customers updated on complaint
+              status, and tracking support performance metrics.
+            </p>
+            <br />
             <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://youtu.be/aMC55lMK6z0'"
-              >
-              Live Demo
-              </button>
               <button
                 class="btn btn-color-2 project-btn"
                 onclick="location.href='./assets/customer_comp.pdf'"
@@ -421,6 +457,8 @@
               </button>
             </div>
           </div>
+
+          <!-- TK Management System -->
           <div class="details-container color-container">
             <div class="article-container">
               <img
@@ -433,16 +471,13 @@
               TK Management System
             </h2>
             <p>
-              Try Kibo (TK) is an online tech certification program. I developed a management system for handling applications to the Try Kibo program. This system sends notifications via WhatsApp and email to applicants, tracking their progress from the signup stage until enrollment.
+              Try Kibo (TK) is an online tech certification program. This
+              management system handles applications to the program, sending
+              notifications via WhatsApp and email to applicants and tracking
+              their progress from signup to enrollment.
             </p>
-            <br>
+            <br />
             <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://youtu.be/8odCyJL4-TA'"
-              >
-              Live Demo
-              </button>
               <button
                 class="btn btn-color-2 project-btn"
                 onclick="location.href='./assets/TK_document.pdf'"
@@ -451,41 +486,18 @@
               </button>
             </div>
           </div>
-
-          <!-- <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/project-3.png"
-                alt="Project 3"
-                class="project-img"
-              />
-            </div>
-            <h2 class="experience-sub-title project-title">Project Three</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-              Live Demo
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Documentation
-              </button>
-            </div>
-          </div> -->
         </div>
       </div>
+
       <img
         src="./assets/arrow.png"
         alt="Arrow icon"
         class="icon arrow"
-        onclick="location.href='./#contact'"
+        onclick="location.href='#contact'"
       />
     </section>
 
+    <!-- CONTACT SECTION -->
     <section id="contact">
       <p class="section__text__p1">Get in Touch</p>
       <h1 class="title">Contact Me</h1>
@@ -496,7 +508,9 @@
             alt="Email icon"
             class="icon contact-icon email-icon"
           />
-          <p><a href="mailto:nsamuel0003@gmail.com<">nsamuel0003@gmail.com</a></p>
+          <p>
+            <a href="mailto:nsamuel0003@gmail.com">nsamuel0003@gmail.com</a>
+          </p>
         </div>
         <div class="contact-info-container">
           <img
@@ -504,10 +518,14 @@
             alt="LinkedIn icon"
             class="icon contact-icon"
           />
-          <p><a href="https://www.linkedin.com/in/samuelnwafor/">LinkedIn</a></p>
+          <p>
+            <a href="https://www.linkedin.com/in/samuelnwafor/">LinkedIn</a>
+          </p>
         </div>
       </div>
     </section>
+
+    <!-- FOOTER -->
     <footer>
       <nav>
         <div class="nav-links-containerr">
@@ -519,9 +537,12 @@
           </ul>
         </div>
       </nav>
-      <p>Copyright &#169; 2024 Samuel Nwafor. All Rights Reserved.</p>
+      <p>
+        Copyright
+        &#169;
+        2024 Samuel Nwafor. All Rights Reserved.
+      </p>
     </footer>
     <script src="script.js"></script>
-  </body>-->
-  
-</html> 
+  </body>
+</html>
