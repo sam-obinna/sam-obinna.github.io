@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel's Message</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .message-wrapper {
+            text-align: center;
+            width: 100%;
+        }
+
+        .typed-text {
+            font-size: 4.5rem;
+            font-weight: bold;
+            color: #b8860b;
+            line-height: 1.3;
+            letter-spacing: 2px;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 40px;
+            white-space: pre-wrap;
+            text-align: center;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 4px;
+            height: 4.5rem;
+            background-color: #b8860b;
+            animation: blink 1s infinite;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: 2px solid #b8860b;
+            border-radius: 30px;
+            background: rgba(184, 134, 11, 0.1);
+            color: #b8860b;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Courier New', monospace;
+        }
+
+        button:hover {
+            background: #b8860b;
+            color: #1a1a2e;
+            transform: scale(1.05);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .typed-text {
+                font-size: 2rem;
+                padding: 0 20px;
+            }
+            
+            .cursor {
+                height: 2rem;
+                width: 3px;
+            }
+            
+            button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="message-wrapper">
+            <div class="typed-text" id="typewriter">
+                <span id="text"></span><span class="cursor" id="cursor"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="restart()">RESTART</button>
+        <button onclick="setSpeed('slow')">SLOW</button>
+        <button onclick="setSpeed('normal')">NORMAL</button>
+        <button onclick="setSpeed('fast')">FAST</button>
+        <button onclick="showAll()">SHOW ALL</button>
+    </div>
+
+    <script>
+        const fullText = "Hey My Name Is Samuel,\nAnd I Want You To Know That\nOf All The Things God Created,\nYou Are The BEST.\nNo Wonder He Took His Time\nTo Create You.";
+        
+        let currentIndex = 0;
+        let typingSpeed = 100;
+        let typewriterInterval;
+        const textElement = document.getElementById('text');
+        const cursor = document.getElementById('cursor');
+
+        function typeWriter() {
+            if (currentIndex < fullText.length) {
+                textElement.textContent += fullText.charAt(currentIndex);
+                currentIndex++;
+                typewriterInterval = setTimeout(typeWriter, typingSpeed);
+            } else {
+                // Typing complete - just keep cursor blinking
+            }
+        }
+
+        function restart() {
+            clearTimeout(typewriterInterval);
+            currentIndex = 0;
+            textElement.textContent = '';
+            typeWriter();
+        }
+
+        function setSpeed(speed) {
+            switch(speed) {
+                case 'slow':
+                    typingSpeed = 200;
+                    break;
+                case 'normal':
+                    typingSpeed = 100;
+                    break;
+                case 'fast':
+                    typingSpeed = 50;
+                    break;
+            }
+            // Restart with new speed
+            restart();
+        }
+
+        function showAll() {
+            clearTimeout(typewriterInterval);
+            textElement.textContent = fullText;
+            currentIndex = fullText.length;
+        }
+
+        // Start typing on load
+        typeWriter();
+    </script>
+</body>
+</html>
