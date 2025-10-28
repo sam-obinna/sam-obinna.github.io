@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpSynx - Hero with Circular Metrics</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #FF3131;
+            --dark-red: #cc2626;
+            --white: #FFFFFF;
+            --dark: #0a0a0a;
+            --gray: #666666;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 49, 49, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Rating Badge */
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            border: 2px solid rgba(255, 49, 49, 0.15);
+            animation: fadeInDown 0.6s ease;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .rating-badge .star {
+            color: #FFB800;
+            font-size: 1.1rem;
+        }
+
+        .rating-text {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        /* Hero Text */
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--dark);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Buttons */
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            color: var(--white);
+            box-shadow: 0 5px 20px rgba(255, 49, 49, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 49, 49, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark);
+            border: 2px solid var(--primary-red);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-red);
+            color: var(--white);
+        }
+
+        /* Circular Progress Metrics */
+        .hero-metrics {
+            display: flex;
+            gap: 4rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .metric-card {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            transition: transform 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Circle Base */
+        .circle-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .circle-bg {
+            width: 100%;
+            height: 100%;
+            border: 12px solid rgba(0, 0, 0, 0.05);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover .circle-bg {
+            box-shadow: 0 20px 60px rgba(255, 49, 49, 0.2);
+            border-color: rgba(255, 49, 49, 0.1);
+        }
+
+        /* Progress Rings */
+        .circle-progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .circle-progress svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .circle-progress circle {
+            fill: none;
+            stroke-width: 12;
+            stroke-linecap: round;
+        }
+
+        .progress-bg {
+            stroke: transparent;
+        }
+
+        .progress-fill {
+            stroke: var(--primary-red);
+            stroke-dasharray: 502;
+            stroke-dashoffset: 502;
+            transition: stroke-dashoffset 2s ease;
+        }
+
+        /* 100% Success - Full circle */
+        .metric-card:nth-child(1) .progress-fill {
+            animation: fillComplete 2s ease 0.5s forwards;
+        }
+
+        @keyframes fillComplete {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* 24/7 Uptime - Static circle */
+        .metric-card:nth-child(2) .progress-fill {
+            stroke: rgba(255, 49, 49, 0.2);
+            animation: fillComplete 2s ease 0.7s forwards;
+        }
+
+        /* Clock Hand for 24/7 */
+        .clock-hand {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 3px;
+            height: 35%;
+            background: linear-gradient(to top, var(--primary-red), var(--dark-red));
+            transform-origin: center bottom;
+            transform: translate(-50%, -100%);
+            border-radius: 3px;
+            animation: clockRotate 6s linear infinite;
+            z-index: 3;
+        }
+
+        .clock-hand::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 10px;
+            background: var(--primary-red);
+            border-radius: 50%;
+        }
+
+        .clock-hand::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--dark-red);
+            border-radius: 50%;
+        }
+
+        @keyframes clockRotate {
+            from { transform: translate(-50%, -100%) rotate(0deg); }
+            to { transform: translate(-50%, -100%) rotate(360deg); }
+        }
+
+        /* 3.5x ROI - 87.5% circle */
+        .metric-card:nth-child(3) .progress-fill {
+            stroke-dasharray: 439;
+            stroke-dashoffset: 439;
+            animation: fill87Percent 2s ease 0.9s forwards;
+        }
+
+        @keyframes fill87Percent {
+            to { stroke-dashoffset: 63; }
+        }
+
+        /* Live pulse for 24/7 */
+        .live-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 12px;
+            height: 12px;
+            background: #4CAF50;
+            border-radius: 50%;
+            z-index: 4;
+            animation: livePulse 2s infinite;
+        }
+
+        @keyframes livePulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(76, 175, 80, 0);
+            }
+        }
+
+        /* Metric Content */
+        .metric-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .metric-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+
+        .metric-number {
+            display: inline-block;
+            min-width: 60px;
+        }
+
+        .metric-suffix {
+            font-size: 1.6rem;
+        }
+
+        .metric-label {
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .hero-metrics {
+                gap: 2rem;
+            }
+
+            .metric-card {
+                width: 140px;
+                height: 140px;
+            }
+
+            .metric-value {
+                font-size: 1.8rem;
+            }
+
+            .metric-suffix {
+                font-size: 1.3rem;
+            }
+
+            .metric-label {
+                font-size: 0.7rem;
+            }
+
+            .clock-hand {
+                width: 2px;
+                height: 30%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Rating Badge -->
+            <div class="rating-badge">
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="star">⭐</span>
+                <span class="rating-text">5.0 Average Rating</span>
+            </div>
+            
+            <h1>Transform Your Business with <span>Intelligent Automation</span></h1>
+            <p class="hero-description">While competitors struggle with manual processes, scale effortlessly with AI-powered automation that delivers real results</p>
+            
+            <div class="hero-buttons">
+                <button class="btn btn-primary">Start Your Transformation →</button>
+                <button class="btn btn-secondary">Watch Demo</button>
+            </div>
+            
+            <!-- Circular Progress Metrics -->
+            <div class="hero-metrics">
+                <!-- 100% Success Rate -->
+                <div class="metric-card">
+                    <div class="circle-container">
+                        <div class="circle-bg"></div>
+                        <div class="circle-progress">
+                            <svg>
+                                <circle cx="90" cy="90" r="80" class="progress-bg"></circle>
+                                <circle cx="90" cy="90" r="80" class="progress-fill"></circle>
+                            </svg>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">
+                                <span class="metric-number" id="metric1">0</span><span class="metric-suffix">%</span>
+                            </div>
+                            <div class="metric-label">Project Success</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 24/7 Uptime -->
+                <div class="metric-card">
+                    <div class="circle-container">
+                        <div class="circle-bg"></div>
+                        <div class="circle-progress">
+                            <svg>
+                                <circle cx="90" cy="90" r="80" class="progress-bg"></circle>
+                                <circle cx="90" cy="90" r="80" class="progress-fill"></circle>
+                            </svg>
+                        </div>
+                        <div class="clock-hand"></div>
+                        <div class="live-indicator"></div>
+                        <div class="metric-content">
+                            <div class="metric-value">
+                                <span class="metric-number" id="metric2">0</span><span class="metric-suffix">/7</span>
+                            </div>
+                            <div class="metric-label">Always Running</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3.5x ROI -->
+                <div class="metric-card">
+                    <div class="circle-container">
+                        <div class="circle-bg"></div>
+                        <div class="circle-progress">
+                            <svg>
+                                <circle cx="90" cy="90" r="80" class="progress-bg"></circle>
+                                <circle cx="90" cy="90" r="80" class="progress-fill"></circle>
+                            </svg>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-value">
+                                <span class="metric-number" id="metric3">0.0</span><span class="metric-suffix">x</span>
+                            </div>
+                            <div class="metric-label">Average ROI</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Animated Counter Function
+        function animateCounter(element, target, decimal = false, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                if (decimal) {
+                    element.textContent = current.toFixed(1);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Start animations on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            // Animate metrics with staggered delay
+            setTimeout(() => {
+                animateCounter(document.getElementById('metric1'), 100, false, 2000);
+            }, 500);
+            
+            setTimeout(() => {
+                animateCounter(document.getElementById('metric2'), 24, false, 1500);
+            }, 700);
+            
+            setTimeout(() => {
+                animateCounter(document.getElementById('metric3'), 3.5, true, 2000);
+            }, 900);
+        });
+    </script>
+</body>
+</html>
