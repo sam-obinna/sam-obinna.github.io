@@ -1,0 +1,2300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpSynx - AI & Business Process Automation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #FF3131;
+            --dark-red: #cc2626;
+            --white: #FFFFFF;
+            --dark: #0a0a0a;
+            --gray: #666666;
+            --light-gray: #f8f9fa;
+            --gradient-1: linear-gradient(135deg, #FF3131 0%, #cc2626 100%);
+            --gradient-2: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.75rem 2rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-red);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 49, 49, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 49, 49, 0.4);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 49, 49, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Rating Badge */
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease;
+            border: 2px solid rgba(255, 49, 49, 0.15);
+        }
+
+        .rating-badge .stars-container {
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .rating-badge .star {
+            color: #FFB800;
+            font-size: 1.1rem;
+            animation: starPulse 2s ease-in-out infinite;
+        }
+
+        .rating-badge .star:nth-child(1) { animation-delay: 0s; }
+        .rating-badge .star:nth-child(2) { animation-delay: 0.1s; }
+        .rating-badge .star:nth-child(3) { animation-delay: 0.2s; }
+        .rating-badge .star:nth-child(4) { animation-delay: 0.3s; }
+        .rating-badge .star:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes starPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .rating-text {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: var(--white);
+            box-shadow: 0 5px 20px rgba(255, 49, 49, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255, 49, 49, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--dark);
+            border: 2px solid var(--primary-red);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-red);
+            color: var(--white);
+        }
+
+        /* Hero Metrics - Fixed Circular Styles */
+        .hero-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            border: 2px solid rgba(255, 49, 49, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 49, 49, 0.15);
+            border-color: var(--primary-red);
+        }
+
+        /* Circle Container for Metrics */
+        .circle-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin-bottom: 1.5rem;
+        }
+
+        .circle-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 49, 49, 0.1) 0%, rgba(255, 49, 49, 0.05) 100%);
+            border: 3px solid rgba(255, 49, 49, 0.2);
+        }
+
+        .metric-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .metric-suffix {
+            font-size: 1.5rem;
+        }
+
+        .metric-label-wrapper {
+            text-align: center;
+        }
+
+        .metric-label {
+            color: var(--gray);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Clock styles for 24/7 metric */
+        .clock-marks {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .hour-mark {
+            position: absolute;
+            width: 2px;
+            height: 8px;
+            background: rgba(255, 49, 49, 0.3);
+            left: 50%;
+            transform-origin: center 60px;
+            margin-left: -1px;
+        }
+
+        .hour-mark.major {
+            height: 12px;
+            width: 3px;
+            background: rgba(255, 49, 49, 0.5);
+            margin-left: -1.5px;
+        }
+
+        .clock-hand {
+            position: absolute;
+            width: 3px;
+            height: 40px;
+            background: var(--primary-red);
+            left: 50%;
+            top: 20px;
+            margin-left: -1.5px;
+            transform-origin: center bottom;
+            animation: rotateHand 0.5s linear infinite;
+            border-radius: 3px;
+        }
+
+        .clock-hand-short {
+            position: absolute;
+            width: 4px;
+            height: 30px;
+            background: var(--dark-red);
+            left: 50%;
+            top: 30px;
+            margin-left: -2px;
+            transform-origin: center bottom;
+            animation: rotateHand 3600s linear infinite;
+            border-radius: 3px;
+        }
+
+        .clock-center {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 3;
+        }
+
+        .live-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 8px;
+            height: 8px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes rotateHand {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Business Apps Integration Section */
+        .business-apps {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #fafafa 0%, #fff 100%);
+            overflow: hidden;
+        }
+
+        .apps-showcase {
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .apps-row {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            white-space: nowrap;
+        }
+
+        .apps-row-1 {
+            animation: scrollLeft 15s linear infinite;
+        }
+
+        .apps-row-2 {
+            animation: scrollRight 20s linear infinite;
+        }
+
+        .apps-row-3 {
+            animation: scrollLeft 12.5s linear infinite;
+        }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .app-item {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .app-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 49, 49, 0.15);
+        }
+
+        .app-icon {
+            width: 2rem;
+            height: 2rem;
+            object-fit: contain;
+        }
+
+        .app-name {
+            font-weight: 600;
+            color: var(--dark);
+            white-space: nowrap;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #fafafa 0%, #fff 100%);
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .about-content h2 span {
+            color: var(--primary-red);
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .about-features {
+            margin-top: 3rem;
+        }
+
+        .platform-expertise {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border: 2px solid rgba(255, 49, 49, 0.1);
+        }
+
+        .platform-expertise h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .platform-expertise p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .expertise-logos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .expertise-logo {
+            background: linear-gradient(135deg, #fafafa 0%, #fff 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            min-height: 120px;
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+
+        .expertise-logo:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-red);
+            box-shadow: 0 10px 25px rgba(255, 49, 49, 0.15);
+        }
+
+        .logo-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .platform-icon {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .logo-placeholder-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .logo-name {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-title span {
+            color: var(--primary-red);
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .process-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-red) 0%, var(--dark-red) 100%);
+        }
+
+        .process-step {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .step-content {
+            flex: 1;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(255, 49, 49, 0.3);
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .step-content p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Services Grid */
+        .services-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #fafafa 0%, #fff 100%);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(255, 49, 49, 0.2);
+        }
+
+        .service-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            position: relative;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.6;
+            position: relative;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-top: 1rem;
+            position: relative;
+        }
+
+        .service-card li {
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-red);
+            font-weight: bold;
+        }
+
+        /* Recent Works */
+        .portfolio-section {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .portfolio-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-image {
+            height: 250px;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portfolio-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-card:hover .portfolio-image::after {
+            opacity: 1;
+        }
+
+        .portfolio-content {
+            padding: 2rem;
+        }
+
+        .portfolio-category {
+            color: var(--primary-red);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .portfolio-description {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .portfolio-metrics {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .metric-badge {
+            background: linear-gradient(135deg, #f8f8f8 0%, #fff 100%);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--dark);
+            border: 2px solid var(--primary-red);
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #fafafa 0%, #fff 100%);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-track {
+            display: flex;
+            gap: 2rem;
+            animation: scrollTestimonials 20s linear infinite;
+        }
+
+        .testimonials-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollTestimonials {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .testimonial-card {
+            min-width: 400px;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .testimonial-quote {
+            font-size: 3rem;
+            color: var(--primary-red);
+            opacity: 0.2;
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            padding-top: 1rem;
+        }
+
+        .testimonial-text {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.2rem;
+        }
+
+        .author-role {
+            color: var(--primary-red);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 0.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .star {
+            color: #FFB800;
+            font-size: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--primary-red);
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            max-height: 300px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
+            background: var(--gradient-1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary-red);
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gradient-2);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-red);
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-red);
+        }
+
+        .footer-bottom {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            nav ul.active {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-metrics {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .process-step {
+                flex-direction: column !important;
+            }
+
+            .process-timeline::before {
+                left: 20px;
+            }
+
+            .step-number {
+                left: 20px;
+            }
+
+            .testimonial-card {
+                min-width: 300px;
+            }
+
+            .expertise-logos {
+                grid-template-columns: 1fr;
+            }
+            
+            .expertise-logo {
+                flex-direction: row;
+                justify-content: flex-start;
+                min-height: 80px;
+                gap: 1.5rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid,
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .expertise-logos {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="logo">
+            <div class="logo-icon">OS</div>
+            <span>OpSynx</span>
+        </div>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul id="navMenu">
+            <li><a href="#home" onclick="closeMenu()">Home</a></li>
+            <li><a href="#about" onclick="closeMenu()">About</a></li>
+            <li><a href="#services" onclick="closeMenu()">Services</a></li>
+            <li><a href="#portfolio" onclick="closeMenu()">Portfolio</a></li>
+            <li><a href="#testimonials" onclick="closeMenu()">Testimonials</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+        </ul>
+        <button class="nav-cta" onclick="scrollToSection('#contact')">Get Started</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <!-- Rating Badge -->
+            <div class="rating-badge">
+                <div class="stars-container">
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                    <span class="star">⭐</span>
+                </div>
+                <span class="rating-text">5.0 Average Rating</span>
+            </div>
+            
+            <h1>Transform Your Business with <span>Intelligent Automation</span></h1>
+            <p>While competitors struggle with manual processes, scale effortlessly with AI-powered automation that delivers real results</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('#contact')">
+                    Start Your Transformation →
+                </button>
+                <button class="btn btn-secondary">
+                    Watch Demo
+                </button>
+            </div>
+            
+            <!-- Animated Metrics -->
+            <div class="hero-metrics">
+                <!-- 100% Success Rate -->
+                <div class="metric-card">
+                    <div class="circle-container">
+                        <div class="circle-bg"></div>
+                        <div class="metric-content">
+                            <div class="metric-value">
+                                <span class="metric-number" id="metric1">0</span><span class="metric-suffix">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-label-wrapper">
+                        <div class="metric-label">Project Success Rate</div>
+                    </div>
+                </div>
+
+                <!-- 24/7 Uptime Clock -->
+                <div class="metric-card">
+                    <div class="circle-container">
+                        <div class="circle-bg"></div>
+                        <div class="clock-marks" id="clockMarks"></div>
+                        <div class="clock-hand"></div>
+                        <div class="clock-hand-short"></div>
+                        <div class="clock-center"></div>
+                        <div class="live-indicator"></div>
+                    </div>
+                    <div class="metric-label-wrapper">
+                        <div class="metric-label">24/7 Always Running</div>
+                    </div>
+                </div>
+
+                <!-- 3.5x ROI -->
+                <div class="metric-card">
+                    <div class="circle-container">
+                        <div class="circle-bg"></div>
+                        <div class="metric-content">
+                            <div class="metric-value">
+                                <span class="metric-number" id="metric3">0.0</span><span class="metric-suffix">x</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="metric-label-wrapper">
+                        <div class="metric-label">Average ROI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>We're <span>OpSynx</span></h2>
+                <p>A team of automation experts and AI specialists dedicated to transforming how businesses operate. We believe in the power of intelligent automation to unlock unprecedented growth and efficiency.</p>
+                <p>Since 2020, we've helped hundreds of companies eliminate manual tasks, reduce errors, and scale operations through cutting-edge automation solutions tailored to their unique needs.</p>
+                <div class="about-features">
+                    <div class="platform-expertise">
+                        <h3>Platform Expertise</h3>
+                        <p>We specialize in the industry's leading automation and no-code platforms</p>
+                        <div class="expertise-logos">
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/zapier.svg" alt="Zapier" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none;">Z</div>
+                                </div>
+                                <span class="logo-name">Zapier</span>
+                            </div>
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/make.svg" alt="Make.com" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none;">M</div>
+                                </div>
+                                <span class="logo-name">Make.com</span>
+                            </div>
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/n8n.svg" alt="N8N" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none;">N</div>
+                                </div>
+                                <span class="logo-name">N8N</span>
+                            </div>
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/airtable.svg" alt="Airtable" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none;">A</div>
+                                </div>
+                                <span class="logo-name">Airtable</span>
+                            </div>
+                            <!-- <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <div class="logo-placeholder-icon">S</div>
+                                </div>
+                                <span class="logo-name">Softr</span>
+                            </div> -->
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/airtable-logo.svg" alt="Softr" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none;">S</div>
+                                </div>
+                                <span class="logo-name">Softr</span>
+                            </div>
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/leadsimple.jpg" alt="LeadSimple" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none;">L</div>
+                                </div>
+                                <span class="logo-name">LeadSimple</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process-section">
+        <div class="section-header">
+            <h2 class="section-title">Our <span>Process</span></h2>
+            <p class="section-subtitle">From discovery to deployment in four strategic phases</p>
+        </div>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Discovery & Analysis</h3>
+                    <p>We dive deep into your current workflows, identify bottlenecks, and map out optimization opportunities through comprehensive process audits.</p>
+                </div>
+                <div class="step-number">1</div>
+            </div>
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Solution Design</h3>
+                    <p>Our experts craft tailored automation blueprints, selecting the perfect tech stack and designing workflows that align with your business goals.</p>
+                </div>
+                <div class="step-number">2</div>
+            </div>
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Implementation</h3>
+                    <p>We build, test, and deploy your automation solutions with minimal disruption, ensuring seamless integration with your existing systems.</p>
+                </div>
+                <div class="step-number">3</div>
+            </div>
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Optimization & Support</h3>
+                    <p>Continuous monitoring, optimization, and 24/7 support ensure your automations evolve with your business and maintain peak performance.</p>
+                </div>
+                <div class="step-number">4</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Apps Integration Section -->
+    <section id="business-apps" class="business-apps">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">We Integrate With <span>Your Tools</span></h2>
+                <p class="section-subtitle">Seamlessly connect all your business applications</p>
+            </div>
+
+            <div class="apps-showcase">
+                <!-- First Row - Moving Left (Fast) -->
+                <div class="apps-row apps-row-1">
+                    <div class="app-item">
+                        <img src="images/tech/monday.svg" alt="Monday.com" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📅</span>
+                        <span class="app-name">Monday.com</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/airtable.svg" alt="Airtable" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📊</span>
+                        <span class="app-name">Airtable</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gdocs.svg" alt="Google Docs" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📄</span>
+                        <span class="app-name">Google Docs</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gdrive.svg" alt="Google Drive" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">☁️</span>
+                        <span class="app-name">Google Drive</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gcalendar.svg" alt="Google Calendar" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📆</span>
+                        <span class="app-name">Google Calendar</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/slack.svg" alt="Slack" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💬</span>
+                        <span class="app-name">Slack</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/trello.svg" alt="Trello" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📋</span>
+                        <span class="app-name">Trello</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/asana.svg" alt="Asana" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">✅</span>
+                        <span class="app-name">Asana</span>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="app-item">
+                        <img src="images/tech/monday.svg" alt="Monday.com" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📅</span>
+                        <span class="app-name">Monday.com</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/airtable.svg" alt="Airtable" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📊</span>
+                        <span class="app-name">Airtable</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gdocs.svg" alt="Google Docs" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📄</span>
+                        <span class="app-name">Google Docs</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gdrive.svg" alt="Google Drive" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">☁️</span>
+                        <span class="app-name">Google Drive</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gcalendar.svg" alt="Google Calendar" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📆</span>
+                        <span class="app-name">Google Calendar</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/slack.svg" alt="Slack" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💬</span>
+                        <span class="app-name">Slack</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/trello.svg" alt="Trello" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📋</span>
+                        <span class="app-name">Trello</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/asana.svg" alt="Asana" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">✅</span>
+                        <span class="app-name">Asana</span>
+                    </div>
+                </div>
+
+                <!-- Second Row - Moving Right (Slow) -->
+                <div class="apps-row apps-row-2">
+                    <div class="app-item">
+                        <img src="images/tech/hubspot.svg" alt="HubSpot" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎯</span>
+                        <span class="app-name">HubSpot</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/salesforce.svg" alt="Salesforce" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">☁️</span>
+                        <span class="app-name">Salesforce</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/shopify.svg" alt="Shopify" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🛒</span>
+                        <span class="app-name">Shopify</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/mailchimp.svg" alt="Mailchimp" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📧</span>
+                        <span class="app-name">Mailchimp</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/zendesk.svg" alt="Zendesk" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎧</span>
+                        <span class="app-name">Zendesk</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/quickbooks.svg" alt="QuickBooks" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💰</span>
+                        <span class="app-name">QuickBooks</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/xero.svg" alt="Xero" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📊</span>
+                        <span class="app-name">Xero</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/stripe-ar21.svg" alt="Stripe" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💳</span>
+                        <span class="app-name">Stripe</span>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="app-item">
+                        <img src="images/tech/hubspot.svg" alt="HubSpot" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎯</span>
+                        <span class="app-name">HubSpot</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/salesforce.svg" alt="Salesforce" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">☁️</span>
+                        <span class="app-name">Salesforce</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/shopify.svg" alt="Shopify" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🛒</span>
+                        <span class="app-name">Shopify</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/mailchimp.svg" alt="Mailchimp" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📧</span>
+                        <span class="app-name">Mailchimp</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/zendesk.svg" alt="Zendesk" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎧</span>
+                        <span class="app-name">Zendesk</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/quickbooks.svg" alt="QuickBooks" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💰</span>
+                        <span class="app-name">QuickBooks</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/xero.svg" alt="Xero" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📊</span>
+                        <span class="app-name">Xero</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/stripe-ar21.svg" alt="Stripe" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💳</span>
+                        <span class="app-name">Stripe</span>
+                    </div>
+                </div>
+
+                <!-- Third Row - Moving Left (Fastest) -->
+                <div class="apps-row apps-row-3">
+                    <div class="app-item">
+                        <img src="images/tech/twilio-icon.svg" alt="Twilio" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🔔</span>
+                        <span class="app-name">Twilio</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/docusign.svg" alt="DocuSign" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📝</span>
+                        <span class="app-name">DocuSign</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/canva-icon.svg" alt="Canva" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎨</span>
+                        <span class="app-name">Canva</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/zoomus-icon.svg" alt="Zoom" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📹</span>
+                        <span class="app-name">Zoom</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/pipedrive-svgrepo-com.svg" alt="Pipedrive" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🔗</span>
+                        <span class="app-name">Pipedrive</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/tableau-software.svg" alt="Tableau" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📈</span>
+                        <span class="app-name">Tableau</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/jira-1.svg" alt="Jira" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎫</span>
+                        <span class="app-name">Jira</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/dropbox-2.svg" alt="Dropbox" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🗂️</span>
+                        <span class="app-name">Dropbox</span>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="app-item">
+                        <img src="images/tech/twilio-icon.svg" alt="Twilio" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🔔</span>
+                        <span class="app-name">Twilio</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/docusign.svg" alt="DocuSign" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📝</span>
+                        <span class="app-name">DocuSign</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/canva-icon.svg" alt="Canva" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎨</span>
+                        <span class="app-name">Canva</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/zoomus-icon.svg" alt="Zoom" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📹</span>
+                        <span class="app-name">Zoom</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/pipedrive-svgrepo-com.svg" alt="Pipedrive" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🔗</span>
+                        <span class="app-name">Pipedrive</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/tableau-software.svg" alt="Tableau" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📈</span>
+                        <span class="app-name">Tableau</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/jira-1.svg" alt="Jira" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎫</span>
+                        <span class="app-name">Jira</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/dropbox-2.svg" alt="Dropbox" class="app-icon"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🗂️</span>
+                        <span class="app-name">Dropbox</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="section-header">
+            <h2 class="section-title">Our <span>Services</span></h2>
+            <p class="section-subtitle">Comprehensive automation solutions tailored to your needs</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>AI Implementation</h3>
+                <p>Deploy cutting-edge AI solutions that learn from your data and continuously improve performance.</p>
+                <ul>
+                    <li>Machine Learning Models</li>
+                    <li>Natural Language Processing</li>
+                    <li>Predictive Analytics</li>
+                    <li>Computer Vision</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚙️</div>
+                <h3>Process Automation</h3>
+                <p>Transform manual workflows into efficient, automated systems that scale with your business.</p>
+                <ul>
+                    <li>Workflow Optimization</li>
+                    <li>Task Automation</li>
+                    <li>Data Processing</li>
+                    <li>Report Generation</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔗</div>
+                <h3>API Integration</h3>
+                <p>Connect all your tools and platforms into one seamless ecosystem.</p>
+                <ul>
+                    <li>Custom API Development</li>
+                    <li>Third-party Integrations</li>
+                    <li>Data Synchronization</li>
+                    <li>Real-time Updates</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Data Analytics</h3>
+                <p>Turn your data into actionable insights with automated reporting and visualization.</p>
+                <ul>
+                    <li>Custom Dashboards</li>
+                    <li>Automated Reports</li>
+                    <li>KPI Tracking</li>
+                    <li>Predictive Modeling</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💬</div>
+                <h3>Chatbot Development</h3>
+                <p>Create intelligent chatbots that handle customer inquiries 24/7.</p>
+                <ul>
+                    <li>AI-Powered Responses</li>
+                    <li>Multi-channel Support</li>
+                    <li>Lead Qualification</li>
+                    <li>Customer Support</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>Custom Solutions</h3>
+                <p>Unique challenges require unique solutions. We build custom automation tailored to your needs.</p>
+                <ul>
+                    <li>Bespoke Development</li>
+                    <li>Industry-Specific Tools</li>
+                    <li>Scalable Architecture</li>
+                    <li>Full Documentation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="section-header">
+            <h2 class="section-title">Recent <span>Projects</span></h2>
+            <p class="section-subtitle">Real transformations, real results</p>
+        </div>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="portfolio-image">E-commerce Automation</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Retail</div>
+                    <h3 class="portfolio-title">Order Processing Automation</h3>
+                    <p class="portfolio-description">Automated end-to-end order processing for a major e-commerce platform, handling inventory updates, shipping notifications, and customer communications.</p>
+                    <div class="portfolio-metrics">
+                        <span class="metric-badge">85% Faster</span>
+                        <span class="metric-badge">Zero Errors</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-image">HR System</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Human Resources</div>
+                    <h3 class="portfolio-title">Employee Onboarding Portal</h3>
+                    <p class="portfolio-description">Built a comprehensive onboarding system automating document collection, training schedules, and compliance tracking for 5000+ employees.</p>
+                    <div class="portfolio-metrics">
+                        <span class="metric-badge">70% Time Saved</span>
+                        <span class="metric-badge">100% Compliance</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-image">Lead Generation</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Marketing</div>
+                    <h3 class="portfolio-title">AI Lead Scoring System</h3>
+                    <p class="portfolio-description">Developed an AI-powered lead scoring and nurturing system that automatically qualifies and routes leads to the right sales team.</p>
+                    <div class="portfolio-metrics">
+                        <span class="metric-badge">3x Conversion</span>
+                        <span class="metric-badge">50% Cost Reduction</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-image">Financial Reporting</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Finance</div>
+                    <h3 class="portfolio-title">Automated Financial Dashboard</h3>
+                    <p class="portfolio-description">Real-time financial reporting system pulling data from multiple sources, generating insights and forecasts automatically.</p>
+                    <div class="portfolio-metrics">
+                        <span class="metric-badge">Real-time</span>
+                        <span class="metric-badge">15+ Integrations</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-image">Supply Chain</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Logistics</div>
+                    <h3 class="portfolio-title">Supply Chain Optimizer</h3>
+                    <p class="portfolio-description">AI-driven supply chain management system predicting demand, optimizing inventory, and automating supplier communications.</p>
+                    <div class="portfolio-metrics">
+                        <span class="metric-badge">40% Cost Savings</span>
+                        <span class="metric-badge">99% Accuracy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-image">Customer Support</div>
+                <div class="portfolio-content">
+                    <div class="portfolio-category">Service</div>
+                    <h3 class="portfolio-title">24/7 Support Chatbot</h3>
+                    <p class="portfolio-description">Intelligent chatbot handling 80% of customer inquiries automatically, with seamless handoff to human agents when needed.</p>
+                    <div class="portfolio-metrics">
+                        <span class="metric-badge">80% Deflection</span>
+                        <span class="metric-badge">4.8/5 Rating</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">What Our <span>Clients Say</span></h2>
+            <p class="section-subtitle">Success stories from businesses we've transformed</p>
+        </div>
+        <div class="testimonials-container">
+            <div class="testimonials-track">
+                <!-- 4 copies of 2 testimonials for smooth scroll -->
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">OpSynx transformed our entire order fulfillment process. What used to take hours now happens automatically. Our team can focus on growth instead of repetitive tasks.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JD</div>
+                            <div class="author-info">
+                                <div class="author-name">John Davidson</div>
+                                <div class="author-role">CEO, TechFlow Solutions</div>
+                                <div class="testimonial-rating">
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">The AI chatbot they built handles 90% of our customer inquiries. Response time went from hours to seconds. Customer satisfaction scores have never been higher.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SC</div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah Chen</div>
+                                <div class="author-role">VP Operations, RetailPro</div>
+                                <div class="testimonial-rating">
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">OpSynx transformed our entire order fulfillment process. What used to take hours now happens automatically. Our team can focus on growth instead of repetitive tasks.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JD</div>
+                            <div class="author-info">
+                                <div class="author-name">John Davidson</div>
+                                <div class="author-role">CEO, TechFlow Solutions</div>
+                                <div class="testimonial-rating">
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote">"</div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">The AI chatbot they built handles 90% of our customer inquiries. Response time went from hours to seconds. Customer satisfaction scores have never been higher.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">SC</div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah Chen</div>
+                                <div class="author-role">VP Operations, RetailPro</div>
+                                <div class="testimonial-rating">
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                    <span class="star">⭐</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+            <p class="section-subtitle">Everything you need to know about our automation services</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    What types of businesses benefit most from automation?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Any business with repetitive tasks, data processing needs, or customer interactions can benefit from automation. We've helped companies from 10 to 10,000+ employees across industries including e-commerce, healthcare, finance, real estate, and professional services.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How long does implementation typically take?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Implementation timelines vary based on complexity. Simple automations can be deployed in 1-2 weeks, while comprehensive enterprise solutions typically take 4-12 weeks. We provide detailed timelines during our discovery phase.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What platforms and tools do you work with?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We're experts in Zapier, Make.com, N8N, Airtable, and custom API integrations. We also work with major platforms like Salesforce, HubSpot, Monday.com, Shopify, and can integrate virtually any tool with an API.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you provide ongoing support after implementation?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We offer comprehensive support packages including 24/7 monitoring, monthly optimization reviews, and on-demand assistance. Your automation continues to evolve and improve with our ongoing support.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    What's the typical ROI on automation investments?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Our clients typically see ROI within 3-6 months, with average returns of 3.5x their investment in the first year. This comes from time savings, error reduction, increased capacity, and improved customer satisfaction.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do you ensure data security and compliance?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We follow enterprise-grade security protocols including encryption, secure API connections, and compliance with GDPR, SOC 2, and industry-specific regulations. All automations are built with security and privacy as top priorities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Transform Your Business?</h2>
+            <p>Join hundreds of companies already scaling with intelligent automation</p>
+            <button class="cta-button" onclick="window.location.href='mailto:hello@opsynx.com'">
+                Schedule Your Free Consultation
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About OpSynx</h3>
+                <p>We're on a mission to help businesses harness the power of AI and automation to unlock unprecedented growth and efficiency.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#services">AI Implementation</a></li>
+                    <li><a href="#services">Process Automation</a></li>
+                    <li><a href="#services">API Integration</a></li>
+                    <li><a href="#services">Custom Solutions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#portfolio">Case Studies</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="mailto:hello@opsynx.com">hello@opsynx.com</a></li>
+                    <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 OpSynx. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu function
+        function closeMenu() {
+            mobileMenuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+
+        // Smooth scrolling
+        function scrollToSection(sectionId) {
+            const element = document.querySelector(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+                closeMenu();
+            }
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Animated Counter Function
+        function animateCounter(element, target, decimal = false, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                
+                if (decimal) {
+                    element.textContent = current.toFixed(1);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Create clock marks for 24/7 metric
+        function createClockMarks() {
+            const clockMarks = document.getElementById('clockMarks');
+            if (!clockMarks) return;
+            
+            for (let i = 0; i < 12; i++) {
+                const mark = document.createElement('div');
+                mark.className = i % 3 === 0 ? 'hour-mark major' : 'hour-mark';
+                mark.style.transform = `rotate(${i * 30}deg)`;
+                clockMarks.appendChild(mark);
+            }
+        }
+
+        // Start animations on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create clock marks
+            createClockMarks();
+            
+            // Animate metrics with delay
+            setTimeout(() => {
+                animateCounter(document.getElementById('metric1'), 100, false, 2000);
+            }, 500);
+            
+            setTimeout(() => {
+                animateCounter(document.getElementById('metric3'), 3.5, true, 2000);
+            }, 900);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .portfolio-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

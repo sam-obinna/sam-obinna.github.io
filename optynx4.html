@@ -1,0 +1,2996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpSynx - AI & Business Process Automation</title>
+    <meta name="description" content="Transform your business with intelligent automation. We build AI-powered systems that handle repetitive tasks and streamline operations.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #FF3131;
+            --dark-red: #cc2626;
+            --white: #FFFFFF;
+            --dark: #0a0a0a;
+            --gray: #666666;
+            --light-gray: #f8f9fa;
+            --gradient-1: linear-gradient(135deg, #FF3131 0%, #cc2626 100%);
+            --gradient-2: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            
+            /* Enhanced responsive spacing */
+            --section-padding: clamp(3rem, 8vw, 6rem);
+            --container-padding: clamp(1rem, 4vw, 2rem);
+            --gap-small: clamp(1rem, 3vw, 1.5rem);
+            --gap-medium: clamp(1.5rem, 4vw, 2.5rem);
+            --gap-large: clamp(2rem, 6vw, 4rem);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            overflow-x: hidden;
+            background: var(--white);
+            scroll-behavior: smooth;
+        }
+
+        /* Enhanced Container utility */
+        .container {
+            width: 100%;
+            max-width: min(1200px, calc(100vw - 2rem));
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        /* Enhanced Navigation - Better mobile support */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            padding: clamp(0.75rem, 2vw, 1rem) var(--container-padding);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav.scrolled {
+            padding: clamp(0.5rem, 1.5vw, 0.75rem) var(--container-padding);
+            box-shadow: 0 5px 30px rgba(0,0,0,0.15);
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            font-weight: 800;
+            color: var(--dark);
+            z-index: 1001;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: clamp(32px, 6vw, 40px);
+            height: clamp(32px, 6vw, 40px);
+            background: var(--gradient-1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: clamp(0.8rem, 2vw, 1rem);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0.5rem 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-red);
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav a:hover {
+            color: var(--primary-red);
+        }
+
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gradient-1);
+            color: var(--white);
+            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: clamp(0.85rem, 2vw, 1rem);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(255, 49, 49, 0.3);
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover,
+        .nav-cta:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 49, 49, 0.4);
+        }
+
+        /* Enhanced Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1002;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark);
+            border-radius: 3px;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-origin: center;
+        }
+
+        .mobile-menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .mobile-menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Enhanced Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(6rem, 15vw, 8rem) var(--container-padding) 2rem;
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 49, 49, 0.08) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            width: 100%;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Enhanced Rating Badge */
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: clamp(0.5rem, 2vw, 0.75rem);
+            background: rgba(255, 255, 255, 0.95);
+            padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1rem, 3vw, 1.5rem);
+            border-radius: 50px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: var(--gap-small);
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(255, 49, 49, 0.15);
+            flex-wrap: wrap;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .rating-badge .stars-container {
+            display: flex;
+            gap: 0.2rem;
+        }
+
+        .rating-badge .star {
+            color: #FFB800;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            animation: starPulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 4px rgba(255, 184, 0, 0.3));
+        }
+
+        .rating-badge .star:nth-child(1) { animation-delay: 0s; }
+        .rating-badge .star:nth-child(2) { animation-delay: 0.2s; }
+        .rating-badge .star:nth-child(3) { animation-delay: 0.4s; }
+        .rating-badge .star:nth-child(4) { animation-delay: 0.6s; }
+        .rating-badge .star:nth-child(5) { animation-delay: 0.8s; }
+
+        @keyframes starPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        .rating-text {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: clamp(0.8rem, 2vw, 0.95rem);
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 7vw, 4rem);
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 span {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            color: var(--gray);
+            margin-bottom: var(--gap-medium);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--gap-small);
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            padding: clamp(0.8rem, 3vw, 1.1rem) clamp(1.8rem, 4vw, 2.2rem);
+            border: none;
+            border-radius: 50px;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+            min-width: fit-content;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            color: var(--white);
+            box-shadow: 0 8px 32px rgba(255, 49, 49, 0.3);
+        }
+
+        .btn-primary:hover,
+        .btn-primary:focus {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 40px rgba(255, 49, 49, 0.4);
+        }
+
+        /* Enhanced Icon Separator */
+        .icon-separator {
+            margin-top: 1rem;
+            padding: 1rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .icon-separator::before,
+        .icon-separator::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 49, 49, 0.2), transparent);
+        }
+
+        .icon-separator::before {
+            top: 0;
+        }
+
+        .icon-separator::after {
+            bottom: 0;
+        }
+
+        .icons-row {
+            display: flex;
+            gap: 2rem;
+            white-space: nowrap;
+            animation: infiniteScroll 25s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes infiniteScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-50% - 1rem)); }
+        }
+
+        .icon-item {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            padding: clamp(0.8rem, 2vw, 1.2rem);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: clamp(60px, 12vw, 80px);
+            min-height: clamp(60px, 12vw, 80px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            border: 2px solid rgba(255, 49, 49, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .tech-icon {
+            width: clamp(28px, 6vw, 40px);
+            height: clamp(28px, 6vw, 40px);
+            object-fit: contain;
+        }
+
+        .icon-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 48px rgba(255, 49, 49, 0.2);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        /* Enhanced Portfolio Section */
+        .portfolio-section {
+            padding: 2rem 0 var(--section-padding);
+            background: var(--white);
+        }
+
+        .portfolio-wrapper {
+            position: relative;
+            padding: var(--gap-small) 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+        }
+
+        .portfolio-wrapper::-webkit-scrollbar {
+            height: 12px;
+        }
+
+        .portfolio-wrapper::-webkit-scrollbar-track {
+            background: rgba(241, 241, 241, 0.8);
+            border-radius: 10px;
+        }
+
+        .portfolio-wrapper::-webkit-scrollbar-thumb {
+            background: var(--gradient-1);
+            border-radius: 10px;
+        }
+
+        .portfolio-wrapper::-webkit-scrollbar-thumb:hover {
+            background: var(--dark-red);
+        }
+
+        .portfolio-track {
+            display: flex;
+            gap: var(--gap-small);
+            padding: var(--gap-small);
+            width: max-content;
+        }
+
+        .portfolio-card {
+            min-width: clamp(320px, 70vw, 520px);
+            height: clamp(600px, 80vh, 750px);
+            flex-shrink: 0;
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 16px 64px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            scroll-snap-align: center;
+        }
+
+        .portfolio-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.25);
+        }
+
+        /* Enhanced Portfolio Card Content */
+        .portfolio-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            z-index: 1;
+        }
+
+        .portfolio-back::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            z-index: 1;
+        }
+
+        .portfolio-back-content {
+            position: relative;
+            z-index: 2;
+            padding: clamp(2rem, 6vw, 3rem);
+            color: white;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .portfolio-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .portfolio-card:hover .portfolio-front {
+            z-index: 0;
+        }
+
+        .portfolio-door-left,
+        .portfolio-door-right {
+            position: absolute;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: white;
+            z-index: 3;
+            pointer-events: all;
+        }
+
+        .portfolio-door-left {
+            left: 0;
+            transform-origin: left;
+        }
+
+        .portfolio-door-right {
+            right: 0;
+            transform-origin: right;
+        }
+
+        .portfolio-card:hover .portfolio-door-left {
+            transform: translateX(-100%);
+        }
+
+        .portfolio-card:hover .portfolio-door-right {
+            transform: translateX(100%);
+        }
+
+        .door-content {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-door-left .door-content {
+            left: 0;
+        }
+
+        .portfolio-door-right .door-content {
+            right: 0;
+        }
+
+        .portfolio-front-title {
+            padding: clamp(2rem, 6vw, 3rem) clamp(1.5rem, 4vw, 2.5rem) clamp(1.5rem, 4vw, 2rem);
+            font-size: clamp(1.3rem, 4vw, 1.8rem);
+            font-weight: 700;
+            color: var(--dark);
+            text-align: center;
+            background: white;
+            line-height: 1.3;
+            word-break: break-word;
+            hyphens: auto;
+        }
+
+        .portfolio-category {
+            color: var(--primary-red);
+            font-size: clamp(0.75rem, 2.5vw, 1rem);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-front-image {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+            font-weight: 600;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .portfolio-back-header {
+            text-align: center;
+            margin-bottom: clamp(2rem, 6vw, 3rem);
+            padding-bottom: var(--gap-small);
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .portfolio-back-title {
+            font-size: clamp(1.4rem, 4vw, 1.9rem);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-back-category {
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .portfolio-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: clamp(1.5rem, 4vw, 2rem);
+        }
+
+        .portfolio-section-item {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .portfolio-card:hover .portfolio-section-item:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .portfolio-card:hover .portfolio-section-item:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .portfolio-card:hover .portfolio-section-item:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .portfolio-label {
+            font-size: clamp(1rem, 2.8vw, 1.2rem);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: clamp(0.6rem, 2vw, 0.8rem);
+            opacity: 0.9;
+        }
+
+        .portfolio-text {
+            font-size: clamp(1rem, 2.8vw, 1.2rem);
+            line-height: 1.7;
+        }
+
+        /* Enhanced Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: clamp(3rem, 6vw, 4rem);
+        }
+
+        .section-title {
+            font-size: clamp(2.2rem, 7vw, 3rem);
+            font-weight: 800;
+            margin-bottom: clamp(0.5rem, 2vw, 1rem);
+            line-height: 1.2;
+        }
+
+        .section-title span {
+            color: var(--primary-red);
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            font-size: clamp(1.1rem, 3vw, 1.2rem);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Enhanced About Section */
+        .about-section {
+            padding: var(--section-padding) 0;
+            background: linear-gradient(135deg, #fafafa 0%, #fff 100%);
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+            text-align: center;
+        }
+
+        .about-content h2 {
+            font-size: clamp(2.2rem, 7vw, 3rem);
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            font-weight: 800;
+        }
+
+        .about-content h2 span {
+            color: var(--primary-red);
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: clamp(1.2rem, 3vw, 1.8rem);
+            line-height: 1.8;
+            font-size: clamp(1.1rem, 3vw, 1.2rem);
+        }
+
+        .about-features {
+            margin-top: var(--gap-large);
+        }
+
+        .platform-expertise {
+            background: white;
+            padding: clamp(2.5rem, 6vw, 3rem);
+            border-radius: 24px;
+            box-shadow: 0 16px 64px rgba(0,0,0,0.08);
+            border: 2px solid rgba(255, 49, 49, 0.1);
+        }
+
+        .platform-expertise h3 {
+            font-size: clamp(1.6rem, 4.5vw, 2rem);
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .platform-expertise p {
+            color: var(--gray);
+            margin-bottom: var(--gap-medium);
+            font-size: clamp(1rem, 2.8vw, 1.1rem);
+        }
+
+        .expertise-logos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--gap-small);
+        }
+
+        .expertise-logo {
+            background: linear-gradient(135deg, #fafafa 0%, #fff 100%);
+            padding: clamp(1.2rem, 3.5vw, 1.8rem);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(0.8rem, 2.5vw, 1rem);
+            min-height: clamp(120px, 25vw, 140px);
+            border: 2px solid #f0f0f0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .expertise-logo:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-red);
+            box-shadow: 0 16px 48px rgba(255, 49, 49, 0.15);
+        }
+
+        .logo-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .platform-icon {
+            width: clamp(48px, 10vw, 60px);
+            height: clamp(48px, 10vw, 60px);
+            object-fit: contain;
+        }
+
+        .logo-placeholder-icon {
+            width: clamp(48px, 10vw, 60px);
+            height: clamp(48px, 10vw, 60px);
+            background: var(--gradient-1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: clamp(1.4rem, 3.5vw, 1.8rem);
+        }
+
+        .logo-name {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            text-align: center;
+        }
+
+        /* Enhanced Process Section */
+        .process-section {
+            padding: var(--section-padding) 0;
+            background: var(--white);
+        }
+
+        .process-timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-1);
+            border-radius: 2px;
+        }
+
+        .process-step {
+            display: flex;
+            margin-bottom: var(--gap-large);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .process-step:nth-child(1) { animation-delay: 0.2s; }
+        .process-step:nth-child(2) { animation-delay: 0.4s; }
+        .process-step:nth-child(3) { animation-delay: 0.6s; }
+        .process-step:nth-child(4) { animation-delay: 0.8s; }
+
+        .process-step:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .step-content {
+            flex: 1;
+            padding: clamp(2rem, 5vw, 2.5rem);
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+            margin: 0 var(--gap-small);
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .step-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+        }
+
+        .step-number {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: clamp(50px, 10vw, 60px);
+            height: clamp(50px, 10vw, 60px);
+            background: var(--gradient-1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            box-shadow: 0 8px 32px rgba(255, 49, 49, 0.3);
+        }
+
+        .step-content h3 {
+            font-size: clamp(1.4rem, 3.5vw, 1.7rem);
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .step-content p {
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: clamp(1rem, 2.8vw, 1.1rem);
+        }
+
+        /* Enhanced Business Apps Section */
+        .business-apps {
+            padding: var(--section-padding) 0;
+            background: linear-gradient(135deg, #fafafa 0%, #fff 100%);
+            overflow: hidden;
+        }
+
+        .apps-showcase {
+            margin-top: var(--gap-large);
+            position: relative;
+        }
+
+        .apps-row {
+            display: flex;
+            gap: var(--gap-small);
+            margin-bottom: clamp(1rem, 3vw, 1.5rem);
+            white-space: nowrap;
+        }
+
+        .apps-row-1 {
+            animation: scrollLeft 20s linear infinite;
+        }
+
+        .apps-row-2 {
+            animation: scrollRight 25s linear infinite;
+        }
+
+        .apps-row-3 {
+            animation: scrollLeft 18s linear infinite;
+        }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scrollRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+
+        .app-item {
+            background: white;
+            padding: clamp(1.2rem, 3.5vw, 1.8rem) clamp(1.8rem, 4.5vw, 2.2rem);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            display: inline-flex;
+            align-items: center;
+            gap: clamp(1rem, 2.5vw, 1.2rem);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            min-width: fit-content;
+            border: 2px solid rgba(255, 49, 49, 0.05);
+        }
+
+        .app-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 48px rgba(255, 49, 49, 0.15);
+            border-color: rgba(255, 49, 49, 0.2);
+        }
+
+        .app-icon {
+            width: clamp(2rem, 5vw, 2.5rem);
+            height: clamp(2rem, 5vw, 2.5rem);
+            object-fit: contain;
+        }
+
+        .app-name {
+            font-weight: 600;
+            color: var(--dark);
+            white-space: nowrap;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+        }
+
+        /* Enhanced Services Grid */
+        .services-section {
+            padding: var(--section-padding) 0;
+            background: linear-gradient(135deg, #fafafa 0%, #fff 100%);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--gap-medium);
+        }
+
+        .service-card {
+            background: white;
+            padding: clamp(2.5rem, 6vw, 3rem);
+            border-radius: 24px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 49, 49, 0.05);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-1);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 32px 80px rgba(255, 49, 49, 0.2);
+            border-color: rgba(255, 49, 49, 0.2);
+        }
+
+        .service-card:hover::before {
+            opacity: 0.03;
+        }
+
+        .service-icon {
+            font-size: clamp(3rem, 7vw, 3.5rem);
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+            filter: drop-shadow(0 4px 8px rgba(255, 49, 49, 0.1));
+        }
+
+        .service-card h3 {
+            font-size: clamp(1.5rem, 3.5vw, 1.8rem);
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+            color: var(--dark);
+            position: relative;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            line-height: 1.7;
+            position: relative;
+            font-size: clamp(1rem, 2.8vw, 1.1rem);
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+        }
+
+        .service-card ul {
+            list-style: none;
+            position: relative;
+        }
+
+        .service-card li {
+            padding-left: 2rem;
+            position: relative;
+            color: var(--gray);
+            margin-bottom: 0.8rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            line-height: 1.6;
+        }
+
+        .service-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary-red);
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        /* Enhanced Testimonials */
+        .testimonials-section {
+            padding: var(--section-padding) 0;
+            background: linear-gradient(135deg, #fafafa 0%, #fff 100%);
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+            position: relative;
+        }
+
+        .testimonials-track {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--gap-medium);
+            justify-items: center;
+        }
+
+        .testimonial-card {
+            max-width: 500px;
+            background: white;
+            padding: clamp(2.5rem, 6vw, 3rem);
+            border-radius: 24px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(255, 49, 49, 0.05);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+        }
+
+        .testimonial-quote {
+            font-size: clamp(3rem, 7vw, 3.5rem);
+            color: var(--primary-red);
+            opacity: 0.2;
+            position: absolute;
+            top: clamp(1rem, 2.5vw, 1.5rem);
+            left: clamp(1.5rem, 3.5vw, 2rem);
+        }
+
+        .testimonial-content {
+            position: relative;
+            z-index: 1;
+            padding-top: clamp(1.5rem, 3vw, 2rem);
+        }
+
+        .testimonial-text {
+            color: var(--gray);
+            line-height: 1.8;
+            margin-bottom: var(--gap-medium);
+            font-style: italic;
+            font-size: clamp(1rem, 2.8vw, 1.1rem);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: clamp(1rem, 2.5vw, 1.5rem);
+        }
+
+        .author-avatar {
+            width: clamp(50px, 10vw, 60px);
+            height: clamp(50px, 10vw, 60px);
+            border-radius: 50%;
+            background: var(--gradient-1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            flex-shrink: 0;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+        }
+
+        .author-role {
+            color: var(--primary-red);
+            font-size: clamp(0.9rem, 2.3vw, 1rem);
+            font-weight: 600;
+        }
+
+        .testimonial-rating {
+            display: flex;
+            gap: 0.3rem;
+            margin-top: 0.8rem;
+        }
+
+        .star {
+            color: #FFB800;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            filter: drop-shadow(0 0 4px rgba(255, 184, 0, 0.3));
+        }
+
+        /* Enhanced FAQ Section */
+        .faq-section {
+            padding: var(--section-padding) 0;
+            background: var(--white);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(255, 49, 49, 0.05);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 16px 48px rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+        }
+
+        .faq-question {
+            padding: clamp(1.5rem, 3.5vw, 2rem);
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            transition: all 0.3s ease;
+            font-size: clamp(1rem, 2.8vw, 1.1rem);
+            line-height: 1.5;
+        }
+
+        .faq-question:hover {
+            color: var(--primary-red);
+        }
+
+        .faq-toggle {
+            font-size: clamp(1.5rem, 3.5vw, 1.8rem);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            margin-left: 1rem;
+            font-weight: 300;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+            color: var(--primary-red);
+        }
+
+        .faq-answer {
+            padding: 0 clamp(1.5rem, 3.5vw, 2rem);
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 clamp(1.5rem, 3.5vw, 2rem) clamp(1.5rem, 3.5vw, 2rem);
+            max-height: 600px;
+        }
+
+        .faq-answer p {
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            line-height: 1.7;
+            color: var(--gray);
+        }
+
+        /* Enhanced CTA Section */
+        .cta-section {
+            padding: var(--section-padding) var(--container-padding);
+            background: var(--gradient-1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 40s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+            color: white;
+            margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .cta-section p {
+            font-size: clamp(1.2rem, 3.5vw, 1.4rem);
+            color: rgba(255,255,255,0.9);
+            margin-bottom: var(--gap-medium);
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary-red);
+            padding: clamp(1.2rem, 3.5vw, 1.5rem) clamp(2.5rem, 6vw, 3rem);
+            border: none;
+            border-radius: 50px;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.2);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover,
+        .cta-button:focus {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+        }
+
+        /* Enhanced Footer */
+        footer {
+            background: var(--gradient-2);
+            color: white;
+            padding: var(--gap-large) var(--container-padding) var(--gap-medium);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--gap-large);
+            margin-bottom: var(--gap-large);
+        }
+
+        .footer-section h3 {
+            margin-bottom: clamp(1.5rem, 3.5vw, 2rem);
+            color: var(--primary-red);
+            font-size: clamp(1.2rem, 3vw, 1.4rem);
+            font-weight: 700;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: clamp(0.8rem, 2vw, 1rem);
+        }
+
+        .footer-section a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover,
+        .footer-section a:focus {
+            color: var(--primary-red);
+            transform: translateX(5px);
+        }
+
+        .footer-section p {
+            color: rgba(255,255,255,0.7);
+            line-height: 1.7;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
+        }
+
+        .footer-bottom {
+            padding-top: var(--gap-medium);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+            font-size: clamp(0.9rem, 2.3vw, 1rem);
+        }
+
+        /* Enhanced Mobile Responsive */
+        @media (max-width: 1024px) {
+            .expertise-logos {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+
+            .testimonials-track {
+                grid-template-columns: 1fr;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --section-padding: clamp(3rem, 8vw, 5rem);
+                --container-padding: clamp(1rem, 4vw, 1.5rem);
+            }
+
+            /* Enhanced Mobile Navigation */
+            nav ul {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(25px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 2rem;
+                gap: 2.5rem;
+                box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+                transform: translateX(-100%);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 999;
+            }
+
+            nav ul.active {
+                transform: translateX(0);
+            }
+
+            nav ul li {
+                opacity: 0;
+                transform: translateY(30px);
+                animation: none;
+            }
+
+            nav ul.active li {
+                opacity: 1;
+                transform: translateY(0);
+                animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            }
+
+            nav ul.active li:nth-child(1) { animation-delay: 0.1s; }
+            nav ul.active li:nth-child(2) { animation-delay: 0.2s; }
+            nav ul.active li:nth-child(3) { animation-delay: 0.3s; }
+            nav ul.active li:nth-child(4) { animation-delay: 0.4s; }
+            nav ul.active li:nth-child(5) { animation-delay: 0.5s; }
+            nav ul.active li:nth-child(6) { animation-delay: 0.6s; }
+
+            nav a {
+                font-size: 1.6rem;
+                font-weight: 600;
+                padding: 1rem 0;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            /* Mobile Hero Adjustments */
+            .hero {
+                min-height: 90vh;
+                padding-top: 5rem;
+                padding-bottom: 3rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 320px;
+                justify-content: center;
+            }
+
+            /* Mobile Portfolio */
+            .portfolio-track {
+                padding: 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .portfolio-card {
+                min-width: 90vw;
+                max-width: 90vw;
+                height: 75vh;
+                scroll-snap-align: center;
+            }
+
+            /* Mobile touch support for portfolio cards */
+            .portfolio-card.active .portfolio-door-left {
+                transform: translateX(-100%);
+            }
+
+            .portfolio-card.active .portfolio-door-right {
+                transform: translateX(100%);
+            }
+
+            .portfolio-card.active .portfolio-front {
+                z-index: 0;
+            }
+
+            .portfolio-card.active .portfolio-section-item {
+                animation: fadeInUp 0.6s ease forwards;
+            }
+
+            /* Mobile Process Timeline */
+            .process-step {
+                flex-direction: column !important;
+            }
+
+            .process-timeline::before {
+                left: 2rem;
+            }
+
+            .step-number {
+                left: 2rem;
+                transform: translateX(0);
+            }
+
+            .step-content {
+                margin-left: 5rem;
+                margin-right: 0;
+            }
+
+            /* Mobile Expertise */
+            .expertise-logos {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .expertise-logo {
+                flex-direction: row;
+                justify-content: flex-start;
+                text-align: left;
+                min-height: 90px;
+                padding: 1.5rem 2rem;
+                gap: 2rem;
+            }
+
+            .expertise-logo .logo-name {
+                text-align: left;
+            }
+
+            /* Mobile Services */
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            /* Mobile Apps Showcase */
+            .apps-row {
+                gap: 1.5rem;
+            }
+
+            .app-item {
+                padding: 1.2rem 1.8rem;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --section-padding: clamp(2.5rem, 10vw, 4rem);
+                --container-padding: 1rem;
+            }
+
+            .hero {
+                min-height: 85vh;
+                padding-bottom: 2rem;
+            }
+
+            .rating-badge {
+                flex-direction: column;
+                gap: 0.8rem;
+                padding: 1.2rem 1.5rem;
+            }
+
+            .portfolio-card {
+                min-width: 95vw;
+                max-width: 95vw;
+                height: 80vh;
+            }
+
+            .cta-section {
+                padding: 4rem 1rem;
+            }
+
+            .footer-content {
+                gap: 2.5rem;
+            }
+        }
+
+        /* Enhanced accessibility and performance */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .icons-row,
+            .apps-row-1,
+            .apps-row-2,
+            .apps-row-3 {
+                animation: none;
+            }
+        }
+
+        /* Focus states for better accessibility */
+        .btn:focus,
+        .nav-cta:focus,
+        .cta-button:focus,
+        .mobile-menu-toggle:focus {
+            outline: 2px solid var(--primary-red);
+            outline-offset: 2px;
+        }
+
+        /* Loading states */
+        .loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
+        <a href="#home" class="logo" aria-label="OpSynx Home">
+            <div class="logo-icon" aria-hidden="true">OS</div>
+            <span>OpSynx</span>
+        </a>
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul id="navMenu" role="menubar">
+            <li role="none"><a href="#home" role="menuitem" onclick="closeMenu()">Home</a></li>
+            <li role="none"><a href="#about" role="menuitem" onclick="closeMenu()">About</a></li>
+            <li role="none"><a href="#services" role="menuitem" onclick="closeMenu()">Services</a></li>
+            <li role="none"><a href="#portfolio" role="menuitem" onclick="closeMenu()">Portfolio</a></li>
+            <li role="none"><a href="#testimonials" role="menuitem" onclick="closeMenu()">Testimonials</a></li>
+            <li role="none"><a href="#contact" role="menuitem" onclick="closeMenu()">Contact</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta" onclick="scrollToSection('#contact')">Get Started</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <!-- Rating Badge -->
+            <div class="rating-badge">
+                <div class="stars-container" role="img" aria-label="5 out of 5 stars">
+                    <span class="star" aria-hidden="true">⭐</span>
+                    <span class="star" aria-hidden="true">⭐</span>
+                    <span class="star" aria-hidden="true">⭐</span>
+                    <span class="star" aria-hidden="true">⭐</span>
+                    <span class="star" aria-hidden="true">⭐</span>
+                </div>
+                <span class="rating-text">100% Client Satisfaction</span>
+            </div>
+            
+            <h1>Transform Your Business with <span>Intelligent Automation</span></h1>
+            <p>We build AI-powered automation systems that handle your repetitive tasks, streamline operations, and free up your team to focus on what actually matters.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn btn-primary">
+                    Book Free Strategy Call →
+                </a>
+            </div>
+            
+            <!-- Icon Separator Row -->
+            <div class="icon-separator" role="presentation">
+                <div class="icons-row" aria-label="Technology partners">
+                    <div class="icon-item" title="Airtable">
+                        <img src="images/tech/airtable.svg" alt="Airtable" class="tech-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📊</span>
+                    </div>
+                    <div class="icon-item" title="Monday.com">
+                        <img src="images/tech/monday.svg" alt="Monday.com" class="tech-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📅</span>
+                    </div>
+                    <div class="icon-item" title="Shopify">
+                        <img src="images/tech/shopify.svg" alt="Shopify" class="tech-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🛒</span>
+                    </div>
+                    <div class="icon-item" title="Zapier">
+                        <img src="images/tech/zapier.svg" alt="Zapier" class="tech-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">⚡</span>
+                    </div>
+                    <div class="icon-item" title="Make.com">
+                        <img src="images/tech/make.svg" alt="Make.com" class="tech-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🔄</span>
+                    </div>
+                    <div class="icon-item" title="Google Sheets">
+                        <img src="images/tech/gsheets.svg" alt="Google Sheets" class="tech-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📊</span>
+                    </div>
+                    <!-- Duplicates for seamless loop -->
+                    <div class="icon-item" title="Airtable">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23ffb800' width='100' height='100' rx='15'/%3E%3Ctext x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EAT%3C/text%3E%3C/svg%3E" alt="Airtable" class="tech-icon" loading="lazy">
+                    </div>
+                    <div class="icon-item" title="Monday.com">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23FF3131' width='100' height='100' rx='15'/%3E%3Ctext x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E" alt="Monday.com" class="tech-icon" loading="lazy">
+                    </div>
+                    <div class="icon-item" title="Shopify">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%2396bf48' width='100' height='100' rx='15'/%3E%3Ctext x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E" alt="Shopify" class="tech-icon" loading="lazy">
+                    </div>
+                    <div class="icon-item" title="Zapier">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%23FF4A00' width='100' height='100' rx='15'/%3E%3Ctext x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EZ%3C/text%3E%3C/svg%3E" alt="Zapier" class="tech-icon" loading="lazy">
+                    </div>
+                    <div class="icon-item" title="Make.com">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%236C56ED' width='100' height='100' rx='15'/%3E%3Ctext x='50' y='60' font-family='Arial' font-size='40' font-weight='bold' text-anchor='middle' fill='white'%3EM%3C/text%3E%3C/svg%3E" alt="Make.com" class="tech-icon" loading="lazy">
+                    </div>
+                    <div class="icon-item" title="Google Sheets">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect fill='%230F9D58' width='100' height='100' rx='15'/%3E%3Ctext x='50' y='60' font-family='Arial' font-size='35' font-weight='bold' text-anchor='middle' fill='white'%3EGS%3C/text%3E%3C/svg%3E" alt="Google Sheets" class="tech-icon" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portfolio">
+        <div class="section-header">
+            <h2 class="section-title">What We <span>Build</span></h2>
+            <p class="section-subtitle">Hover or tap to reveal project details</p>
+        </div>
+        <div class="portfolio-wrapper">
+            <div class="portfolio-track">
+                <!-- Card 1 -->
+                <div class="portfolio-card" tabindex="0" role="button" aria-label="View Order Processing System details">
+                    <div class="portfolio-back" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <div class="portfolio-back-content">
+                            <div class="portfolio-back-header">
+                                <div class="portfolio-back-title">Order Processing System</div>
+                                <div class="portfolio-back-category">E-commerce Solution</div>
+                            </div>
+                            <div class="portfolio-details">
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Problem</div>
+                                    <div class="portfolio-text">Manual order processing taking 4+ hours daily with frequent errors</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Solution</div>
+                                    <div class="portfolio-text">Automated order routing, inventory sync, and shipping notifications</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Results</div>
+                                    <div class="portfolio-text">85% faster processing, zero errors, real-time tracking</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-front">
+                        <div class="portfolio-door-left">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">E-commerce</div>
+                                    Order Processing System
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    Retail Automation
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-door-right">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">E-commerce</div>
+                                    Order Processing System
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                    Retail Automation
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="portfolio-card" tabindex="0" role="button" aria-label="View Employee Onboarding Portal details">
+                    <div class="portfolio-back" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <div class="portfolio-back-content">
+                            <div class="portfolio-back-header">
+                                <div class="portfolio-back-title">Employee Onboarding Portal</div>
+                                <div class="portfolio-back-category">HR Solution</div>
+                            </div>
+                            <div class="portfolio-details">
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Problem</div>
+                                    <div class="portfolio-text">Paper-based onboarding for 5000+ employees causing delays</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Solution</div>
+                                    <div class="portfolio-text">Digital portal with automated document collection and training schedules</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Results</div>
+                                    <div class="portfolio-text">70% time saved, 100% compliance, better employee experience</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-front">
+                        <div class="portfolio-door-left">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">Human Resources</div>
+                                    Employee Onboarding Portal
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                    HR Automation
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-door-right">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">Human Resources</div>
+                                    Employee Onboarding Portal
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                    HR Automation
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="portfolio-card" tabindex="0" role="button" aria-label="View AI Lead Scoring System details">
+                    <div class="portfolio-back" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <div class="portfolio-back-content">
+                            <div class="portfolio-back-header">
+                                <div class="portfolio-back-title">AI Lead Scoring System</div>
+                                <div class="portfolio-back-category">Marketing Solution</div>
+                            </div>
+                            <div class="portfolio-details">
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Problem</div>
+                                    <div class="portfolio-text">Sales team wasting time on unqualified leads, low conversion</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Solution</div>
+                                    <div class="portfolio-text">AI-powered lead scoring with automatic routing to sales team</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Results</div>
+                                    <div class="portfolio-text">3x conversion rate, 50% cost reduction, faster follow-up</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-front">
+                        <div class="portfolio-door-left">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">Marketing</div>
+                                    AI Lead Scoring System
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                                    Lead Generation
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-door-right">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">Marketing</div>
+                                    AI Lead Scoring System
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                                    Lead Generation
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="portfolio-card" tabindex="0" role="button" aria-label="View Financial Dashboard details">
+                    <div class="portfolio-back" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <div class="portfolio-back-content">
+                            <div class="portfolio-back-header">
+                                <div class="portfolio-back-title">Automated Financial Dashboard</div>
+                                <div class="portfolio-back-category">Finance Solution</div>
+                            </div>
+                            <div class="portfolio-details">
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Problem</div>
+                                    <div class="portfolio-text">Manual report generation from 15+ sources taking days</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Solution</div>
+                                    <div class="portfolio-text">Real-time dashboard pulling data automatically with forecasting</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Results</div>
+                                    <div class="portfolio-text">Real-time insights, 15+ integrations, instant reporting</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-front">
+                        <div class="portfolio-door-left">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">Finance</div>
+                                    Automated Financial Dashboard
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                    Financial Reporting
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-door-right">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">Finance</div>
+                                    Automated Financial Dashboard
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                    Financial Reporting
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="portfolio-card" tabindex="0" role="button" aria-label="View Supply Chain Optimizer details">
+                    <div class="portfolio-back" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <div class="portfolio-back-content">
+                            <div class="portfolio-back-header">
+                                <div class="portfolio-back-title">Supply Chain Optimizer</div>
+                                <div class="portfolio-back-category">Logistics Solution</div>
+                            </div>
+                            <div class="portfolio-details">
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Problem</div>
+                                    <div class="portfolio-text">Frequent stockouts and overstocking costing thousands monthly</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Solution</div>
+                                    <div class="portfolio-text">AI-driven demand forecasting with automated supplier communications</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Results</div>
+                                    <div class="portfolio-text">40% cost savings, 99% accuracy, optimized inventory levels</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-front">
+                        <div class="portfolio-door-left">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">Logistics</div>
+                                    Supply Chain Optimizer
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                    Supply Chain
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-door-right">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">Logistics</div>
+                                    Supply Chain Optimizer
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                    Supply Chain
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="portfolio-card" tabindex="0" role="button" aria-label="View 24/7 Support Chatbot details">
+                    <div class="portfolio-back" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                        <div class="portfolio-back-content">
+                            <div class="portfolio-back-header">
+                                <div class="portfolio-back-title">24/7 Support Chatbot</div>
+                                <div class="portfolio-back-category">Customer Service Solution</div>
+                            </div>
+                            <div class="portfolio-details">
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Problem</div>
+                                    <div class="portfolio-text">Customer wait times exceeding 2 hours, overnight no coverage</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Solution</div>
+                                    <div class="portfolio-text">Intelligent chatbot handling 80% of inquiries with human handoff</div>
+                                </div>
+                                <div class="portfolio-section-item">
+                                    <div class="portfolio-label">Results</div>
+                                    <div class="portfolio-text">80% ticket deflection, 4.8/5 rating, instant responses</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-front">
+                        <div class="portfolio-door-left">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">Customer Service</div>
+                                    24/7 Support Chatbot
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                                    Customer Support
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-door-right">
+                            <div class="door-content">
+                                <div class="portfolio-front-title">
+                                    <div class="portfolio-category">Customer Service</div>
+                                    24/7 Support Chatbot
+                                </div>
+                                <div class="portfolio-front-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
+                                    Customer Support
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>We're <span>OpSynx</span></h2>
+                <p>We're just some humans who think computers should handle the boring stuff. You know, the repetitive tasks that make you question your career choices at 3pm on a Tuesday.</p>
+                <p>We help businesses automate the tedious parts of their operations using platforms like Zapier, Make, N8N, and custom integrations. Our job? Making sure computers do what they're best at (repetitive tasks, data crunching, never sleeping) so your team can focus on what humans are best at (creativity, strategy, actual thinking).</p>
+                <div class="about-features">
+                    <div class="platform-expertise">
+                        <h3>Platform Expertise</h3>
+                        <p>We specialize in the industry's leading automation and no-code platforms</p>
+                        <div class="expertise-logos">
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/zapier.svg" alt="Zapier" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none;">Z</div>
+                                </div>
+                                <span class="logo-name">Zapier</span>
+                            </div>
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/make.svg" alt="Make.com" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none; background: linear-gradient(135deg, #6C56ED 0%, #8B73FF 100%);">M</div>
+                                </div>
+                                <span class="logo-name">Make.com</span>
+                            </div>
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/n8n.svg" alt="N8N" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none; background: linear-gradient(135deg, #EA4B71 0%, #FF6B8A 100%);">N</div>
+                                </div>
+                                <span class="logo-name">N8N</span>
+                            </div>
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/airtable.svg" alt="Airtable" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none; background: linear-gradient(135deg, #FCB400 0%, #FFD23F 100%);">A</div>
+                                </div>
+                                <span class="logo-name">Airtable</span>
+                            </div>
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/softr.svg" alt="Softr" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none; background: linear-gradient(135deg, #623CEA 0%, #7C5CFC 100%);">S</div>
+                                </div>
+                                <span class="logo-name">Softr</span>
+                            </div>
+                            <div class="expertise-logo">
+                                <div class="logo-icon-wrapper">
+                                    <img src="images/tech/leadsimple.jpg" alt="LeadSimple" class="platform-icon"
+                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                    <div class="logo-placeholder-icon" style="display:none; background: linear-gradient(135deg, #0EA5E9 0%, #3B82F6 100%);">L</div>
+                                </div>
+                                <span class="logo-name">LeadSimple</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="process-section">
+        <div class="section-header">
+            <h2 class="section-title">Our <span>Process</span></h2>
+            <p class="section-subtitle">From discovery to deployment in four strategic phases</p>
+        </div>
+        <div class="process-timeline">
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Discovery & Analysis</h3>
+                    <p>We dive deep into your current workflows, identify bottlenecks, and map out optimization opportunities through comprehensive process audits.</p>
+                </div>
+                <div class="step-number">1</div>
+            </div>
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Solution Design</h3>
+                    <p>Our experts craft tailored automation blueprints, selecting the perfect tech stack and designing workflows that align with your business goals.</p>
+                </div>
+                <div class="step-number">2</div>
+            </div>
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Implementation</h3>
+                    <p>We build, test, and deploy your automation solutions with minimal disruption, ensuring seamless integration with your existing systems.</p>
+                </div>
+                <div class="step-number">3</div>
+            </div>
+            <div class="process-step">
+                <div class="step-content">
+                    <h3>Optimization & Support</h3>
+                    <p>Continuous monitoring, optimization, and 24/7 support ensure your automations evolve with your business and maintain peak performance.</p>
+                </div>
+                <div class="step-number">4</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Apps Integration Section -->
+    <section id="business-apps" class="business-apps">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">We Integrate With <span>Your Tools</span></h2>
+                <p class="section-subtitle">Seamlessly connect all your business applications</p>
+            </div>
+
+            <div class="apps-showcase">
+                <!-- First Row -->
+                <div class="apps-row apps-row-1">
+                    <div class="app-item">
+                        <img src="images/tech/monday.svg" alt="Monday.com" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📅</span>
+                        <span class="app-name">Monday.com</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/airtable.svg" alt="Airtable" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📊</span>
+                        <span class="app-name">Airtable</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gdocs.svg" alt="Google Docs" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📄</span>
+                        <span class="app-name">Google Docs</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gdrive.svg" alt="Google Drive" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">☁️</span>
+                        <span class="app-name">Google Drive</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gcalendar.svg" alt="Google Calendar" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📆</span>
+                        <span class="app-name">Google Calendar</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/slack.svg" alt="Slack" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💬</span>
+                        <span class="app-name">Slack</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/trello.svg" alt="Trello" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📋</span>
+                        <span class="app-name">Trello</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/asana.svg" alt="Asana" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">✅</span>
+                        <span class="app-name">Asana</span>
+                    </div>
+                    <!-- Duplicates for seamless loop -->
+                    <div class="app-item">
+                        <img src="images/tech/monday.svg" alt="Monday.com" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📅</span>
+                        <span class="app-name">Monday.com</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/airtable.svg" alt="Airtable" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📊</span>
+                        <span class="app-name">Airtable</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gdocs.svg" alt="Google Docs" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📄</span>
+                        <span class="app-name">Google Docs</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gdrive.svg" alt="Google Drive" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">☁️</span>
+                        <span class="app-name">Google Drive</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/gcalendar.svg" alt="Google Calendar" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📆</span>
+                        <span class="app-name">Google Calendar</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/slack.svg" alt="Slack" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💬</span>
+                        <span class="app-name">Slack</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/trello.svg" alt="Trello" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📋</span>
+                        <span class="app-name">Trello</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/asana.svg" alt="Asana" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">✅</span>
+                        <span class="app-name">Asana</span>
+                    </div>
+                </div>
+
+                <!-- Second Row -->
+                <div class="apps-row apps-row-2">
+                    <div class="app-item">
+                        <img src="images/tech/hubspot.svg" alt="HubSpot" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎯</span>
+                        <span class="app-name">HubSpot</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/salesforce.svg" alt="Salesforce" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">☁️</span>
+                        <span class="app-name">Salesforce</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/shopify.svg" alt="Shopify" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🛒</span>
+                        <span class="app-name">Shopify</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/mailchimp.svg" alt="Mailchimp" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📧</span>
+                        <span class="app-name">Mailchimp</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/zendesk.svg" alt="Zendesk" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎧</span>
+                        <span class="app-name">Zendesk</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/quickbooks.svg" alt="QuickBooks" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💰</span>
+                        <span class="app-name">QuickBooks</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/xero.svg" alt="Xero" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📊</span>
+                        <span class="app-name">Xero</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/stripe-ar21.svg" alt="Stripe" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💳</span>
+                        <span class="app-name">Stripe</span>
+                    </div>
+                    <!-- Duplicates -->
+                    <div class="app-item">
+                        <img src="images/tech/hubspot.svg" alt="HubSpot" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎯</span>
+                        <span class="app-name">HubSpot</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/salesforce.svg" alt="Salesforce" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">☁️</span>
+                        <span class="app-name">Salesforce</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/shopify.svg" alt="Shopify" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🛒</span>
+                        <span class="app-name">Shopify</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/mailchimp.svg" alt="Mailchimp" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📧</span>
+                        <span class="app-name">Mailchimp</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/zendesk.svg" alt="Zendesk" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎧</span>
+                        <span class="app-name">Zendesk</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/quickbooks.svg" alt="QuickBooks" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💰</span>
+                        <span class="app-name">QuickBooks</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/xero.svg" alt="Xero" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📊</span>
+                        <span class="app-name">Xero</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/stripe-ar21.svg" alt="Stripe" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">💳</span>
+                        <span class="app-name">Stripe</span>
+                    </div>
+                </div>
+
+                <!-- Third Row -->
+                <div class="apps-row apps-row-3">
+                    <div class="app-item">
+                        <img src="images/tech/twilio-icon.svg" alt="Twilio" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🔔</span>
+                        <span class="app-name">Twilio</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/docusign.svg" alt="DocuSign" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📝</span>
+                        <span class="app-name">DocuSign</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/canva-icon.svg" alt="Canva" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎨</span>
+                        <span class="app-name">Canva</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/zoomus-icon.svg" alt="Zoom" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📹</span>
+                        <span class="app-name">Zoom</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/pipedrive-svgrepo-com.svg" alt="Pipedrive" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🔗</span>
+                        <span class="app-name">Pipedrive</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/tableau-software.svg" alt="Tableau" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📈</span>
+                        <span class="app-name">Tableau</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/jira-1.svg" alt="Jira" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎫</span>
+                        <span class="app-name">Jira</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/dropbox-2.svg" alt="Dropbox" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🗂️</span>
+                        <span class="app-name">Dropbox</span>
+                    </div>
+                    <!-- Duplicates -->
+                    <div class="app-item">
+                        <img src="images/tech/twilio-icon.svg" alt="Twilio" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🔔</span>
+                        <span class="app-name">Twilio</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/docusign.svg" alt="DocuSign" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📝</span>
+                        <span class="app-name">DocuSign</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/canva-icon.svg" alt="Canva" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🎨</span>
+                        <span class="app-name">Canva</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/zoomus-icon.svg" alt="Zoom" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">📹</span>
+                        <span class="app-name">Zoom</span>
+                    </div>
+                    <div class="app-item">
+                        <img src="images/tech/pipedrive-svgrepo-com.svg" alt="Pipedrive" class="app-icon" loading="lazy"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span style="display:none; font-size: 2rem;">🔗</span>
+                        <span class="app-name">Pipedrive</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <div class="section-header">
+            <h2 class="section-title">Our <span>Services</span></h2>
+            <p class="section-subtitle">Comprehensive automation solutions tailored to your needs</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon" aria-hidden="true">🤖</div>
+                <h3>AI Implementation</h3>
+                <p>Deploy cutting-edge AI solutions that learn from your data and continuously improve performance.</p>
+                <ul>
+                    <li>Machine Learning Models</li>
+                    <li>Natural Language Processing</li>
+                    <li>Predictive Analytics</li>
+                    <li>Computer Vision</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon" aria-hidden="true">⚙️</div>
+                <h3>Process Automation</h3>
+                <p>Transform manual workflows into efficient, automated systems that scale with your business.</p>
+                <ul>
+                    <li>Workflow Optimization</li>
+                    <li>Task Automation</li>
+                    <li>Data Processing</li>
+                    <li>Report Generation</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon" aria-hidden="true">🔗</div>
+                <h3>API Integration</h3>
+                <p>Connect all your tools and platforms into one seamless ecosystem.</p>
+                <ul>
+                    <li>Custom API Development</li>
+                    <li>Third-party Integrations</li>
+                    <li>Data Synchronization</li>
+                    <li>Real-time Updates</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon" aria-hidden="true">📊</div>
+                <h3>Data Analytics</h3>
+                <p>Turn your data into actionable insights with automated reporting and visualization.</p>
+                <ul>
+                    <li>Custom Dashboards</li>
+                    <li>Automated Reports</li>
+                    <li>KPI Tracking</li>
+                    <li>Predictive Modeling</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon" aria-hidden="true">💬</div>
+                <h3>Chatbot Development</h3>
+                <p>Create intelligent chatbots that handle customer inquiries 24/7.</p>
+                <ul>
+                    <li>AI-Powered Responses</li>
+                    <li>Multi-channel Support</li>
+                    <li>Lead Qualification</li>
+                    <li>Customer Support</li>
+                </ul>
+            </div>
+            <div class="service-card">
+                <div class="service-icon" aria-hidden="true">🎯</div>
+                <h3>Custom Solutions</h3>
+                <p>Unique challenges require unique solutions. We build custom automation tailored to your needs.</p>
+                <ul>
+                    <li>Bespoke Development</li>
+                    <li>Industry-Specific Tools</li>
+                    <li>Scalable Architecture</li>
+                    <li>Full Documentation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">Client <span>Feedback</span></h2>
+            <p class="section-subtitle">What our early clients are saying</p>
+        </div>
+        <div class="testimonials-container">
+            <div class="testimonials-track">
+                <div class="testimonial-card">
+                    <div class="testimonial-quote" aria-hidden="true">"</div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">OpSynx transformed our entire order fulfillment process. What used to take hours now happens automatically. Our team can focus on growth instead of repetitive tasks.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar" aria-hidden="true">JD</div>
+                            <div class="author-info">
+                                <div class="author-name">John Davidson</div>
+                                <div class="author-role">CEO, TechFlow Solutions</div>
+                                <div class="testimonial-rating" role="img" aria-label="5 out of 5 stars">
+                                    <span class="star" aria-hidden="true">⭐</span>
+                                    <span class="star" aria-hidden="true">⭐</span>
+                                    <span class="star" aria-hidden="true">⭐</span>
+                                    <span class="star" aria-hidden="true">⭐</span>
+                                    <span class="star" aria-hidden="true">⭐</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-quote" aria-hidden="true">"</div>
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">The AI chatbot they built handles 90% of our customer inquiries. Response time went from hours to seconds. Customer satisfaction scores have never been higher.</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar" aria-hidden="true">SC</div>
+                            <div class="author-info">
+                                <div class="author-name">Sarah Chen</div>
+                                <div class="author-role">VP Operations, RetailPro</div>
+                                <div class="testimonial-rating" role="img" aria-label="5 out of 5 stars">
+                                    <span class="star" aria-hidden="true">⭐</span>
+                                    <span class="star" aria-hidden="true">⭐</span>
+                                    <span class="star" aria-hidden="true">⭐</span>
+                                    <span class="star" aria-hidden="true">⭐</span>
+                                    <span class="star" aria-hidden="true">⭐</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-header">
+            <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+            <p class="section-subtitle">Everything you need to know about our automation services</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                    You're a newer agency - why should I choose OpSynx?
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Great question! Being newer means we're hungrier, more attentive, and treat every client like they're our only client. We don't have 100 projects running simultaneously - you'll work directly with founders who have years of automation experience. Plus, we offer money-back guarantees and flexible terms that bigger agencies can't match.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                    What if I'm not satisfied with the work?
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We offer a simple money-back guarantee. If we deliver something that doesn't work as specified, we'll fix it free of charge or refund your money. No questions, no hassle. We also include a 30-day support period after launch to ensure everything runs smoothly.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                    What types of businesses benefit most from automation?
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Any business with repetitive tasks, data processing needs, or customer interactions can benefit from automation. We've helped companies from 10 to 10,000+ employees across industries including e-commerce, healthcare, finance, real estate, and professional services.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                    How long does implementation typically take?
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Implementation timelines vary based on complexity. Simple automations can be deployed in 1-2 weeks, while comprehensive enterprise solutions typically take 4-12 weeks. We provide detailed timelines during our discovery phase.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                    What platforms and tools do you work with?
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We're experts in Zapier, Make.com, N8N, Airtable, and custom API integrations. We also work with major platforms like Salesforce, HubSpot, Monday.com, Shopify, and can integrate virtually any tool with an API.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                    Do you provide ongoing support after implementation?
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We offer comprehensive support packages including monitoring, monthly optimization reviews, and on-demand assistance. Your automation continues to evolve and improve with our ongoing support. First 30 days of support are included with every project.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                    Do you require long-term contracts?
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Nope! We work on a project basis with optional ongoing support. You can cancel support services anytime with 30 days notice. We earn your business with results, not contracts.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question" role="button" tabindex="0" aria-expanded="false">
+                    How do you ensure data security and compliance?
+                    <span class="faq-toggle" aria-hidden="true">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>We follow enterprise-grade security protocols including encryption, secure API connections, and compliance with GDPR, SOC 2, and industry-specific regulations. All automations are built with security and privacy as top priorities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="contact">
+        <div class="cta-content">
+            <h2>Ready to Automate Your Business?</h2>
+            <p>Let's talk about your processes - zero commitment, zero pressure</p>
+            <a href="mailto:hello@opsynx.com" class="cta-button">
+                Book Your Free Strategy Call (30 Min)
+            </a>
+            <p style="margin-top: 2rem; font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                No long-term contracts • Money-back guarantee • Cancel anytime
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About OpSynx</h3>
+                <p>We're on a mission to help businesses harness the power of AI and automation to unlock unprecedented growth and efficiency.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#services">AI Implementation</a></li>
+                    <li><a href="#services">Process Automation</a></li>
+                    <li><a href="#services">API Integration</a></li>
+                    <li><a href="#services">Custom Solutions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#portfolio">Case Studies</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <ul>
+                    <li><a href="#" rel="noopener" target="_blank">LinkedIn</a></li>
+                    <li><a href="#" rel="noopener" target="_blank">Twitter</a></li>
+                    <li><a href="mailto:hello@opsynx.com">hello@opsynx.com</a></li>
+                    <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 OpSynx. All rights reserved. | <a href="#" style="color: inherit;">Privacy Policy</a> | <a href="#" style="color: inherit;">Terms of Service</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const navbar = document.getElementById('navbar');
+
+        mobileMenuToggle.addEventListener('click', function() {
+            const isActive = mobileMenuToggle.classList.contains('active');
+            
+            mobileMenuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            // Update aria-expanded for accessibility
+            mobileMenuToggle.setAttribute('aria-expanded', !isActive);
+            
+            // Prevent body scroll when menu is open
+            document.body.style.overflow = !isActive ? 'hidden' : '';
+        });
+
+        // Enhanced close menu function
+        function closeMenu() {
+            mobileMenuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+
+        // Smooth scrolling with offset for fixed nav
+        function scrollToSection(sectionId) {
+            const element = document.querySelector(sectionId);
+            if (element) {
+                const navHeight = navbar.offsetHeight;
+                const elementPosition = element.offsetTop - navHeight;
+                
+                window.scrollTo({
+                    top: elementPosition,
+                    behavior: 'smooth'
+                });
+                closeMenu();
+            }
+        }
+
+        // Enhanced navbar scroll effect with debouncing
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }, 10);
+        });
+
+        // Enhanced FAQ Accordion with keyboard support
+        function initFAQ() {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => toggleFAQ(item));
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFAQ(item);
+                    }
+                });
+            });
+        }
+
+        function toggleFAQ(item) {
+            const isActive = item.classList.contains('active');
+            const question = item.querySelector('.faq-question');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Toggle current item
+            item.classList.toggle('active');
+            question.setAttribute('aria-expanded', !isActive);
+        }
+
+        // Enhanced portfolio card interactions
+        function initPortfolioCards() {
+            const portfolioCards = document.querySelectorAll('.portfolio-card');
+            
+            portfolioCards.forEach(card => {
+                // Touch/click support for mobile
+                card.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        // Remove active from all other cards
+                        portfolioCards.forEach(c => {
+                            if (c !== card) c.classList.remove('active');
+                        });
+                        // Toggle this card
+                        card.classList.toggle('active');
+                    }
+                });
+                
+                // Keyboard support
+                card.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        card.click();
+                    }
+                });
+                
+                // Reset on mouse leave for desktop
+                card.addEventListener('mouseleave', () => {
+                    if (window.innerWidth > 768) {
+                        card.classList.remove('active');
+                    }
+                });
+            });
+        }
+
+        // Enhanced intersection observer for animations
+        function initAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            // Observe elements for animation
+            const animationElements = [
+                ...document.querySelectorAll('.service-card'),
+                ...document.querySelectorAll('.testimonial-card'),
+                ...document.querySelectorAll('.step-content'),
+                ...document.querySelectorAll('.expertise-logo')
+            ];
+            
+            animationElements.forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Enhanced click outside to close menu
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (!nav.contains(event.target) && navMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+
+        // Enhanced window resize handler
+        let resizeTimeout;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                // Close mobile menu on resize to desktop
+                if (window.innerWidth > 768) {
+                    closeMenu();
+                }
+                
+                // Reset portfolio cards on resize
+                document.querySelectorAll('.portfolio-card').forEach(card => {
+                    card.classList.remove('active');
+                });
+            }, 250);
+        });
+
+        // Smooth scroll polyfill for older browsers
+        function smoothScrollPolyfill() {
+            if (!window.CSS || !CSS.supports('scroll-behavior', 'smooth')) {
+                const links = document.querySelectorAll('a[href^="#"]');
+                links.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            const navHeight = navbar.offsetHeight;
+                            const elementPosition = target.offsetTop - navHeight;
+                            
+                            window.scrollTo({
+                                top: elementPosition,
+                                behavior: 'smooth'
+                            });
+                        }
+                    });
+                });
+            }
+        }
+
+        // Performance optimization - lazy load images
+        function initLazyLoading() {
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        }
+
+        // Error handling for failed image loads
+        function initImageErrorHandling() {
+            document.querySelectorAll('img').forEach(img => {
+                img.addEventListener('error', function() {
+                    // Create a fallback colored rectangle with initials
+                    const parent = this.parentElement;
+                    const altText = this.alt || 'Logo';
+                    const initials = altText.split(' ').map(word => word.charAt(0)).join('').toUpperCase().slice(0, 2);
+                    
+                    const fallback = document.createElement('div');
+                    fallback.className = 'image-fallback';
+                    fallback.style.cssText = `
+                        width: ${this.width || this.clientWidth || 40}px;
+                        height: ${this.height || this.clientHeight || 40}px;
+                        background: linear-gradient(135deg, #FF3131 0%, #cc2626 100%);
+                        border-radius: 8px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-weight: bold;
+                        font-size: ${Math.min(this.width || 40, this.height || 40) * 0.4}px;
+                    `;
+                    fallback.textContent = initials;
+                    fallback.title = altText;
+                    
+                    parent.replaceChild(fallback, this);
+                });
+            });
+        }
+
+        // Initialize all functionality when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initFAQ();
+            initPortfolioCards();
+            initAnimations();
+            smoothScrollPolyfill();
+            initLazyLoading();
+            initImageErrorHandling();
+            
+            // Set initial ARIA states
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.setAttribute('aria-expanded', 'false');
+            });
+            
+            console.log('OpSynx website initialized successfully! 🚀');
+        });
+
+        // Add CSS for animation states
+        const style = document.createElement('style');
+        style.textContent = `
+            .animate-in {
+                animation: slideInUp 0.6s ease forwards;
+            }
+            
+            @keyframes slideInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            .service-card,
+            .testimonial-card,
+            .step-content,
+            .expertise-logo {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

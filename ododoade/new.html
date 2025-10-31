@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Automation Journey - Mentorship Session</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF3131;
+            --dark: #0a0a0a;
+            --white: #ffffff;
+            --gray: #666666;
+            --light-gray: #f5f5f5;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: var(--dark);
+            overflow: hidden;
+            color: var(--white);
+        }
+
+        /* Slideshow Container */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Individual Slides */
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Slide Navigation */
+        .slide-nav {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            background: var(--primary);
+            transform: scale(1.3);
+        }
+
+        /* Navigation Arrows */
+        .nav-arrow {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 100;
+            color: var(--white);
+            font-size: 20px;
+        }
+
+        .nav-arrow:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .nav-arrow.prev { left: 40px; }
+        .nav-arrow.next { right: 40px; }
+
+        /* Slide 1: Hero/Intro */
+        .hero-slide {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 60px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .founders {
+            display: flex;
+            gap: 80px;
+            justify-content: center;
+            margin-bottom: 50px;
+            flex-wrap: wrap;
+        }
+
+        .founder {
+            text-align: center;
+        }
+
+        .founder-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF3131 0%, #cc2626 100%);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 72px;
+            color: white;
+            box-shadow: 0 20px 60px rgba(255, 49, 49, 0.3);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .founder h3 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .founder p {
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, #FF3131 0%, #cc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            color: #999;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.6;
+        }
+
+        /* Project Slides */
+        .project-slide {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 60px;
+        }
+
+        .project-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .project-info {
+            padding: 40px;
+        }
+
+        .project-category {
+            color: var(--primary);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .project-title {
+            font-size: 36px;
+            margin-bottom: 30px;
+            line-height: 1.3;
+        }
+
+        .project-section {
+            margin-bottom: 25px;
+        }
+
+        .project-section h3 {
+            color: var(--primary);
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-section p {
+            color: #ccc;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 18px;
+            border: 2px solid #333;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Tech Stack Display */
+        .tech-stack {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: rgba(255, 49, 49, 0.1);
+            border: 1px solid var(--primary);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--primary);
+        }
+
+        /* Journey Slide */
+        .journey-slide {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 60px;
+            text-align: center;
+        }
+
+        .journey-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .journey-text {
+            font-size: 18px;
+            color: #ccc;
+            line-height: 1.8;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        /* Questions Slide */
+        .questions-slide {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 60px;
+        }
+
+        .questions-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .question-list {
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        .question-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #222;
+            border-radius: 16px;
+            padding: 25px 30px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #ddd;
+            transition: all 0.3s ease;
+        }
+
+        .question-item:hover {
+            border-color: var(--primary);
+            transform: translateX(10px);
+        }
+
+        .question-number {
+            color: var(--primary);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Tech Partners Slide */
+        .tech-slide {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 60px;
+            text-align: center;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+
+        .tech-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #222;
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            min-height: 140px;
+        }
+
+        .tech-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            background: rgba(255, 49, 49, 0.05);
+        }
+
+        .tech-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+            object-fit: contain;
+        }
+
+        .tech-icon-placeholder {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .tech-name {
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* Lessons Learned Slide */
+        .lessons-slide {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            padding: 60px;
+        }
+
+        .lessons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .lesson-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #222;
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .lesson-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .lesson-icon {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .lesson-title {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .lesson-text {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .founders {
+                gap: 40px;
+            }
+
+            .nav-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .nav-arrow.prev { left: 20px; }
+            .nav-arrow.next { right: 20px; }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 20px;
+            }
+
+            .lessons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-slide,
+            .tech-slide,
+            .journey-slide,
+            .questions-slide,
+            .lessons-slide,
+            .hero-slide {
+                padding: 40px 20px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .project-title {
+                font-size: 28px;
+            }
+
+            .project-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        
+        <!-- Slide 1: Introduction -->
+        <div class="slide active hero-slide">
+            <div class="hero-content">
+                <div class="founders">
+                    <div class="founder">
+                        <div class="founder-image" style="background-image: url('https://media.licdn.com/dms/image/v2/D4D03AQHeI4nLsa9gDA/profile-displayphoto-shrink_400_400/B4DZedpZ2WGYAg-/0/1750696566768?e=1763596800&v=beta&t=4OVC79QAXG0-_t5sQXXfp8mnlxQ2r43J6VnfXXgcuZM');">
+                        </div>
+                        <h3>Samuel Nwafor</h3>
+                        <p>AI & Automation Specialist</p>
+                    </div>
+                    <div class="founder">
+                        <div class="founder-image" style="background-image: url('https://media.licdn.com/dms/image/v2/D4D03AQG-nLX5aqpJIw/profile-displayphoto-scale_400_400/B4DZf1pdoAGYAo-/0/1752172977274?e=1763596800&v=beta&t=jNLB_JMsOsQQFJ7u-OnC6lhfO0th6kZMjCwaInGf9f0');">
+                        </div>
+                        <h3>Ododoade Adewuyi</h3>
+                        <p>Product Manager & Automation Expert</p>
+                    </div>
+                </div>
+                <h1>Our Vision: <span>Business Process Automation</span></h1>
+                <p class="hero-description">
+                    We're Samuel and Ododoade, and we're exploring the idea of starting a business process automation company. We've both been working on automation projects separately and realized we could create something meaningful together. We'd love to share our journey and get your guidance.
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 2: Our Journey -->
+        <div class="slide journey-slide">
+            <div class="journey-content">
+                <h1>How We Got <span>Here</span></h1>
+                <div class="journey-text">
+                    <p><strong>Samuel's Journey:</strong> I've been working as an automation specialist at Flow Digital, building AI-powered solutions with tools like Zapier, Make, and N8N. Through client projects, I've seen firsthand how automation can transform businesses - saving 85% of time on average and reducing costs by 40%.</p>
+                    <br>
+                    <p><strong>Ododoade's Journey:</strong> During my internship at Diversified USA, I discovered my passion for automation when I built a vendor invoice system using Microsoft Power Automate. It saved the accounting team 15+ hours weekly and completely eliminated errors. That's when I realized the massive impact automation can have.</p>
+                    <br>
+                    <p><strong>Our Realization:</strong> We both noticed that most businesses are still doing things manually - not because they want to, but because they don't know what's possible or how to get started. We think there's a huge opportunity to help them.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Ododoade's Impact Project -->
+        <div class="slide project-slide">
+            <div class="project-content">
+                <div class="project-info">
+                    <div class="project-category">Ododoade's Breakthrough Project</div>
+                    <h2 class="project-title">Vendor Invoice Automation at Diversified USA</h2>
+                    
+                    <div class="project-section">
+                        <h3>The Challenge</h3>
+                        <p>The accounting team was drowning in vendor invoices - spending 15+ hours weekly on manual processing, with frequent duplicate work and missed invoices causing vendor relationship issues.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3>My Solution</h3>
+                        <p>I built an intelligent system using Microsoft Power Automate that automatically assigns invoices based on accountant availability, sends real-time alerts, and prevents duplicate processing through smart validation rules.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3>The Impact</h3>
+                        <p>15+ hours saved weekly for the team, 100% accuracy achieved, zero duplicate work, and significantly improved vendor relationships. This was my "aha" moment about automation's potential.</p>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-badge">Microsoft Power Automate</span>
+                        <span class="tech-badge">SharePoint</span>
+                        <span class="tech-badge">Workflow Design</span>
+                    </div>
+                </div>
+                
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1554224155-3a58922a22c3?q=80&w=2000'); background-size: cover; background-position: center;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Architecture Firm Project -->
+        <div class="slide project-slide">
+            <div class="project-content">
+                <div class="project-info">
+                    <div class="project-category">Real Estate / Architecture</div>
+                    <h2 class="project-title">AI-Powered Lead Generation System</h2>
+                    
+                    <div class="project-section">
+                        <h3>Client Challenge</h3>
+                        <p>A Canadian architecture firm was missing early-stage opportunities because manually monitoring universities, municipalities, and news sources was impossible to do consistently.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3>What I Built</h3>
+                        <p>Created an N8N workflow with 4 specialized AI agents using Gemini Flash 2.0 to automatically extract project data from PDFs, websites, and documents, all feeding into a centralized Airtable system.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3>Results Achieved</h3>
+                        <p>90% of sources now monitored automatically, 85% of leads match their criteria, and they're finding opportunities 6-12 months before competitors - all at just $0.45 per workflow run.</p>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-badge">N8N</span>
+                        <span class="tech-badge">Gemini Flash 2.0</span>
+                        <span class="tech-badge">Airtable</span>
+                        <span class="tech-badge">GPT-4</span>
+                    </div>
+                </div>
+                
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=2000'); background-size: cover; background-position: center;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Property Management Project -->
+        <div class="slide project-slide">
+            <div class="project-content">
+                <div class="project-info">
+                    <div class="project-category">Property Management</div>
+                    <h2 class="project-title">Document Automation Suite</h2>
+                    
+                    <div class="project-section">
+                        <h3>The Challenge</h3>
+                        <p>IHS Property Management needed to automate lease document preparation, inspection notices, pay-or-vacate notices, and compliance documentation across their entire portfolio.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3>Our Solution</h3>
+                        <p>Created comprehensive LeadSimple-DocuSign integration automating document preparation from LeadSimple data, signature routing, status tracking, and even AI-powered inspection escalation review.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3>Impact Delivered</h3>
+                        <p>Automated 4 critical document workflows, reduced document processing time by 80%, improved compliance tracking, and enabled proactive property management with automatic tenant communications.</p>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-badge">LeadSimple</span>
+                        <span class="tech-badge">DocuSign</span>
+                        <span class="tech-badge">API Integration</span>
+                        <span class="tech-badge">AI Review</span>
+                    </div>
+                </div>
+                
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?q=80&w=2000'); background-size: cover; background-position: center;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: E-commerce Project -->
+        <div class="slide project-slide">
+            <div class="project-content">
+                <div class="project-info">
+                    <div class="project-category">E-Commerce</div>
+                    <h2 class="project-title">Shopify-Monday Sales Automation</h2>
+                    
+                    <div class="project-section">
+                        <h3>Business Problem</h3>
+                        <p>Manual order processing and sales rep assignment was causing delays, missed orders, and inefficient commission tracking across multiple sales channels and team members.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3>Automation Built</h3>
+                        <p>Developed Shopify-Monday.com integration that automatically syncs orders, routes them based on sales rep territories, creates unified dashboards, and tracks commissions in real-time.</p>
+                    </div>
+                    
+                    <div class="project-section">
+                        <h3>Business Impact</h3>
+                        <p>100% automated order routing, real-time sales visibility for management, accurate commission tracking, and 6 hours daily saved on manual order processing tasks.</p>
+                    </div>
+
+                    <div class="tech-stack">
+                        <span class="tech-badge">Shopify API</span>
+                        <span class="tech-badge">Monday.com</span>
+                        <span class="tech-badge">Webhooks</span>
+                        <span class="tech-badge">Python</span>
+                    </div>
+                </div>
+                
+                <div class="project-image" style="background-image: url('https://images.unsplash.com/photo-1556742208-999815fca738?q=80&w=2000'); background-size: cover; background-position: center;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Our Approach & Tech Stack -->
+        <div class="slide tech-slide">
+            <div class="hero-content">
+                <h1>Our <span>Approach & Tools</span></h1>
+                <p class="hero-description">We combine no-code platforms with custom development to deliver solutions fast</p>
+                
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <img src="images/tech/zapier.svg" alt="Zapier" class="tech-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="tech-icon-placeholder" style="display:none;">Z</div>
+                        <span class="tech-name">Zapier</span>
+                    </div>
+                    <div class="tech-item">
+                        <img src="images/tech/make.svg" alt="Make.com" class="tech-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="tech-icon-placeholder" style="display:none;">M</div>
+                        <span class="tech-name">Make.com</span>
+                    </div>
+                    <div class="tech-item">
+                        <img src="images/tech/n8n.svg" alt="N8N" class="tech-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="tech-icon-placeholder" style="display:none;">N</div>
+                        <span class="tech-name">N8N</span>
+                    </div>
+                    <div class="tech-item">
+                        <img src="images/tech/airtable.svg" alt="Airtable" class="tech-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="tech-icon-placeholder" style="display:none;">A</div>
+                        <span class="tech-name">Airtable</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon-placeholder">PA</div>
+                        <span class="tech-name">Power Automate</span>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon-placeholder">AI</div>
+                        <span class="tech-name">GPT-4 / Gemini</span>
+                    </div>
+                    <div class="tech-item">
+                        <img src="images/tech/monday.svg" alt="Monday.com" class="tech-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="tech-icon-placeholder" style="display:none;">M</div>
+                        <span class="tech-name">Monday.com</span>
+                    </div>
+                    <div class="tech-item">
+                        <img src="images/tech/shopify.svg" alt="Shopify" class="tech-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="tech-icon-placeholder" style="display:none;">S</div>
+                        <span class="tech-name">Shopify</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: What We've Learned -->
+        <div class="slide lessons-slide">
+            <div class="hero-content">
+                <h1>What We've <span>Learned So Far</span></h1>
+                
+                <div class="lessons-grid">
+                    <div class="lesson-card">
+                        <div class="lesson-icon">💡</div>
+                        <div class="lesson-title">The Market Need is Huge</div>
+                        <div class="lesson-text">Every business we've worked with had been losing hours daily on tasks that could be automated. They just didn't know it was possible.</div>
+                    </div>
+                    
+                    <div class="lesson-card">
+                        <div class="lesson-icon">⚡</div>
+                        <div class="lesson-title">Speed Matters</div>
+                        <div class="lesson-text">Using no-code tools, we can deliver solutions in weeks instead of months. Clients love seeing quick wins.</div>
+                    </div>
+                    
+                    <div class="lesson-card">
+                        <div class="lesson-icon">🎯</div>
+                        <div class="lesson-title">ROI is Clear</div>
+                        <div class="lesson-text">Our projects consistently show 3-6 month payback periods. The math just works - save time, reduce errors, cut costs.</div>
+                    </div>
+                    
+                    <div class="lesson-card">
+                        <div class="lesson-icon">🤝</div>
+                        <div class="lesson-title">Trust is Everything</div>
+                        <div class="lesson-text">Clients let us into their core business processes. Building trust and delivering reliably is crucial.</div>
+                    </div>
+                    
+                    <div class="lesson-card">
+                        <div class="lesson-icon">📈</div>
+                        <div class="lesson-title">Scalability Challenge</div>
+                        <div class="lesson-text">We're seeing more demand than we can handle alone. Need to think about how to scale without losing quality.</div>
+                    </div>
+                    
+                    <div class="lesson-card">
+                        <div class="lesson-icon">🔄</div>
+                        <div class="lesson-title">Ongoing Support Needed</div>
+                        <div class="lesson-text">Automation isn't "set and forget" - clients need ongoing optimization and support as their business evolves.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9: Questions for Mentor -->
+        <div class="slide questions-slide">
+            <div class="questions-content">
+                <h1>What We'd Love Your <span>Guidance On</span></h1>
+                
+                <div class="question-list">
+                    <div class="question-item">
+                        <span class="question-number">1.</span>
+                        How do we position ourselves in a market with both big consultancies and freelancers? What's our unique angle?
+                    </div>
+                    
+                    <div class="question-item">
+                        <span class="question-number">2.</span>
+                        Should we focus on a specific industry (like property management or e-commerce) or stay broad initially?
+                    </div>
+                    
+                    <div class="question-item">
+                        <span class="question-number">3.</span>
+                        How do we price our services? We've been doing project-based pricing but wondering about retainers or value-based pricing.
+                    </div>
+                    
+                    <div class="question-item">
+                        <span class="question-number">4.</span>
+                        What's the best way to scale beyond just the two of us? Build a team, partner with others, or stay lean?
+                    </div>
+                    
+                    <div class="question-item">
+                        <span class="question-number">5.</span>
+                        How do we balance working on the business while still delivering client projects?
+                    </div>
+                    
+                    <div class="question-item">
+                        <span class="question-number">6.</span>
+                        What mistakes should we avoid that you've seen other automation/consulting companies make?
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10: Thank You -->
+        <div class="slide hero-slide">
+            <div class="hero-content">
+                <h1>Thank You for Your <span>Time & Wisdom</span></h1>
+                <p class="hero-description">
+                    We really appreciate you taking the time to review our work and provide guidance. We know we have a lot to learn, and your experience would be invaluable in helping us build something meaningful.
+                </p>
+                <p class="hero-description" style="margin-top: 40px; font-size: 18px;">
+                    We're excited about the potential but also realistic about the challenges ahead. Any insights you can share would be incredibly helpful.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="nav-arrow prev" onclick="changeSlide(-1)">‹</div>
+        <div class="nav-arrow next" onclick="changeSlide(1)">›</div>
+        
+        <!-- Slide Dots -->
+        <div class="slide-nav">
+            <span class="nav-dot active" onclick="currentSlide(1)"></span>
+            <span class="nav-dot" onclick="currentSlide(2)"></span>
+            <span class="nav-dot" onclick="currentSlide(3)"></span>
+            <span class="nav-dot" onclick="currentSlide(4)"></span>
+            <span class="nav-dot" onclick="currentSlide(5)"></span>
+            <span class="nav-dot" onclick="currentSlide(6)"></span>
+            <span class="nav-dot" onclick="currentSlide(7)"></span>
+            <span class="nav-dot" onclick="currentSlide(8)"></span>
+            <span class="nav-dot" onclick="currentSlide(9)"></span>
+            <span class="nav-dot" onclick="currentSlide(10)"></span>
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 1;
+
+        function changeSlide(n) {
+            showSlide(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlide(slideIndex = n);
+        }
+
+        function showSlide(n) {
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("nav-dot");
+            
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove('active');
+            }
+            
+            slides[slideIndex - 1].classList.add('active');
+            dots[slideIndex - 1].classList.add('active');
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                changeSlide(-1);
+            } else if (e.key === 'ArrowRight') {
+                changeSlide(1);
+            }
+        });
+
+        // Touch/Swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                changeSlide(1); // Swipe left, go next
+            }
+            if (touchEndX > touchStartX + 50) {
+                changeSlide(-1); // Swipe right, go previous
+            }
+        }
+    </script>
+</body>
+</html>
