@@ -3,42 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samuel Nwafor - Automation Portfolio</title>
+    <title>Projects - Samuel Nwafor | AI & Automation Engineer</title>
+    <meta name="description" content="Case studies showcasing AI automation projects across architecture, healthcare, e-commerce, and more.">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ff6d5a'/%3E%3Cstop offset='100%25' style='stop-color:%23ea4b71'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15' fill='url(%23g)'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3ESN%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Samuel Nwafor</h1>
-            <p class="subtitle">AI & Automation Specialist - Portfolio</p>
-            <div class="contact-info">
-                <a href="mailto:samuelobinnanwafor@gmail.com">samuelobinnanwafor@gmail.com</a>
-                <span>•</span>
-                <a href="https://linkedin.com/in/samuelnwafor" target="_blank">LinkedIn</a>
-                <span>•</span>
-                <a href="https://github.com/sam-obinna" target="_blank">GitHub</a>
-                <span>•</span>
-                <a href="https://sam-obinna.github.io" target="_blank">Portfolio</a>
+
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html" class="nav-back">← Back to Portfolio</a>
             </div>
-        </header>
-
-        <div class="filter-bar">
-            <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
-            <button class="filter-btn" onclick="filterProjects('architecture')">Architecture</button>
-            <button class="filter-btn" onclick="filterProjects('government')">Government</button>
-            <button class="filter-btn" onclick="filterProjects('legal')">Legal</button>
-            <button class="filter-btn" onclick="filterProjects('marketing')">Marketing</button>
-            <button class="filter-btn" onclick="filterProjects('hospitality')">Hospitality</button>
-            <button class="filter-btn" onclick="filterProjects('music')">Music</button>
-            <button class="filter-btn" onclick="filterProjects('nonprofit')">Nonprofit</button>
-            <button class="filter-btn" onclick="filterProjects('ecommerce')">E-commerce</button>
-            <button class="filter-btn" onclick="filterProjects('healthcare')">Healthcare</button>
-            <button class="filter-btn" onclick="filterProjects('real-estate')">Real Estate</button>
+            <div class="nav-sn-logo">SN</div>
         </div>
+    </nav>
 
+    <!-- Page Header -->
+    <header class="page-header">
+        <span class="section-label">Featured Work</span>
+        <h1 class="page-title">All Projects</h1>
+        <div class="title-decoration">
+            <span></span><span></span><span></span>
+        </div>
+        <p class="page-subtitle">12 real-world automation systems built across industries  - from architecture to healthcare, e-commerce to government.</p>
+        <div class="contact-links">
+            <a href="mailto:samuelobinnanwafor@gmail.com">📧 Email</a>
+            <span class="separator">•</span>
+            <a href="https://linkedin.com/in/samuelnwafor" target="_blank">💼 LinkedIn</a>
+            <span class="separator">•</span>
+            <a href="https://github.com/sam-obinna" target="_blank">🔗 GitHub</a>
+        </div>
+        <button class="pdf-download-btn" onclick="window.open('pdf-export.html', '_blank')">
+            ⬇ Download Portfolio PDF
+        </button>
+        <div class="nda-note">
+            <span class="nda-icon">🔒</span>
+            <p>Due to NDAs, actual client and company names cannot be disclosed. All projects are referenced by industry and location only.</p>
+        </div>
+    </header>
+
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterProjects('all', this)">All Projects</button>
+        <button class="filter-btn" onclick="filterProjects('architecture', this)">Architecture</button>
+        <button class="filter-btn" onclick="filterProjects('government', this)">Government</button>
+        <button class="filter-btn" onclick="filterProjects('legal', this)">Legal</button>
+        <button class="filter-btn" onclick="filterProjects('marketing', this)">Marketing</button>
+        <button class="filter-btn" onclick="filterProjects('hospitality', this)">Hospitality</button>
+        <button class="filter-btn" onclick="filterProjects('music', this)">Music</button>
+        <button class="filter-btn" onclick="filterProjects('nonprofit', this)">Nonprofit</button>
+        <button class="filter-btn" onclick="filterProjects('ecommerce', this)">E-commerce</button>
+        <button class="filter-btn" onclick="filterProjects('healthcare', this)">Healthcare</button>
+        <button class="filter-btn" onclick="filterProjects('real-estate', this)">Real Estate</button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-container">
+        <div id="emptyState" style="display:none; flex-direction:column; align-items:center; justify-content:center; padding:5rem 2rem; text-align:center; gap:1rem;">
+            <div style="font-size:3rem;">🔍</div>
+            <h3 style="font-family:'Space Grotesk',sans-serif; font-size:1.3rem; color:#fff;">No projects in this category</h3>
+            <p style="color:#8892b0; font-size:0.9rem;">Try selecting a different filter or view all projects.</p>
+            <button onclick="filterProjects('all', document.querySelector('.filter-btn'))" style="margin-top:0.5rem; padding:10px 24px; background:linear-gradient(135deg,#ff6d5a,#ea4b71); border:none; border-radius:24px; color:#fff; font-weight:600; font-size:0.9rem; cursor:pointer;">View All Projects</button>
+        </div>
         <div class="projects-grid">
+
+            <!-- 01: Canadian Architecture Firm -->
             <a href="project-01.html" class="project-card" data-category="architecture">
-                <img src="tech/teeple.png" alt="Architecture Firm" class="project-image">
+                <img src="tech/canadian_architectural_company.jpg" alt="Canadian Architecture Firm" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 01</span>
                     <h2 class="project-title">Canadian Architecture Firm</h2>
@@ -53,8 +93,9 @@
                 </div>
             </a>
 
+            <!-- 02: Government Training Program -->
             <a href="project-02.html" class="project-card" data-category="government">
-                <img src="tech/funded.png" alt="Government Program" class="project-image">
+                <img src="tech/classroom.jpg" alt="Government Training Program" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 02</span>
                     <h2 class="project-title">Government Training Program</h2>
@@ -64,14 +105,15 @@
                         <span class="tech-badge">GPT-4</span>
                         <span class="tech-badge">Claude</span>
                         <span class="tech-badge">Python</span>
-                        <span class="tech-badge">Power BI</span>
+                        <span class="tech-badge">Mailchimp</span>
                     </div>
                     <div class="read-more">Read full case study →</div>
                 </div>
             </a>
 
+            <!-- 03: Personal Injury Law Firm -->
             <a href="project-03.html" class="project-card" data-category="legal">
-                <img src="tech/architecture.jpg" alt="Legal Firm" class="project-image">
+                <img src="tech/lady-justice-statue-front-courthouse.jpg" alt="Personal Injury Law Firm" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 03</span>
                     <h2 class="project-title">Personal Injury Law Firm</h2>
@@ -81,13 +123,15 @@
                         <span class="tech-badge">n8n</span>
                         <span class="tech-badge">Gemini</span>
                         <span class="tech-badge">Clio</span>
+                        <span class="tech-badge">ChatGPT</span>
                     </div>
                     <div class="read-more">Read full case study →</div>
                 </div>
             </a>
 
+            <!-- 04: Insurance Marketing Agency -->
             <a href="project-04.html" class="project-card" data-category="marketing">
-                <img src="tech/support.png" alt="Marketing Agency" class="project-image">
+                <img src="tech/insurance-policy-agreement-terms-document-concept.jpg" alt="Insurance Marketing Agency" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 04</span>
                     <h2 class="project-title">Insurance Marketing Agency</h2>
@@ -95,6 +139,7 @@
                     <p class="project-snippet">Internal ops automation with AI knowledge bot and meeting transcript system, reducing client setup from 2 weeks to 3 days.</p>
                     <div class="tech-preview">
                         <span class="tech-badge">Fireflies</span>
+                        <span class="tech-badge">ClickUp</span>
                         <span class="tech-badge">Zapier</span>
                         <span class="tech-badge">Slack</span>
                     </div>
@@ -102,8 +147,9 @@
                 </div>
             </a>
 
+            <!-- 05: UK Motorcycle Storage Company -->
             <a href="project-05.html" class="project-card" data-category="hospitality">
-                <img src="tech/attic-apartment-paris-airbnb-nordroom3.jpg" alt="Motorcycle Storage" class="project-image">
+                <img src="tech/tanya-barrow--zLxu8re3_c-unsplash.jpg" alt="UK Motorcycle Storage Company" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 05</span>
                     <h2 class="project-title">UK Motorcycle Storage Company</h2>
@@ -112,15 +158,16 @@
                     <div class="tech-preview">
                         <span class="tech-badge">Airtable</span>
                         <span class="tech-badge">Make.com</span>
-                        <span class="tech-badge">QR codes</span>
+                        <span class="tech-badge">Xero</span>
                         <span class="tech-badge">Softr</span>
                     </div>
                     <div class="read-more">Read full case study →</div>
                 </div>
             </a>
 
+            <!-- 06: US Music Festival Company -->
             <a href="project-06.html" class="project-card" data-category="music">
-                <img src="tech/music_festival.avif" alt="Music Festival" class="project-image">
+                <img src="tech/music_festival.avif" alt="US Music Festival Company" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 06</span>
                     <h2 class="project-title">US Music Festival Company</h2>
@@ -135,8 +182,9 @@
                 </div>
             </a>
 
+            <!-- 07: Ocean Cleanup Nonprofit -->
             <a href="project-07.html" class="project-card" data-category="nonprofit">
-                <img src="tech/plastic-recycle-machine.webp" alt="Ocean Cleanup" class="project-image">
+                <img src="tech/ocean_cleanup123222.webp" alt="Ocean Cleanup Nonprofit" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 07</span>
                     <h2 class="project-title">Ocean Cleanup Nonprofit</h2>
@@ -151,8 +199,9 @@
                 </div>
             </a>
 
+            <!-- 08: Danish Specialty Coffee Company -->
             <a href="project-08.html" class="project-card" data-category="ecommerce">
-                <img src="tech/img_4112_edits.jpg" alt="Coffee Company" class="project-image">
+                <img src="tech/coffee.jpg" alt="Danish Specialty Coffee Company" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 08</span>
                     <h2 class="project-title">Danish Specialty Coffee Company</h2>
@@ -162,13 +211,15 @@
                         <span class="tech-badge">Pipedrive</span>
                         <span class="tech-badge">Klaviyo</span>
                         <span class="tech-badge">Make.com</span>
+                        <span class="tech-badge">Airtable</span>
                     </div>
                     <div class="read-more">Read full case study →</div>
                 </div>
             </a>
 
+            <!-- 09: B2B Wholesale Jewelry Company -->
             <a href="project-09.html" class="project-card" data-category="ecommerce">
-                <img src="tech/shopping_cart_banner.jpg" alt="Jewelry Company" class="project-image">
+                <img src="tech/e-commerce cart.jpg" alt="B2B Wholesale Jewelry Company" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 09</span>
                     <h2 class="project-title">B2B Wholesale Jewelry Company</h2>
@@ -184,8 +235,9 @@
                 </div>
             </a>
 
+            <!-- 10: Digital Health Startup -->
             <a href="project-10.html" class="project-card" data-category="healthcare">
-                <img src="tech/378-018.jpg" alt="Health Startup" class="project-image">
+                <img src="tech/doctor_health.jpg" alt="Digital Health Startup" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 10</span>
                     <h2 class="project-title">Digital Health Startup</h2>
@@ -195,13 +247,15 @@
                         <span class="tech-badge">Airtable</span>
                         <span class="tech-badge">Make.com</span>
                         <span class="tech-badge">Typeform</span>
+                        <span class="tech-badge">Metabase</span>
                     </div>
                     <div class="read-more">Read full case study →</div>
                 </div>
             </a>
 
+            <!-- 11: Washington Property Management Company -->
             <a href="project-11.html" class="project-card" data-category="real-estate">
-                <img src="tech/leadsimple.jpg" alt="Property Management" class="project-image">
+                <img src="tech/attic-apartment-paris-airbnb-nordroom3.jpg" alt="Washington Property Management" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 11</span>
                     <h2 class="project-title">Washington Property Management Company</h2>
@@ -211,13 +265,15 @@
                         <span class="tech-badge">Zapier</span>
                         <span class="tech-badge">LeadSimple</span>
                         <span class="tech-badge">DocuSign</span>
+                        <span class="tech-badge">ChatGPT</span>
                     </div>
                     <div class="read-more">Read full case study →</div>
                 </div>
             </a>
 
+            <!-- 12: Japan Hospitality Company -->
             <a href="project-12.html" class="project-card" data-category="hospitality">
-                <div style="background: var(--color-background-secondary); height: 200px; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">Japan Hospitality Platform</div>
+                <img src="tech/VISIT JAPAN.jpg" alt="Japan Hospitality Company" class="project-image">
                 <div class="project-content">
                     <span class="case-number">Case Study 12</span>
                     <h2 class="project-title">Japan Hospitality Company</h2>
@@ -227,29 +283,37 @@
                         <span class="tech-badge">Bokun</span>
                         <span class="tech-badge">Softr</span>
                         <span class="tech-badge">Next.js</span>
+                        <span class="tech-badge">Airtable</span>
                     </div>
                     <div class="read-more">Read full case study →</div>
                 </div>
             </a>
+
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="page-footer">
+        <p>&copy; 2025 <a href="../index.html">Samuel Nwafor</a>. All rights reserved.</p>
+    </footer>
+
     <script>
-        function filterProjects(category) {
+        function filterProjects(category, btn) {
             const cards = document.querySelectorAll('.project-card');
             const buttons = document.querySelectorAll('.filter-btn');
-            
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
+            const emptyState = document.getElementById('emptyState');
+
+            buttons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            let visible = 0;
             cards.forEach(card => {
-                if (category === 'all') {
-                    card.style.display = 'block';
-                } else {
-                    const cardCategory = card.getAttribute('data-category');
-                    card.style.display = cardCategory === category ? 'block' : 'none';
-                }
+                const show = category === 'all' || card.getAttribute('data-category') === category;
+                card.style.display = show ? 'block' : 'none';
+                if (show) visible++;
             });
+
+            if (emptyState) emptyState.style.display = visible === 0 ? 'flex' : 'none';
         }
     </script>
 </body>

@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Nwafor  - Case Studies Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset & base ─────────────────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { font-size: 10pt; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fff;
+            color: #111;
+            line-height: 1.5;
+        }
+
+        /* ── Print bar (screen only) ───────────────────── */
+        .print-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 999;
+            background: #0a0a0a;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 2rem;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+        .print-bar strong { color: #ff6d5a; font-family: 'Space Grotesk', sans-serif; font-size: 1rem; }
+        .print-bar span { color: #aaa; font-size: 0.82rem; }
+        .print-btn {
+            background: linear-gradient(135deg, #ff6d5a, #ea4b71);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 0.5rem 1.4rem;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+        .print-btn:hover { opacity: 0.85; }
+        .close-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #aaa;
+            border-radius: 6px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+        .close-btn:hover { color: #fff; }
+
+        /* ── Page spacing for screen preview ──────────── */
+        @media screen {
+            body { padding-top: 56px; background: #e5e5e5; }
+            .pdf-page {
+                width: 210mm;
+                min-height: 297mm;
+                margin: 24px auto;
+                background: #fff;
+                box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+                page-break-after: always;
+                overflow: hidden;
+            }
+        }
+
+        /* ── Print layout ──────────────────────────────── */
+        @media print {
+            .print-bar { display: none !important; }
+            body { padding: 0; background: #fff; }
+            .pdf-page {
+                width: 100%;
+                height: 100vh;
+                page-break-after: always;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+            .pdf-page:last-child { page-break-after: avoid; }
+        }
+
+        /* ── Cover page ────────────────────────────────── */
+        .cover-page {
+            background: #0a0a0a;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 60px 64px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: -120px; right: -120px;
+            width: 420px; height: 420px;
+            background: radial-gradient(circle, rgba(255,109,90,0.25) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .cover-page::after {
+            content: '';
+            position: absolute;
+            bottom: -80px; left: 40px;
+            width: 300px; height: 300px;
+            background: radial-gradient(circle, rgba(234,75,113,0.18) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .cover-sn {
+            width: 54px; height: 54px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6d5a, #ea4b71);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem; font-weight: 700; color: #fff;
+            margin-bottom: 48px;
+            position: relative; z-index: 1;
+        }
+        .cover-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #ff6d5a;
+            margin-bottom: 16px;
+            position: relative; z-index: 1;
+        }
+        .cover-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.6rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            position: relative; z-index: 1;
+        }
+        .cover-title span {
+            background: linear-gradient(135deg, #ff6d5a, #ea4b71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .cover-sub {
+            font-size: 1.05rem;
+            color: #aaa;
+            margin-bottom: 56px;
+            position: relative; z-index: 1;
+        }
+        .cover-divider {
+            width: 56px; height: 3px;
+            background: linear-gradient(90deg, #ff6d5a, #ea4b71);
+            margin-bottom: 40px;
+            position: relative; z-index: 1;
+        }
+        .cover-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            width: 100%;
+            max-width: 480px;
+            margin-bottom: 64px;
+            position: relative; z-index: 1;
+        }
+        .cover-meta-item .val {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ff6d5a;
+        }
+        .cover-meta-item .lbl {
+            font-size: 0.75rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .cover-footer {
+            position: absolute;
+            bottom: 40px; left: 64px; right: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 20px;
+            font-size: 0.75rem;
+            color: #555;
+            z-index: 1;
+        }
+
+        /* ── Project page ──────────────────────────────── */
+        .project-page {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* hero */
+        .pdf-hero {
+            position: relative;
+            height: 200px;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+        .pdf-hero-img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+        }
+        .pdf-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.5) 45%, rgba(10,10,10,0.1) 100%);
+        }
+        .pdf-hero-text {
+            position: absolute;
+            bottom: 18px; left: 28px; right: 28px;
+        }
+        .pdf-case-num {
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #ff6d5a;
+            margin-bottom: 4px;
+        }
+        .pdf-hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .pdf-hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+        .pdf-hero-tag {
+            font-size: 0.68rem;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(4px);
+            color: #e0e0e0;
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        /* body */
+        .pdf-body {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 190px 1fr;
+            gap: 0;
+            overflow: hidden;
+        }
+
+        /* sidebar */
+        .pdf-sidebar {
+            background: #f8f8f8;
+            border-right: 1px solid #ebebeb;
+            padding: 20px 18px;
+        }
+        .pdf-sidebar-section { margin-bottom: 20px; }
+        .pdf-sidebar-title {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #ff6d5a;
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #ebebeb;
+        }
+        .pdf-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 7px;
+            font-size: 0.7rem;
+        }
+        .pdf-meta-key { color: #888; font-weight: 500; white-space: nowrap; }
+        .pdf-meta-val { color: #222; font-weight: 600; text-align: right; }
+        .pdf-tech-grid { display: flex; flex-direction: column; gap: 6px; }
+        .pdf-tech-item {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.72rem;
+            color: #333;
+            font-weight: 500;
+        }
+        .pdf-tech-icon {
+            width: 18px; height: 18px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+        .pdf-tech-emoji {
+            width: 18px; height: 18px;
+            font-size: 0.85rem;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+
+        /* main content */
+        .pdf-main {
+            padding: 20px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            overflow: hidden;
+        }
+        .pdf-section { margin-bottom: 14px; }
+        .pdf-section-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .pdf-section-icon {
+            width: 22px; height: 22px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, rgba(255,109,90,0.15), rgba(234,75,113,0.15));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+        .pdf-section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #111;
+        }
+        .pdf-section-text {
+            font-size: 0.72rem;
+            color: #444;
+            line-height: 1.55;
+            padding-left: 30px;
+        }
+
+        /* results bar */
+        .pdf-results {
+            background: #0a0a0a;
+            padding: 14px 24px;
+            flex-shrink: 0;
+        }
+        .pdf-results-label {
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #ff6d5a;
+            margin-bottom: 10px;
+        }
+        .pdf-results-grid {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .pdf-result-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 10px 14px;
+            min-width: 90px;
+            flex: 1;
+        }
+        .pdf-result-val {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ff6d5a;
+            line-height: 1;
+            margin-bottom: 3px;
+        }
+        .pdf-result-lbl {
+            font-size: 0.6rem;
+            color: #888;
+            line-height: 1.35;
+        }
+
+        /* page footer */
+        .pdf-page-footer {
+            background: #f8f8f8;
+            border-top: 1px solid #ebebeb;
+            padding: 7px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+        .pdf-page-footer span {
+            font-size: 0.62rem;
+            color: #aaa;
+        }
+        .pdf-page-footer .pf-brand {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            color: #ff6d5a;
+            font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── Print bar ───────────────────────────────────── -->
+<div class="print-bar" id="printBar">
+    <div>
+        <strong>Samuel Nwafor  - Case Studies</strong>
+        <span style="margin-left:12px;">12 projects · PDF export</span>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;">
+        <button class="close-btn" onclick="window.close()">✕ Close</button>
+        <button class="print-btn" onclick="window.print()">⬇ Save as PDF</button>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- COVER PAGE                                          -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page cover-page">
+    <div class="cover-sn">SN</div>
+    <div class="cover-label">Portfolio · Case Studies</div>
+    <h1 class="cover-title">Samuel<br><span>Nwafor</span></h1>
+    <p class="cover-sub">Automation Engineer &amp; Systems Builder</p>
+    <div class="cover-divider"></div>
+    <div class="cover-meta-grid">
+        <div class="cover-meta-item">
+            <div class="val">12</div>
+            <div class="lbl">Case Studies</div>
+        </div>
+        <div class="cover-meta-item">
+            <div class="val">8+</div>
+            <div class="lbl">Industries</div>
+        </div>
+        <div class="cover-meta-item">
+            <div class="val">2025</div>
+            <div class="lbl">Year</div>
+        </div>
+    </div>
+    <a href="https://www.loom.com/share/db68f3c97bc44be9a318b442f8931bde" target="_blank" style="position:relative;z-index:1;display:flex;align-items:center;gap:14px;padding:14px 18px;background:rgba(255,109,90,0.08);border:1px solid rgba(255,109,90,0.25);border-radius:8px;max-width:500px;margin-bottom:16px;text-decoration:none;">
+        <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#ff6d5a,#ea4b71);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.9rem;">▶</div>
+        <div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-size:0.82rem;font-weight:700;color:#fff;margin-bottom:2px;">Watch 2-Min Work Demo</div>
+            <div style="font-size:0.7rem;color:#888;">loom.com/share/db68f3c97bc44be9a318b442f8931bde</div>
+        </div>
+    </a>
+    <div style="position:relative;z-index:1;display:flex;align-items:flex-start;gap:10px;padding:14px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;max-width:500px;margin-bottom:32px;">
+        <span style="font-size:0.85rem;flex-shrink:0;margin-top:1px;">🔒</span>
+        <p style="font-size:0.78rem;color:#888;line-height:1.55;margin:0;">Due to NDAs, actual client and company names cannot be disclosed. All projects are referenced by industry and location only.</p>
+    </div>
+    <div class="cover-footer">
+        <span>sam-obinna.github.io</span>
+        <span>Automation · AI Agents · Systems Integration</span>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 01  - Canadian Architecture Firm             -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/canadian_architectural_company.jpg" alt="Canadian Architecture Firm" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 01</div>
+                <h2 class="pdf-hero-title">Canadian Architecture Firm</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">Architecture &amp; Design</span>
+                    <span class="pdf-hero-tag">⏱ 1 month</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">Architecture &amp; Design</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">1 month</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><img src="tech/n8n.svg" class="pdf-tech-icon" alt="n8n"><span>n8n</span></div>
+                        <div class="pdf-tech-item"><img src="tech/airtable.svg" class="pdf-tech-icon" alt="Airtable"><span>Airtable</span></div>
+                        <div class="pdf-tech-item"><img src="tech/gemini-color.svg" class="pdf-tech-icon" alt="Gemini"><span>Gemini Flash 2.0</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">The firm was missing early-stage project opportunities due to manual monitoring of multiple sources (universities, municipalities, news) being time-consuming and inconsistent. Key leads were slipping through while competitors who got in earlier secured the work.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Built an N8N workflow automation system with LLM-powered agents (Gemini Flash 2.0) to extract project data from PDFs, websites, and documents. Created 4 AI agents for different source types  - municipal, institutional, RFP databases, and news  - and implemented Airtable for centralised data storage with automated lead prioritisation and scoring.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">90%</div><div class="pdf-result-lbl">Automated source coverage</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">6–12 mo</div><div class="pdf-result-lbl">Early discovery advantage</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">85%</div><div class="pdf-result-lbl">Lead quality match rate</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">$0.45</div><div class="pdf-result-lbl">Per workflow execution</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>01 / 12</span>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 02  - Government Training Program           -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/classroom.jpg" alt="Government Training Program" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 02</div>
+                <h2 class="pdf-hero-title">Government Training Program</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">Government / Education</span>
+                    <span class="pdf-hero-tag">⏱ 12 weeks</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">Government / Education</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Client</span><span class="pdf-meta-val">3MTT Nigeria</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">12 weeks</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><img src="tech/chatgpt-6.svg" class="pdf-tech-icon" alt="GPT-4"><span>GPT-4</span></div>
+                        <div class="pdf-tech-item"><img src="tech/claude-color.svg" class="pdf-tech-icon" alt="Claude"><span>Claude</span></div>
+                        <div class="pdf-tech-item"><img src="tech/Python.svg" class="pdf-tech-icon" alt="Python"><span>Python</span></div>
+                        <div class="pdf-tech-item"><img src="tech/mailchimp.svg" class="pdf-tech-icon" alt="Mailchimp"><span>Mailchimp</span></div>
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">📊</div><span>Power BI</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">Manual content creation for the communications team, manual fellow-to-partner placement matching, manual CRM updates, no automated campaign scheduling or engagement tracking, and no scalable way to engage 3,000+ trainees across the programme. The team was stretched thin and missing opportunities to serve trainees effectively.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Built 10+ AI agents across two teams. Communications team: AI Writing Assistant, Content Scheduler, Engagement Tracker, Brand Tone Agent, Web Crawling Bot, Animation/Video Generator, Community Bot, and AI newsletter automation. Partnerships &amp; Placements team: Data Insights Agent, Outreach Agent, CRM Sync Agent, and Placement Status Tracker  - all working together to serve 3,000+ trainees at scale.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">3,000+</div><div class="pdf-result-lbl">Trainees on AI newsletters monthly</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">5×</div><div class="pdf-result-lbl">Content production increase</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">70%</div><div class="pdf-result-lbl">Faster placement matching</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">1,000+</div><div class="pdf-result-lbl">Queries handled by community bot</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>02 / 12</span>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 03  - Personal Injury Law Firm               -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/lady-justice-statue-front-courthouse.jpg" alt="Personal Injury Law Firm" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 03</div>
+                <h2 class="pdf-hero-title">Personal Injury Law Firm</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">Legal Services</span>
+                    <span class="pdf-hero-tag">⏱ &lt; 2 weeks</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">Legal Services</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Location</span><span class="pdf-meta-val">New York</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">Less than 2 weeks</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><img src="tech/n8n.svg" class="pdf-tech-icon" alt="n8n"><span>n8n</span></div>
+                        <div class="pdf-tech-item"><img src="tech/gemini-color.svg" class="pdf-tech-icon" alt="Gemini"><span>Gemini (OCR)</span></div>
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">⚖️</div><span>Clio</span></div>
+                        <div class="pdf-tech-item"><img src="tech/chatgpt-6.svg" class="pdf-tech-icon" alt="ChatGPT"><span>ChatGPT</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">Manual police report data entry into Clio was taking 2+ hours per case, causing the firm to lose clients to competitors with faster turnaround. Paralegals manually typed every detail from scanned PDFs  - by the time retainers were generated, prospects had already signed elsewhere.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Built an n8n workflow using Gemini for OCR to read scanned police report PDFs, ChatGPT for structuring extracted data, and the Clio API for retainer auto-generation plus personalised client emails with seasonal scheduling logic. The system reads police reports, extracts all relevant information, automatically updates Matters in Clio, generates retainer agreements, and sends personalised emails with booking links  - all without human involvement.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">95%</div><div class="pdf-result-lbl">Reduction in retainer generation time</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">&lt; 1 hr</div><div class="pdf-result-lbl">Speed-to-lead, down from 24–48 hours</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">0</div><div class="pdf-result-lbl">Manual data entry errors</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">50+</div><div class="pdf-result-lbl">Reports processed in first month</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>03 / 12</span>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 04  - Insurance Marketing Agency            -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/insurance-policy-agreement-terms-document-concept.jpg" alt="Insurance Marketing Agency" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 04</div>
+                <h2 class="pdf-hero-title">Insurance Marketing Agency</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">Marketing / Insurance</span>
+                    <span class="pdf-hero-tag">⏱ 2+ months</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">Marketing / Insurance</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">2+ months</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">🎙️</div><span>Fireflies.ai</span></div>
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">✅</div><span>ClickUp</span></div>
+                        <div class="pdf-tech-item"><img src="tech/zapier.svg" class="pdf-tech-icon" alt="Zapier"><span>Zapier</span></div>
+                        <div class="pdf-tech-item"><img src="tech/slack.svg" class="pdf-tech-icon" alt="Slack"><span>Slack</span></div>
+                        <div class="pdf-tech-item"><img src="tech/chatgpt-6.svg" class="pdf-tech-icon" alt="ChatGPT"><span>ChatGPT</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">The agency was dealing with excessive manual post-meeting work  - team members had to manually upload Fireflies transcripts to the right client folders in ClickUp after every call. Onboarding new team members onto client accounts took far too long, and building pipelines for each new insurance company client meant starting from scratch every time.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Delivered a multi-part internal operations automation: (1) Fireflies-to-ClickUp integration that automatically posts meeting transcripts and action items to the correct client folder after every call, (2) a Slack knowledge bot via Zapier that indexes all client data for instant team queries, and (3) a reusable pipeline template system so new insurance company clients can be onboarded in days, not weeks.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">80%</div><div class="pdf-result-lbl">Reduction in post-meeting admin time</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">5×</div><div class="pdf-result-lbl">Faster team ramp-up on accounts</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">3 days</div><div class="pdf-result-lbl">Client setup, down from 2 weeks</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>04 / 12</span>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 05  - UK Motorcycle Storage Company         -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/tanya-barrow--zLxu8re3_c-unsplash.jpg" alt="UK Motorcycle Storage Company" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 05</div>
+                <h2 class="pdf-hero-title">UK Motorcycle Storage Company</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">Hospitality / Storage</span>
+                    <span class="pdf-hero-tag">⏱ 2 weeks</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">Hospitality / Storage</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Location</span><span class="pdf-meta-val">United Kingdom</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">2 weeks</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><img src="tech/airtable.svg" class="pdf-tech-icon" alt="Airtable"><span>Airtable</span></div>
+                        <div class="pdf-tech-item"><img src="tech/make.svg" class="pdf-tech-icon" alt="Make.com"><span>Make.com</span></div>
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">📱</div><span>QR Codes</span></div>
+                        <div class="pdf-tech-item"><img src="tech/xero.svg" class="pdf-tech-icon" alt="Xero"><span>Xero</span></div>
+                        <div class="pdf-tech-item"><img src="tech/softr.svg" class="pdf-tech-icon" alt="Softr"><span>Softr</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">No operational infrastructure was in place whatsoever. The startup needed a full client lifecycle management system  - from prospecting through onboarding, bike tracking, and offboarding  - and their launch was only 8 weeks away with zero systems built.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Built an end-to-end CRM and operations system in Airtable with QR code-based bike identification for instant check-in/out, automated contract generation via Microsoft Word templates, invoice creation through Xero integration, and a customer-facing booking portal built on Softr. Make.com orchestrated all workflows across platforms  - delivered in just 2 weeks.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">6 weeks</div><div class="pdf-result-lbl">Ahead of schedule at launch</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">0%</div><div class="pdf-result-lbl">Manual data entry required</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">5 min</div><div class="pdf-result-lbl">Contract generation, down from 2 hours</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">100%</div><div class="pdf-result-lbl">Audit trail on 50+ bikes</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>05 / 12</span>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 06  - US Music Festival Company             -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/music_festival.avif" alt="US Music Festival Company" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 06</div>
+                <h2 class="pdf-hero-title">US Music Festival Company</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">Music &amp; Entertainment</span>
+                    <span class="pdf-hero-tag">⏱ 1 month</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">Music &amp; Entertainment</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Location</span><span class="pdf-meta-val">United States</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">1 month</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><img src="tech/make.svg" class="pdf-tech-icon" alt="Make.com"><span>Make.com</span></div>
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">🎵</div><span>Soundchart API</span></div>
+                        <div class="pdf-tech-item"><img src="tech/airtable.svg" class="pdf-tech-icon" alt="Airtable"><span>Airtable</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">The company needed to identify fast-rising electronic artists for booking opportunities before competitors. Manual monitoring of streaming platforms and social media was slow and inconsistent  - the team was missing emerging talent at the exact moment it mattered, losing booking deals to rival festivals with better intelligence.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Built a Make.com workflow that pulls 3,000–5,000 artists weekly from the Soundcharts API. Filters by electronic genre and platform criteria, excludes 80+ unwanted genres, and applies a weighted momentum score  - Instagram 20%, TikTok 40%, Spotify 40%  - with a bonus for editorial playlist placements. Only artists who debuted within 3 years qualify. Top 50 are output to Airtable with a weekly summary report.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">50</div><div class="pdf-result-lbl">Qualified artist leads delivered weekly</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">25%</div><div class="pdf-result-lbl">Projected revenue increase from bookings</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">100%</div><div class="pdf-result-lbl">Automated competitive booking pipeline</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>06 / 12</span>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 07  - Ocean Cleanup Nonprofit               -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/ocean_cleanup123222.webp" alt="Ocean Cleanup Nonprofit" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 07</div>
+                <h2 class="pdf-hero-title">Ocean Cleanup Nonprofit</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">Nonprofit / Environmental</span>
+                    <span class="pdf-hero-tag">⏱ 1 month</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">Nonprofit / Environmental</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">1 month</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">🔀</div><span>ClickFunnels</span></div>
+                        <div class="pdf-tech-item"><img src="tech/zapier.svg" class="pdf-tech-icon" alt="Zapier"><span>Zapier</span></div>
+                        <div class="pdf-tech-item"><img src="tech/shopify.svg" class="pdf-tech-icon" alt="Shopify"><span>Shopify</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">Manual order entry between ClickFunnels and Shopify was consuming significant staff time that should have been directed at ocean cleanup operations. Environmental workers were spending hours each week on data entry instead of mission-critical fieldwork  - a painful misalignment of people and purpose.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Implemented a Zapier automation that connects ClickFunnels purchases directly to Shopify  - automatically creating orders and preparing them for fulfilment the moment a purchase completes. Every sale now flows instantly from the sales funnel to the fulfilment system with zero human involvement, freeing the team entirely for environmental mission work.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">15+ hrs</div><div class="pdf-result-lbl">Per week freed for cleanup operations</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">100%</div><div class="pdf-result-lbl">Order automation rate</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">75%</div><div class="pdf-result-lbl">Reduction in order processing time</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">0</div><div class="pdf-result-lbl">Order entry errors</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>07 / 12</span>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 08  - Danish Specialty Coffee Company       -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/coffee.jpg" alt="Danish Specialty Coffee Company" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 08</div>
+                <h2 class="pdf-hero-title">Danish Specialty Coffee Company</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">E-commerce / Food &amp; Beverage</span>
+                    <span class="pdf-hero-tag">⏱ 5 weeks</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">E-commerce / F&amp;B</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Location</span><span class="pdf-meta-val">Denmark</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">5 weeks</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><img src="tech/pipedrive-svgrepo-com.svg" class="pdf-tech-icon" alt="Pipedrive"><span>Pipedrive</span></div>
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">📧</div><span>Klaviyo</span></div>
+                        <div class="pdf-tech-item"><img src="tech/gsheets.svg" class="pdf-tech-icon" alt="Google Sheets"><span>Google Sheets</span></div>
+                        <div class="pdf-tech-item"><img src="tech/airtable.svg" class="pdf-tech-icon" alt="Airtable"><span>Airtable</span></div>
+                        <div class="pdf-tech-item"><img src="tech/make.svg" class="pdf-tech-icon" alt="Make.com"><span>Make.com</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">Manual data sync between CRM, email marketing platform, and order management was creating constant friction. Customer records updated by hand, campaign segmentation done in spreadsheets, and no unified view of 400+ B2B business clients versus D2C customers  - leading to missed follow-ups and inaccurate reporting.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Built a Make.com automation stack connecting Pipedrive → Klaviyo → Airtable → Google Sheets. The system automates customer segmentation (B2B vs D2C), syncs orders across all platforms in real time, triggers email campaigns based on purchase behaviour, and powers a unified reporting dashboard  - eliminating the manual work holding the team back from focusing on growth.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">90%</div><div class="pdf-result-lbl">Reduction in manual data entry</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">100%</div><div class="pdf-result-lbl">Automated customer segmentation</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">40%</div><div class="pdf-result-lbl">Faster order fulfilment</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">Real-time</div><div class="pdf-result-lbl">Reporting, replacing weekly manual updates</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>08 / 12</span>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 09  - B2B Wholesale Jewelry Company         -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/e-commerce cart.jpg" alt="B2B Wholesale Jewelry Company" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 09</div>
+                <h2 class="pdf-hero-title">B2B Wholesale Jewelry Company</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">E-commerce / Wholesale</span>
+                    <span class="pdf-hero-tag">⏱ 12 weeks</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">E-commerce / Wholesale</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">12 weeks</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><img src="tech/shopify.svg" class="pdf-tech-icon" alt="Shopify"><span>Shopify</span></div>
+                        <div class="pdf-tech-item"><img src="tech/monday.svg" class="pdf-tech-icon" alt="Monday.com"><span>Monday.com</span></div>
+                        <div class="pdf-tech-item"><img src="tech/zapier.svg" class="pdf-tech-icon" alt="Zapier"><span>Zapier</span></div>
+                        <div class="pdf-tech-item"><img src="tech/Python.svg" class="pdf-tech-icon" alt="Python"><span>Python</span></div>
+                        <div class="pdf-tech-item"><img src="tech/chatgpt-6.svg" class="pdf-tech-icon" alt="ChatGPT"><span>ChatGPT</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">Manual order processing, sales rep assignment, and data cleaning between Shopify and Monday.com were causing fulfilment delays and errors. The team was manually handling 3,000+ orders with 26,000+ line items  - creating inconsistencies in customer-to-rep assignment and holding back revenue growth.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Built a Zapier real-time pipeline that routes Shopify orders through automated customer-to-rep matching and creates per-rep Monday.com boards instantly. Python scripts handled bulk historical backfilling of 26K+ line items. A data cleaning pipeline tackled duplicate customer IDs with conservative auto-resolution and manual review flags.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">128.58%</div><div class="pdf-result-lbl">Monthly revenue increase</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">3,000</div><div class="pdf-result-lbl">Orders processed, 26K+ line items</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">Hours</div><div class="pdf-result-lbl">Saved weekly per team member</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">Real-time</div><div class="pdf-result-lbl">Automated order handoffs</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>09 / 12</span>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 10  - Digital Health Startup                -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/doctor_health.jpg" alt="Digital Health Startup" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 10</div>
+                <h2 class="pdf-hero-title">Digital Health Startup</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">Healthcare / Research</span>
+                    <span class="pdf-hero-tag">⏱ Ongoing retainer</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">Healthcare / Research</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Compliance</span><span class="pdf-meta-val">HIPAA</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">Ongoing retainer</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><img src="tech/airtable.svg" class="pdf-tech-icon" alt="Airtable"><span>Airtable</span></div>
+                        <div class="pdf-tech-item"><img src="tech/make.svg" class="pdf-tech-icon" alt="Make.com"><span>Make.com</span></div>
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">📋</div><span>Typeform</span></div>
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">📊</div><span>Metabase</span></div>
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">📈</div><span>Mixpanel</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">Running a complex clinical research study requires highly precise, time-sensitive participant management  - automated enrollment, survey distribution at exact intervals, engagement monitoring, and payment processing  - all under strict HIPAA compliance requirements. Doing any of this manually would introduce errors, delays, and compliance risk that could compromise the integrity of the research.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Built a comprehensive Make.com scenario suite covering the full participant journey: automated enrollment intake and eligibility routing, survey window scheduling with precision timing, reminder cascade workflows, completion tracking and payment processing. Typeform handles data collection, Airtable serves as the HIPAA-compliant database, and Metabase plus Mixpanel provide analytics throughout every stage.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">100%</div><div class="pdf-result-lbl">Automated participant onboarding</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">9+</div><div class="pdf-result-lbl">Make.com scenarios orchestrating the study</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">HIPAA</div><div class="pdf-result-lbl">Compliant data handling throughout</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>10 / 12</span>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 11  - Washington Property Management        -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/attic-apartment-paris-airbnb-nordroom3.jpg" alt="Washington Property Management" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 11</div>
+                <h2 class="pdf-hero-title">Washington Property Management Company</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">Property Management</span>
+                    <span class="pdf-hero-tag">⏱ 2–3 months</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">Property Management</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Location</span><span class="pdf-meta-val">Washington, US</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Scale</span><span class="pdf-meta-val">500+ apartments</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">2–3 months</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><img src="tech/zapier.svg" class="pdf-tech-icon" alt="Zapier"><span>Zapier</span></div>
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">🏠</div><span>LeadSimple</span></div>
+                        <div class="pdf-tech-item"><img src="tech/docusign.svg" class="pdf-tech-icon" alt="DocuSign"><span>DocuSign</span></div>
+                        <div class="pdf-tech-item"><img src="tech/chatgpt-6.svg" class="pdf-tech-icon" alt="ChatGPT"><span>ChatGPT</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">A small team was manually processing 400+ documents every month  - 50–80 lease agreements, 80–100 inspection notices, and 150+ contractor documents  - all drafted, formatted, and sent by hand. Managing 500+ apartments this way was unsustainable. A single mistake in a legal notice could have serious consequences.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Delivered an end-to-end document automation suite via Zapier: LeadSimple pulls tenant and property data, ChatGPT validates and deduplicates records, and DocuSign auto-generates and sends 8 document types  - Lease Renewal, 60-Day Non-Renewal, Intent to Lease, 14-Day Pay or Vacate, 10-Day Comply, Hand-Delivered Notices, Two-Day Notice to Enter, and a Tenant Data Validation Module.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">80+ hrs</div><div class="pdf-result-lbl">Saved every single month</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">400+</div><div class="pdf-result-lbl">Documents automated monthly</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">100%</div><div class="pdf-result-lbl">Accuracy on tenant data</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">0</div><div class="pdf-result-lbl">Manual envelope creation</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>11 / 12</span>
+        </div>
+    </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ -->
+<!-- PROJECT 12  - Japan Hospitality Company             -->
+<!-- ════════════════════════════════════════════════════ -->
+<div class="pdf-page">
+    <div class="project-page">
+        <div class="pdf-hero">
+            <img src="tech/VISIT JAPAN.jpg" alt="Japan Hospitality Company" class="pdf-hero-img">
+            <div class="pdf-hero-overlay"></div>
+            <div class="pdf-hero-text">
+                <div class="pdf-case-num">Case Study 12</div>
+                <h2 class="pdf-hero-title">Japan Hospitality Company</h2>
+                <div class="pdf-hero-tags">
+                    <span class="pdf-hero-tag">Hospitality / Travel</span>
+                    <span class="pdf-hero-tag">⏱ 7 weeks</span>
+                    <span class="pdf-hero-tag">👤 Solo build</span>
+                </div>
+            </div>
+        </div>
+        <div class="pdf-body">
+            <aside class="pdf-sidebar">
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Project Details</div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Industry</span><span class="pdf-meta-val">Hospitality / Travel</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Location</span><span class="pdf-meta-val">Japan</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Timeline</span><span class="pdf-meta-val">7 weeks</span></div>
+                    <div class="pdf-meta-row"><span class="pdf-meta-key">Role</span><span class="pdf-meta-val">Solo build</span></div>
+                </div>
+                <div class="pdf-sidebar-section">
+                    <div class="pdf-sidebar-title">Tech Stack</div>
+                    <div class="pdf-tech-grid">
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">📅</div><span>Bokun</span></div>
+                        <div class="pdf-tech-item"><img src="tech/softr.svg" class="pdf-tech-icon" alt="Softr"><span>Softr</span></div>
+                        <div class="pdf-tech-item"><img src="tech/zapier.svg" class="pdf-tech-icon" alt="Zapier"><span>Zapier</span></div>
+                        <div class="pdf-tech-item"><div class="pdf-tech-emoji">⚡</div><span>Next.js</span></div>
+                        <div class="pdf-tech-item"><img src="tech/airtable.svg" class="pdf-tech-icon" alt="Airtable"><span>Airtable</span></div>
+                    </div>
+                </div>
+            </aside>
+            <main class="pdf-main">
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚠️</div><h3 class="pdf-section-title">The Problem</h3></div>
+                    <p class="pdf-section-text">There was no way to connect Bokun (the company's booking management platform) with Softr (their website builder). Complex OAuth 2.0 authentication requirements completely blocked any direct integration path. As a result, no customer-facing booking portal existed  - guests couldn't self-serve, and the team was managing everything manually with no real-time sync between systems.</p>
+                </div>
+                <div class="pdf-section">
+                    <div class="pdf-section-header"><div class="pdf-section-icon">⚙️</div><h3 class="pdf-section-title">The Solution</h3></div>
+                    <p class="pdf-section-text">Built a custom OAuth 2.0 middleware in Next.js deployed on Vercel to act as the authentication bridge between Softr and Bokun's API. The middleware handles token storage via Vercel KV, HMAC signature verification, API proxy endpoints, and GraphQL queries. On top of this, built a full Softr customer-facing booking portal integrated with the middleware and an Airtable database  - creating the first-ever Bokun–Softr integration from scratch.</p>
+                </div>
+            </main>
+        </div>
+        <div class="pdf-results">
+            <div class="pdf-results-label">Results</div>
+            <div class="pdf-results-grid">
+                <div class="pdf-result-card"><div class="pdf-result-val">First</div><div class="pdf-result-lbl">Bokun–Softr integration ever created</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">Real-time</div><div class="pdf-result-lbl">Booking sync between all systems</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">Live</div><div class="pdf-result-lbl">Customer self-service portal launched</div></div>
+                <div class="pdf-result-card"><div class="pdf-result-val">100%</div><div class="pdf-result-lbl">Automated data pipeline end-to-end</div></div>
+            </div>
+        </div>
+        <div class="pdf-page-footer">
+            <span class="pf-brand">SN</span>
+            <span>Samuel Nwafor · Automation Engineer</span>
+            <span>12 / 12</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Auto-trigger print after images have had time to load
+    window.addEventListener('load', function () {
+        setTimeout(function () {
+            window.print();
+        }, 1200);
+    });
+</script>
+</body>
+</html>

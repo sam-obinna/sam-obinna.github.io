@@ -95,7 +95,7 @@
                 <li><a href="#about" class="nav-link" data-text="About">About</a></li>
                 <li><a href="#tech-stack" class="nav-link" data-text="Tech">Tech Stack</a></li>
                 <li><a href="#services" class="nav-link" data-text="Services">Services</a></li>
-                <li><a href="#projects" class="nav-link" data-text="Projects">Projects</a></li>
+                <li><a href="projects/index.html" class="nav-link" data-text="Projects">Projects</a></li>
                 <li><a href="#success-stories" class="nav-link" data-text="Success">Success Stories</a></li>
                 <li><a href="#faqs" class="nav-link" data-text="FAQs">FAQs</a></li>
                 <li><a href="#contact" class="nav-link hire-me-btn">
@@ -126,78 +126,96 @@
 
         <div class="container">
             <div class="hero-content">
-                <br> <br>
-                <div class="hero-badge">
-                    <span class="badge-dot"></span>
 
-                    <span>Available for Projects</span>
+                <!-- Left: Name + subtitle -->
+                <div class="hero-text-col">
+                    <div class="hero-badge">
+                        <span class="badge-dot"></span>
+                        <span>Available for Projects</span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        <span class="title-line">Hi, I'm</span>
+                        <span class="title-line gradient-text">Samuel Nwafor</span>
+                    </h1>
+
+                    <div class="hero-subtitle">
+                        <span class="subtitle-static">AI & Automation Specialist </span>
+                    </div>
+
+                    <div class="typewriter-container">
+                        <span class="typewriter" id="typewriter"></span>
+                    </div>
                 </div>
 
-                <h1 class="hero-title">
-                    <span class="title-line">Hi, I'm</span>
-                    <span class="title-line gradient-text">Samuel Nwafor</span>
-                </h1>
-
-                <div class="hero-subtitle">
-                    <span class="subtitle-static">AI & Automation Specialist </span>
-                </div>
-
-                <div class="typewriter-container">
-                    <span class="typewriter" id="typewriter"></span>
-                </div>
-
-                <p class="hero-description">
-                    I transform complex business processes into intelligent, automated workflows that save time,
-                    reduce costs, and scale effortlessly. Let's build the future of your business together.
-                </p>
-
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary magnetic-btn">
-                        <span class="btn-text">View My Work</span>
-                        <span class="btn-icon">→</span>
-                        <div class="btn-bg"></div>
-                    </a>
-                    <a href="#contact" class="btn btn-secondary magnetic-btn">
-                        <span class="btn-text">Start Your Project</span>
-                        <span class="btn-icon">🚀</span>
-                        <div class="btn-bg"></div>
-                    </a>
-                </div>
-
-                <div class="hero-stats">
-                    <div class="stat reveal-stat">
-                        <div class="stat-inner">
-                            <span class="stat-number" data-value="100">0</span>
-                            <span class="stat-suffix">+</span>
+                <!-- Right: Video -->
+                <div class="hero-vid-col">
+                    <div class="hero-vid-card">
+                        <div class="hero-vid-wrapper">
+                            <iframe
+                                class="hero-vid-player"
+                                src="https://www.youtube.com/embed/rhLGKtehAVI?rel=0&modestbranding=1"
+                                title="Samuel Nwafor - AI & Automation Work Overview"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                            </iframe>
                         </div>
-                        <span class="stat-label">Workflows Automated</span>
-                        <div class="stat-bg"></div>
-                    </div>
-                    <div class="stat reveal-stat">
-                        <div class="stat-inner">
-                            <span class="stat-number" data-value="85">0</span>
-                            <span class="stat-suffix">%</span>
-                        </div>
-                        <span class="stat-label">Average Time Saved</span>
-                        <div class="stat-bg"></div>
-                    </div>
-                    <div class="stat reveal-stat">
-                        <div class="stat-inner">
-                            <span class="stat-number">24/7</span>
-                        </div>
-                        <span class="stat-label">Process Availability</span>
-                        <div class="stat-bg"></div>
+                        <p class="hero-vid-caption">
+                            <span class="hero-vid-dot"></span> 2-min work overview · click to play
+                        </p>
                     </div>
                 </div>
-                <br><br>
-                <!-- Scroll Indicator -->
-                <div class="scroll-indicator">
-                    <div class="mouse">
-                        <div class="wheel"></div>
+
+                <!-- Full-width row below both columns -->
+                <div class="hero-bottom">
+                    <p class="hero-description">
+                        I transform complex business processes into intelligent, automated workflows that save time,
+                        reduce costs, and scale effortlessly. Let's build the future of your business together.
+                    </p>
+
+                    <div class="hero-cta">
+                        <a href="#projects" class="btn btn-primary magnetic-btn">
+                            <span class="btn-text">View My Work</span>
+                            <span class="btn-icon">→</span>
+                            <div class="btn-bg"></div>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary magnetic-btn">
+                            <span class="btn-text">Start Your Project</span>
+                            <span class="btn-icon">🚀</span>
+                            <div class="btn-bg"></div>
+                        </a>
                     </div>
-                    <span>Scroll to explore</span>
+
+                    <div class="hero-stats">
+                        <div class="stat reveal-stat">
+                            <div class="stat-inner">
+                                <span class="stat-number" data-value="100">0</span>
+                                <span class="stat-suffix">+</span>
+                            </div>
+                            <span class="stat-label">Workflows Automated</span>
+                            <div class="stat-bg"></div>
+                        </div>
+                        <div class="stat reveal-stat">
+                            <div class="stat-inner">
+                                <span class="stat-number" data-value="85">0</span>
+                                <span class="stat-suffix">%</span>
+                            </div>
+                            <span class="stat-label">Average Time Saved</span>
+                            <div class="stat-bg"></div>
+                        </div>
+                        <div class="stat reveal-stat">
+                            <div class="stat-inner">
+                                <span class="stat-number">24/7</span>
+                            </div>
+                            <span class="stat-label">Process Availability</span>
+                            <div class="stat-bg"></div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
+            </div><!-- /.hero-glass-card -->
         </div>
     </section>
     <!-- Business Apps Section -->
@@ -524,27 +542,13 @@
                                 <div class="deco-ring ring-3"></div>
                             </div>
                         </div>
-
-                        <!-- Floating Tech Badges
-                        <div class="floating-badges">
-                            <div class="badge-item" style="--delay: 0s;">
-                                <span>Airtable</span>
-                            </div>
-                            <div class="badge-item" style="--delay: 1s;">
-                                <span>zapier</span>
-                            </div>
-                            <div class="badge-item" style="--delay: 2s;">
-                                <span>Make.com</span>
-                            </div>
-                            <div class="badge-item" style="--delay: 3s;">
-                                <span>n8n</span>
-                            </div> -->
                     </div>
                 </div>
             </div>
         </div>
         </div>
     </section>
+
 
     <!-- Tech Stack Section -->
     <section id="tech-stack" class="tech-stack">
@@ -931,37 +935,28 @@
             </div>
 
             <div class="projects-grid">
-                <!-- Project 1: Real Estate Lead Generation -->
+                <!-- Featured 1: Canadian Architecture Firm -->
                 <div class="project-card">
                     <div class="project-image-wrapper">
                         <div class="project-flip-container">
                             <div class="project-front">
-                                <img src="images/tech/teeple.png" alt="" class="project-image"
+                                <img src="projects/tech/canadian_architectural_company.jpg" alt="Canadian Architecture Firm" class="project-image"
                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <span class="project-placeholder" style="display:none;">🏢</span>
+                                <span class="project-placeholder" style="display:none;">🏛️</span>
                             </div>
                             <div class="project-back">
                                 <div class="flip-content">
                                     <div class="flip-section">
                                         <div class="flip-label">Problem</div>
-                                        <div class="flip-text">The firm was missing early-stage project opportunities
-                                            due to manual monitoring of multiple sources (universities, municipalities,
-                                            news) being time-consuming and inconsistent.</div>
+                                        <div class="flip-text">The firm was missing early-stage project opportunities due to manual monitoring of multiple sources — universities, municipalities, news — being time-consuming and inconsistent.</div>
                                     </div>
                                     <div class="flip-section">
                                         <div class="flip-label">Solution</div>
-                                        <div class="flip-text">Built an N8N workflow automation system with LLM-powered
-                                            agents (Gemini Flash 2.0) to extract project data from PDFs, websites, and
-                                            documents. Created 4 AI agents for different source types (municipal,
-                                            institutional, RFP databases, news) and implemented Airtable for centralized
-                                            data storage with automated prioritization.</div>
+                                        <div class="flip-text">Built an N8N automation system with Gemini Flash 2.0 agents to extract data from PDFs, websites, and documents across 4 source types, with Airtable for centralised lead scoring.</div>
                                     </div>
                                     <div class="flip-section">
                                         <div class="flip-label">Result</div>
-                                        <div class="flip-text">Achieved 90% automated source coverage replacing manual
-                                            monitoring, with 85% of identified leads matching target criteria. The
-                                            system captures opportunities 6-12 months before RFP stage at a cost of
-                                            approximately $0.45 per workflow execution.</div>
+                                        <div class="flip-text">90% automated source coverage, 85% lead quality match rate, opportunities captured 6–12 months before RFP stage at $0.45 per execution.</div>
                                     </div>
                                 </div>
                             </div>
@@ -971,204 +966,181 @@
                         <div class="project-header">
                             <div>
                                 <div class="project-meta">
-                                    <span class="company">Architecture Firm</span>
-
+                                    <span class="company">Architecture Firm · Canada</span>
                                 </div>
-                                <h3 class="project-title">AI-powered lead generation system for a Canadian Architectural
-                                    firm </h3>
+                                <h3 class="project-title">AI-Powered Lead Generation for Architecture Firm</h3>
                             </div>
                             <div class="project-badges">
-                                <span class="badge badge-type">Real-Estate</span>
+                                <span class="badge badge-type">Architecture</span>
                             </div>
                         </div>
                         <p class="project-description">
-                            The firm was missing early-stage project opportunities due to manual monitoring of multiple
-                            sources (universities, municipalities, news) being time-consuming and inconsistent.
+                            Automated early-stage opportunity discovery across municipal, institutional, and RFP sources using AI agents — replacing manual research that was letting competitors get in first.
                         </p>
                         <div class="project-tech">
                             <img src="images/tech/n8n.svg" alt="n8n" class="tech-icon-small">
                             <img src="images/tech/airtable.svg" alt="Airtable" class="tech-icon-small">
-                            <!-- <span class="tech-tag">MongoDB</span> -->
-                            <span class="tech-tag">GPT-4 Integration</span>
+                            <span class="tech-tag">Gemini Flash 2.0</span>
                         </div>
                         <div class="project-metrics">
                             <div class="metric">
-                                <span class="metric-value">3+</span>
-                                <span class="metric-label">Sources Monitored</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">24/7</span>
-                                <span class="metric-label">Automated</span>
+                                <span class="metric-value">90%</span>
+                                <span class="metric-label">Source Coverage</span>
                             </div>
                             <div class="metric">
                                 <span class="metric-value">85%</span>
                                 <span class="metric-label">Lead Quality</span>
                             </div>
+                            <div class="metric">
+                                <span class="metric-value">6–12mo</span>
+                                <span class="metric-label">Early Discovery</span>
+                            </div>
                         </div>
+                        <a href="projects/project-01.html" class="project-view-btn">View Case Study →</a>
                     </div>
                 </div>
 
-                <!-- Project 2: HR Onboarding Automation -->
+                <!-- Featured 2: B2B Wholesale Jewelry (E-commerce) -->
                 <div class="project-card">
                     <div class="project-image-wrapper">
                         <div class="project-flip-container">
                             <div class="project-front">
-                                <div class="project-front">
-                                    <img src="images/tech/funded.png" alt="AI Lead Generation System"
-                                        class="project-image"
-                                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                    <span class="project-placeholder" style="display:none;">🏢</span>
-                                </div>
-                            </div>
-                            <div class="project-back">
-                                <div class="flip-content">
-                                    <div class="flip-section">
-                                        <div class="flip-label">Problem</div>
-                                        <div class="flip-text">The training struggled with low student engagement and
-                                            high dropout rates in their online tech training programs, as students
-                                            lacked personalized support and accountability typically found in
-                                            traditional classroom settings.</div>
-                                    </div>
-                                    <div class="flip-section">
-                                        <div class="flip-label">Solution</div>
-                                        <div class="flip-text">Built an intelligent AI agent that sends personalized
-                                            reminders based on individual learning patterns, creates custom study plans
-                                            adapted to each student's pace and skill level, and provides real-time
-                                            support through conversational interactions. The system tracks progress and
-                                            adjusts recommendations to keep students motivated and on track.</div>
-                                    </div>
-                                    <div class="flip-section">
-                                        <div class="flip-label">Result</div>
-                                        <div class="flip-text">Increased course completion rates by 35% and improved
-                                            student engagement metrics, with learners spending 50% more time on the
-                                            platform. The personalized approach helped students master technical
-                                            concepts faster while reducing the workload on human instructors by
-                                            automating routine check-ins and progress monitoring.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div>
-                                <div class="project-meta">
-                                    <span class="company">Government Program</span>
-                                </div>
-                                <h3 class="project-title">AI Learning Assistant for Government funded Program</h3>
-                            </div>
-                            <div class="project-badges">
-                                <span class="badge badge-type">Education</span>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            <br>
-                            Developed an AI-powered student engagement system for a government-funded tech training
-                            initiative aimed at upskilling citizens with digital competencies for the modern workforce.
-                            <br>
-                        </p>
-                        <div class="project-tech">
-                            <img src="images/tech/zapier.svg" alt="Zapier" class="tech-icon-small">
-                            <img src="images/tech/airtable.svg" alt="Airtable" class="tech-icon-small">
-                            <span class="tech-tag">Gpt -4 Integration </span>
-                            <span class="tech-tag">Slack API</span>
-                        </div>
-                        <div class="project-metrics">
-                            <div class="metric">
-                                <span class="metric-value">35%</span>
-                                <span class="metric-label">Improved Student Performance</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-value">50%</span>
-                                <span class="metric-label">More Engagement </span>
-                            </div>
-                            <div class="metric">
-                                <!-- <span class="metric-value">30min</span>
-                                <span class="metric-label">Per Employee</span> -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Project 3: AI Customer Support -->
-                <div class="project-card">
-                    <div class="project-image-wrapper">
-                        <div class="project-flip-container">
-                            <div class="project-front">
-                                <img src="images/tech/support.png" alt="AI " class="project-image"
+                                <img src="projects/tech/e-commerce cart.jpg" alt="B2B Wholesale Jewelry Company" class="project-image"
                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                                <span class="project-placeholder" style="display:none;">🏢</span>
-                            </div> <!-- CLOSE project-front -->
-
+                                <span class="project-placeholder" style="display:none;">🛍️</span>
+                            </div>
                             <div class="project-back">
                                 <div class="flip-content">
                                     <div class="flip-section">
                                         <div class="flip-label">Problem</div>
-                                        <div class="flip-text">Support team overwhelmed with repetitive queries, slow
-                                            response times, and inconsistent answers.</div>
+                                        <div class="flip-text">Manual order processing and sales rep assignment between Shopify and Monday.com were causing fulfilment delays across 3,000+ orders with 26,000+ line items.</div>
                                     </div>
                                     <div class="flip-section">
                                         <div class="flip-label">Solution</div>
-                                        <div class="flip-text">Implemented AI-powered support system with intelligent
-                                            ticket routing and automated responses.</div>
+                                        <div class="flip-text">Built a Zapier real-time pipeline routing Shopify orders through automated rep matching to per-rep Monday.com boards. Python scripts handled bulk backfilling of 26K+ historical line items.</div>
                                     </div>
                                     <div class="flip-section">
                                         <div class="flip-label">Result</div>
-                                        <div class="flip-text">71% auto-resolution rate, 2-minute average response time,
-                                            4.8/5 customer satisfaction.</div>
+                                        <div class="flip-text">128.58% monthly revenue increase, 3,000 orders fully automated, real-time order handoffs replacing hours of weekly manual work per team member.</div>
                                     </div>
                                 </div>
-                            </div> <!-- CLOSE project-back -->
-
+                            </div>
                         </div>
                     </div>
-
                     <div class="project-content">
                         <div class="project-header">
                             <div>
                                 <div class="project-meta">
-                                    <span class="company">SaaS Company</span>
+                                    <span class="company">B2B Wholesale · E-commerce</span>
                                 </div>
-                                <h3 class="project-title">AI-Powered Customer Support System</h3>
+                                <h3 class="project-title">Order Automation System for Wholesale Jewelry Company</h3>
                             </div>
                             <div class="project-badges">
-                                <span class="badge badge-type">AI/SaaS</span>
+                                <span class="badge badge-type">E-commerce</span>
                             </div>
                         </div>
                         <p class="project-description">
-                            Built an intelligent support system that automatically categorizes tickets, provides instant
-                            responses for common queries, and escalates complex issues to the right team members.
+                            Eliminated manual order routing and rep assignment for a high-volume wholesale business — turning a 26,000-line-item backlog into a fully automated real-time pipeline.
                         </p>
                         <div class="project-tech">
-                            <img src="images/tech/langchain.svg" alt="LangChain" class="tech-icon-small">
-                            <img src="images/tech/n8n.svg" alt="n8n" class="tech-icon-small">
-                            <span class="tech-tag">GPT-4</span>
-                            <span class="tech-tag">Zendesk</span>
+                            <img src="images/tech/shopify.svg" alt="Shopify" class="tech-icon-small">
+                            <img src="images/tech/monday.svg" alt="Monday.com" class="tech-icon-small">
+                            <img src="images/tech/zapier.svg" alt="Zapier" class="tech-icon-small">
+                            <span class="tech-tag">Python</span>
                         </div>
                         <div class="project-metrics">
                             <div class="metric">
-                                <span class="metric-value">71%</span>
-                                <span class="metric-label">Auto-Resolved</span>
+                                <span class="metric-value">128%</span>
+                                <span class="metric-label">Revenue Increase</span>
                             </div>
                             <div class="metric">
-                                <span class="metric-value">&lt; 2min</span>
-                                <span class="metric-label">Response Time</span>
+                                <span class="metric-value">3,000</span>
+                                <span class="metric-label">Orders Automated</span>
                             </div>
                             <div class="metric">
-                                <span class="metric-value">4.8/5</span>
-                                <span class="metric-label">Satisfaction</span>
+                                <span class="metric-value">Real-time</span>
+                                <span class="metric-label">Order Handoffs</span>
                             </div>
                         </div>
+                        <a href="projects/project-09.html" class="project-view-btn">View Case Study →</a>
+                    </div>
+                </div>
+
+                <!-- Featured 3: Digital Health Startup -->
+                <div class="project-card">
+                    <div class="project-image-wrapper">
+                        <div class="project-flip-container">
+                            <div class="project-front">
+                                <img src="projects/tech/doctor_health.jpg" alt="Digital Health Startup" class="project-image"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                                <span class="project-placeholder" style="display:none;">🏥</span>
+                            </div>
+                            <div class="project-back">
+                                <div class="flip-content">
+                                    <div class="flip-section">
+                                        <div class="flip-label">Problem</div>
+                                        <div class="flip-text">Running a complex clinical research study required precise participant management — automated enrollment, timed surveys, engagement monitoring, and payments — all under strict HIPAA compliance.</div>
+                                    </div>
+                                    <div class="flip-section">
+                                        <div class="flip-label">Solution</div>
+                                        <div class="flip-text">Built 9+ Make.com scenarios covering the full participant journey: enrollment intake, survey window scheduling, reminder cascades, completion tracking, and automated payment processing.</div>
+                                    </div>
+                                    <div class="flip-section">
+                                        <div class="flip-label">Result</div>
+                                        <div class="flip-text">100% automated participant onboarding, HIPAA-compliant data handling throughout, with Metabase and Mixpanel analytics wired into every stage of the study.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <div>
+                                <div class="project-meta">
+                                    <span class="company">Digital Health Startup · HIPAA</span>
+                                </div>
+                                <h3 class="project-title">Clinical Study Automation for Digital Health Startup</h3>
+                            </div>
+                            <div class="project-badges">
+                                <span class="badge badge-type">Healthcare</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Built the full participant management infrastructure for a clinical research study — from automated enrollment to payment processing — with zero manual intervention and full HIPAA compliance.
+                        </p>
+                        <div class="project-tech">
+                            <img src="images/tech/airtable.svg" alt="Airtable" class="tech-icon-small">
+                            <img src="images/tech/make.svg" alt="Make.com" class="tech-icon-small">
+                            <span class="tech-tag">Typeform</span>
+                            <span class="tech-tag">Metabase</span>
+                        </div>
+                        <div class="project-metrics">
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">Auto Onboarding</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">9+</span>
+                                <span class="metric-label">Make.com Scenarios</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">HIPAA</span>
+                                <span class="metric-label">Compliant</span>
+                            </div>
+                        </div>
+                        <a href="projects/project-10.html" class="project-view-btn">View Case Study →</a>
                     </div>
                 </div>
 
 
-                <!-- <div class="projects-cta">
-                <p>Want to see more of my work?</p>
-                <a href="https://github.com/sam-obinna" class="btn btn-outline">
-                    <span>View All Projects on GitHub</span>
-                    <span class="btn-icon">↗</span>
+            </div>
+
+            <div class="projects-cta" style="text-align:center; margin-top: 3rem;">
+                <a href="projects/index.html" class="btn btn-primary magnetic-btn">
+                    <span class="btn-text">View All 12 Projects</span>
+                    <span class="btn-icon">→</span>
+                    <div class="btn-bg"></div>
                 </a>
-            </div> -->
             </div>
     </section>
 
@@ -1436,6 +1408,15 @@
                             <span class="method-arrow">→</span>
                         </a>
                     </div>
+
+                    <a href="https://calendly.com/samuelobinnanwafor/30min" target="_blank" rel="noopener" class="calendly-btn">
+                        <span class="calendly-icon">📅</span>
+                        <div class="calendly-text">
+                            <strong>Book a Free 30-min Call</strong>
+                            <span>Pick a time that works for you</span>
+                        </div>
+                        <span class="calendly-arrow">→</span>
+                    </a>
 
                     <div class="availability-status">
                         <div class="status-indicator">

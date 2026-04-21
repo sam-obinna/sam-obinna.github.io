@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Design Options — Pick Your Favourite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #ff6d5a;
+    --secondary: #ea4b71;
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --border: rgba(255,255,255,0.08);
+    --text: #e8e8e8;
+    --muted: #888;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0d0d0d; font-family: 'Inter', sans-serif; color: var(--text); }
+
+  /* ── Index sidebar ── */
+  .sidebar {
+    position: fixed; left: 0; top: 0; bottom: 0; width: 200px;
+    background: rgba(10,10,10,0.95); border-right: 1px solid var(--border);
+    padding: 24px 16px; overflow-y: auto; z-index: 100;
+    backdrop-filter: blur(12px);
+  }
+  .sidebar h2 { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+  .sidebar a {
+    display: block; padding: 8px 12px; margin-bottom: 4px; border-radius: 8px;
+    font-size: 13px; color: var(--muted); text-decoration: none;
+    transition: all 0.2s;
+  }
+  .sidebar a:hover, .sidebar a.active { background: rgba(255,109,90,0.12); color: var(--primary); }
+  .sidebar .choose-btn {
+    display: block; text-align: center; margin-top: 8px; padding: 7px 10px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 8px; font-size: 12px; font-weight: 600; color: #fff;
+    cursor: pointer; border: none; width: 100%;
+    transition: opacity 0.2s;
+  }
+  .sidebar .choose-btn:hover { opacity: 0.85; }
+
+  .main { margin-left: 200px; }
+
+  /* ── Section labels ── */
+  .design-label {
+    text-align: center; padding: 40px 24px 20px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+  }
+  .design-label h3 { font-size: 22px; font-weight: 700; color: #fff; }
+  .design-label p { font-size: 14px; color: var(--muted); margin-top: 6px; }
+  .design-label .pick-btn {
+    display: inline-block; margin-top: 16px; padding: 10px 28px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50px; font-weight: 700; font-size: 14px; color: #fff;
+    border: none; cursor: pointer; transition: transform 0.2s, opacity 0.2s;
+  }
+  .design-label .pick-btn:hover { transform: scale(1.05); opacity: 0.9; }
+
+  .design-section { border-bottom: 3px solid rgba(255,109,90,0.3); }
+
+  /* ── Gradient text helper ── */
+  .g { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  /* ── Badge ── */
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; background: rgba(255,109,90,0.12); border: 1px solid rgba(255,109,90,0.25); border-radius: 50px; font-size: 12px; font-weight: 500; color: var(--primary); }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+
+  /* ── CTA buttons ── */
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-p { padding: 12px 24px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 8px; font-weight: 600; font-size: 14px; color: #fff; border: none; cursor: pointer; }
+  .btn-s { padding: 12px 24px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 8px; font-weight: 600; font-size: 14px; color: #fff; cursor: pointer; }
+
+  /* ────────────────────────────────────────────
+     DESIGN 1 — Classic Split (current refined)
+  ──────────────────────────────────────────── */
+  #d1 .hero {
+    min-height: 90vh; background: var(--bg); display: flex; align-items: center;
+    padding: 80px 60px;
+  }
+  #d1 .inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; }
+  #d1 .text-col h1 { font-family: 'Space Grotesk', sans-serif; font-size: 52px; line-height: 1.15; font-weight: 700; margin: 16px 0 12px; }
+  #d1 .text-col p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 28px; }
+  #d1 .vid-card { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 18px; padding: 20px; }
+  #d1 .vid-name { margin-bottom: 14px; }
+  #d1 .vid-name .greeting { display: block; font-size: 13px; color: var(--muted); }
+  #d1 .vid-name strong { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 22px; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  #d1 .vid-name span { display: block; font-size: 12px; color: var(--muted); }
+  #d1 video { width: 100%; border-radius: 10px; display: block; }
+  #d1 .caption { display: flex; align-items: center; gap: 8px; margin-top: 10px; font-size: 12px; color: var(--muted); }
+  #d1 .dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+
+  /* ────────────────────────────────────────────
+     DESIGN 2 — Video Left, Text Right
+  ──────────────────────────────────────────── */
+  #d2 .hero {
+    min-height: 90vh; background: var(--bg); display: flex; align-items: center;
+    padding: 80px 60px;
+  }
+  #d2 .inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; }
+  #d2 .text-col h1 { font-family: 'Space Grotesk', sans-serif; font-size: 48px; line-height: 1.15; font-weight: 700; margin: 16px 0 12px; }
+  #d2 .text-col p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+  #d2 .vid-wrap { position: relative; }
+  #d2 .vid-wrap::before {
+    content: ''; position: absolute; inset: -2px; border-radius: 20px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    z-index: 0;
+  }
+  #d2 .vid-inner { position: relative; z-index: 1; background: #111; border-radius: 18px; overflow: hidden; }
+  #d2 video { width: 100%; display: block; }
+  #d2 .vid-badge { position: absolute; bottom: 14px; left: 14px; background: rgba(0,0,0,0.75); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); padding: 8px 14px; border-radius: 8px; }
+  #d2 .vid-badge strong { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 16px; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  #d2 .vid-badge span { font-size: 11px; color: var(--muted); }
+
+  /* ────────────────────────────────────────────
+     DESIGN 3 — Cinematic Wide Video (60/40)
+  ──────────────────────────────────────────── */
+  #d3 .hero {
+    min-height: 90vh; background: var(--bg); display: flex; align-items: stretch;
+    overflow: hidden;
+  }
+  #d3 .vid-panel { flex: 0 0 60%; position: relative; overflow: hidden; }
+  #d3 video { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.85; }
+  #d3 .vid-overlay { position: absolute; inset: 0; background: linear-gradient(to right, transparent 60%, var(--bg) 100%); }
+  #d3 .vid-label { position: absolute; bottom: 32px; left: 32px; }
+  #d3 .vid-label strong { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 20px; color: #fff; }
+  #d3 .vid-label span { font-size: 12px; color: rgba(255,255,255,0.6); }
+  #d3 .text-panel { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 60px 50px; }
+  #d3 .text-panel h1 { font-family: 'Space Grotesk', sans-serif; font-size: 46px; line-height: 1.2; font-weight: 700; margin: 14px 0 12px; }
+  #d3 .text-panel p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+
+  /* ────────────────────────────────────────────
+     DESIGN 4 — Stacked Vertical (name top, video bottom)
+  ──────────────────────────────────────────── */
+  #d4 .hero {
+    min-height: 90vh; background: var(--bg); display: flex; align-items: center;
+    padding: 80px 60px;
+  }
+  #d4 .inner { max-width: 900px; margin: auto; text-align: center; width: 100%; }
+  #d4 .top-text { margin-bottom: 40px; }
+  #d4 .top-text h1 { font-family: 'Space Grotesk', sans-serif; font-size: 64px; line-height: 1.1; font-weight: 700; margin: 16px 0 12px; }
+  #d4 .top-text p { color: var(--muted); font-size: 16px; line-height: 1.7; max-width: 600px; margin: 0 auto 28px; }
+  #d4 .vid-container { max-width: 680px; margin: 0 auto; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; padding: 20px; }
+  #d4 video { width: 100%; border-radius: 12px; display: block; }
+  #d4 .caption { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; font-size: 13px; color: var(--muted); }
+  #d4 .dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; }
+
+  /* ────────────────────────────────────────────
+     DESIGN 5 — Diagonal Split
+  ──────────────────────────────────────────── */
+  #d5 .hero {
+    min-height: 90vh; background: var(--bg); display: flex; align-items: stretch;
+    position: relative; overflow: hidden;
+  }
+  #d5 .text-panel { flex: 0 0 55%; display: flex; flex-direction: column; justify-content: center; padding: 80px 70px 80px 60px; z-index: 2; }
+  #d5 .text-panel h1 { font-family: 'Space Grotesk', sans-serif; font-size: 50px; line-height: 1.15; font-weight: 700; margin: 16px 0 12px; }
+  #d5 .text-panel p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 28px; max-width: 420px; }
+  #d5 .vid-panel { flex: 1; position: relative; overflow: hidden; z-index: 1; }
+  #d5 .vid-panel::before {
+    content: ''; position: absolute; top: 0; left: -80px; bottom: 0; width: 160px;
+    background: var(--bg); transform: skewX(-6deg); z-index: 2;
+  }
+  #d5 video { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.7; }
+  #d5 .vid-tag { position: absolute; top: 30px; right: 30px; z-index: 3; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1); padding: 10px 16px; border-radius: 10px; text-align: right; }
+  #d5 .vid-tag strong { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 15px; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  #d5 .vid-tag span { font-size: 11px; color: var(--muted); }
+
+  /* ────────────────────────────────────────────
+     DESIGN 6 — Full-Width Video Background
+  ──────────────────────────────────────────── */
+  #d6 .hero {
+    min-height: 90vh; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #d6 .bg-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.25; }
+  #d6 .overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(10,10,10,0.5) 0%, rgba(10,10,10,0.85) 100%); }
+  #d6 .content { position: relative; z-index: 2; text-align: center; max-width: 800px; padding: 40px; }
+  #d6 .content h1 { font-family: 'Space Grotesk', sans-serif; font-size: 68px; font-weight: 700; line-height: 1.1; margin: 16px 0 16px; }
+  #d6 .content p { color: rgba(255,255,255,0.7); font-size: 18px; line-height: 1.7; margin-bottom: 36px; }
+  #d6 .vid-play-hint { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; padding: 10px 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 50px; font-size: 13px; color: rgba(255,255,255,0.6); }
+  #d6 .play-icon { width: 24px; height: 24px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; flex-shrink: 0; }
+  #d6 .name-tag { display: inline-flex; align-items: center; gap: 8px; background: rgba(255,109,90,0.1); border: 1px solid rgba(255,109,90,0.2); padding: 6px 16px; border-radius: 50px; font-size: 13px; color: var(--primary); font-weight: 500; margin-bottom: 16px; }
+
+  /* ────────────────────────────────────────────
+     DESIGN 7 — Name Oversized + Video Float Card
+  ──────────────────────────────────────────── */
+  #d7 .hero {
+    min-height: 90vh; background: var(--bg); position: relative; overflow: hidden;
+    padding: 100px 60px;
+  }
+  #d7 .bg-name { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-family: 'Space Grotesk', sans-serif; font-size: 180px; font-weight: 900; color: rgba(255,255,255,0.025); white-space: nowrap; pointer-events: none; letter-spacing: -8px; }
+  #d7 .content { position: relative; z-index: 2; display: flex; align-items: flex-start; gap: 60px; max-width: 1200px; margin: auto; }
+  #d7 .text-col { flex: 1; padding-top: 20px; }
+  #d7 .text-col h1 { font-family: 'Space Grotesk', sans-serif; font-size: 58px; line-height: 1.1; font-weight: 700; margin: 14px 0 14px; }
+  #d7 .text-col p { color: var(--muted); font-size: 16px; line-height: 1.7; margin-bottom: 28px; max-width: 460px; }
+  #d7 .vid-float { flex: 0 0 380px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 20px; padding: 18px; margin-top: -20px; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
+  #d7 .vid-float video { width: 100%; border-radius: 12px; display: block; }
+  #d7 .float-meta { display: flex; align-items: center; gap: 10px; margin-top: 12px; }
+  #d7 .float-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--secondary)); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #fff; flex-shrink: 0; }
+  #d7 .float-info strong { display: block; font-size: 14px; }
+  #d7 .float-info span { font-size: 12px; color: var(--muted); }
+
+  /* ────────────────────────────────────────────
+     DESIGN 8 — Glassmorphism Card Center
+  ──────────────────────────────────────────── */
+  #d8 .hero {
+    min-height: 90vh; background: radial-gradient(ellipse at 30% 50%, rgba(255,109,90,0.15) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(234,75,113,0.1) 0%, transparent 60%), var(--bg);
+    display: flex; align-items: center; justify-content: center; padding: 80px 40px;
+  }
+  #d8 .glass-card { background: rgba(255,255,255,0.04); backdrop-filter: blur(24px); border: 1px solid rgba(255,255,255,0.1); border-radius: 28px; padding: 48px; max-width: 1100px; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; box-shadow: 0 40px 80px rgba(0,0,0,0.4); }
+  #d8 .text-col h1 { font-family: 'Space Grotesk', sans-serif; font-size: 50px; line-height: 1.15; font-weight: 700; margin: 14px 0 12px; }
+  #d8 .text-col p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+  #d8 .vid-col { position: relative; }
+  #d8 .vid-col video { width: 100%; border-radius: 14px; display: block; }
+  #d8 .vid-info { position: absolute; top: -12px; right: -12px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 10px; padding: 8px 14px; font-size: 12px; font-weight: 600; color: #fff; box-shadow: 0 8px 24px rgba(255,109,90,0.4); }
+
+  /* ────────────────────────────────────────────
+     DESIGN 9 — Terminal / Code Aesthetic
+  ──────────────────────────────────────────── */
+  #d9 .hero {
+    min-height: 90vh; background: #050505; display: flex; align-items: center;
+    padding: 80px 60px;
+  }
+  #d9 .inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; }
+  #d9 .text-col { font-family: 'Space Grotesk', sans-serif; }
+  #d9 .terminal-prefix { color: var(--primary); font-family: monospace; font-size: 14px; margin-bottom: 12px; letter-spacing: 1px; }
+  #d9 .text-col h1 { font-size: 52px; font-weight: 700; line-height: 1.15; margin-bottom: 12px; }
+  #d9 .text-col p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 28px; font-family: 'Inter', sans-serif; }
+  #d9 .vid-terminal { background: #0c0c0c; border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; overflow: hidden; }
+  #d9 .terminal-bar { background: #1a1a1a; padding: 10px 16px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  #d9 .terminal-bar .dot { width: 10px; height: 10px; border-radius: 50%; }
+  #d9 .terminal-bar .dot.r { background: #ff5f57; }
+  #d9 .terminal-bar .dot.y { background: #ffbd2e; }
+  #d9 .terminal-bar .dot.g { background: #28c840; }
+  #d9 .terminal-bar .title { font-size: 12px; color: var(--muted); margin-left: auto; font-family: monospace; }
+  #d9 video { width: 100%; display: block; }
+  #d9 .terminal-footer { padding: 10px 16px; font-family: monospace; font-size: 11px; color: rgba(255,109,90,0.6); }
+
+  /* ────────────────────────────────────────────
+     DESIGN 10 — Neon Glow Dark
+  ──────────────────────────────────────────── */
+  #d10 .hero {
+    min-height: 90vh; background: #050508; display: flex; align-items: center;
+    padding: 80px 60px; position: relative; overflow: hidden;
+  }
+  #d10 .glow-orb1 { position: absolute; top: -100px; left: -100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,109,90,0.15) 0%, transparent 70%); pointer-events: none; }
+  #d10 .glow-orb2 { position: absolute; bottom: -80px; right: -80px; width: 400px; height: 400px; background: radial-gradient(circle, rgba(234,75,113,0.12) 0%, transparent 70%); pointer-events: none; }
+  #d10 .inner { max-width: 1200px; margin: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; width: 100%; position: relative; z-index: 2; }
+  #d10 .text-col h1 { font-family: 'Space Grotesk', sans-serif; font-size: 52px; font-weight: 700; line-height: 1.15; margin: 16px 0 12px; }
+  #d10 .text-col p { color: var(--muted); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+  #d10 .vid-glow { position: relative; }
+  #d10 .vid-glow::before { content: ''; position: absolute; inset: -20px; background: radial-gradient(ellipse, rgba(255,109,90,0.2) 0%, transparent 70%); z-index: 0; border-radius: 24px; }
+  #d10 .vid-box { position: relative; z-index: 1; background: #0e0e14; border: 1px solid rgba(255,109,90,0.3); border-radius: 18px; overflow: hidden; box-shadow: 0 0 40px rgba(255,109,90,0.15), inset 0 0 40px rgba(255,109,90,0.04); }
+  #d10 video { width: 100%; display: block; }
+  #d10 .vid-bottom { padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(255,109,90,0.15); }
+  #d10 .vid-bottom strong { font-family: 'Space Grotesk', sans-serif; font-size: 15px; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  #d10 .vid-bottom span { font-size: 11px; color: var(--muted); }
+  #d10 .neon-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; box-shadow: 0 0 8px #4ade80; }
+
+  /* ── Page header ── */
+  .page-header { padding: 60px 60px 40px 60px; text-align: center; background: var(--bg); border-bottom: 1px solid var(--border); }
+  .page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 700; }
+  .page-header p { color: var(--muted); margin-top: 10px; font-size: 15px; }
+  .page-header .hint { display: inline-block; margin-top: 16px; padding: 8px 20px; background: rgba(255,109,90,0.1); border: 1px solid rgba(255,109,90,0.2); border-radius: 50px; font-size: 13px; color: var(--primary); }
+</style>
+</head>
+<body>
+
+<!-- Sidebar index -->
+<div class="sidebar">
+  <h2>Design Options</h2>
+  <a href="#d1">1 · Classic Split</a>
+  <a href="#d2">2 · Video Left</a>
+  <a href="#d3">3 · Cinematic Wide</a>
+  <a href="#d4">4 · Stacked Vertical</a>
+  <a href="#d5">5 · Diagonal Split</a>
+  <a href="#d6">6 · Video BG</a>
+  <a href="#d7">7 · Oversized Name</a>
+  <a href="#d8">8 · Glassmorphism</a>
+  <a href="#d9">9 · Terminal Style</a>
+  <a href="#d10">10 · Neon Glow</a>
+</div>
+
+<div class="main">
+
+  <!-- Page header -->
+  <div class="page-header">
+    <h1>10 Hero Section Designs</h1>
+    <p>Scroll through each option · all feature your intro video + name</p>
+    <span class="hint">→ Tell me the number you want built into your portfolio</span>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DESIGN 1 — Classic Split (Left Text / Right Video)
+  ══════════════════════════════════════ -->
+  <div class="design-section" id="d1">
+    <div class="design-label">
+      <h3>Design 1 — Classic Split</h3>
+      <p>Left: intro text + CTAs + stats &nbsp;|&nbsp; Right: name tag + video card</p>
+      <button class="pick-btn" onclick="alert('You chose Design 1 — Classic Split. Tell Samuel!')">Choose Design 1</button>
+    </div>
+    <div class="hero">
+      <div class="inner">
+        <div class="text-col">
+          <div class="badge"><span class="badge-dot"></span> Available for Projects</div>
+          <h1>Hi, I'm <span class="g">Samuel<br>Nwafor</span></h1>
+          <p>I transform complex business processes into intelligent, automated workflows that save time, reduce costs, and scale effortlessly.</p>
+          <div class="cta-row">
+            <button class="btn-p">View My Work →</button>
+            <button class="btn-s">Start Your Project 🚀</button>
+          </div>
+        </div>
+        <div>
+          <div class="vid-card">
+            <div class="vid-name">
+              <span class="greeting">Hi, I'm</span>
+              <strong>Samuel Nwafor</strong>
+              <span>AI &amp; Automation Specialist</span>
+            </div>
+            <video controls playsinline preload="metadata">
+              <source src="images/samuel_intro.mp4" type="video/mp4">
+            </video>
+            <p class="caption"><span class="dot"></span> 2-min work overview · click to play</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DESIGN 2 — Video Left (gradient border)
+  ══════════════════════════════════════ -->
+  <div class="design-section" id="d2">
+    <div class="design-label">
+      <h3>Design 2 — Video Left</h3>
+      <p>Video on the left with gradient border highlight &nbsp;|&nbsp; Text + CTAs on the right</p>
+      <button class="pick-btn" onclick="alert('You chose Design 2 — Video Left. Tell Samuel!')">Choose Design 2</button>
+    </div>
+    <div class="hero">
+      <div class="inner">
+        <div class="vid-wrap">
+          <div class="vid-inner">
+            <video controls playsinline preload="metadata">
+              <source src="images/samuel_intro.mp4" type="video/mp4">
+            </video>
+            <div class="vid-badge">
+              <strong>Samuel Nwafor</strong>
+              <span>AI &amp; Automation Specialist</span>
+            </div>
+          </div>
+        </div>
+        <div class="text-col">
+          <div class="badge"><span class="badge-dot"></span> Available for Projects</div>
+          <h1>Building <span class="g">Intelligent<br>Automations</span></h1>
+          <p>From AI agents to workflow automation — I help businesses run on autopilot so teams can focus on what matters.</p>
+          <div class="cta-row">
+            <button class="btn-p">View My Work →</button>
+            <button class="btn-s">Start Your Project 🚀</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DESIGN 3 — Cinematic Wide Video
+  ══════════════════════════════════════ -->
+  <div class="design-section" id="d3">
+    <div class="design-label">
+      <h3>Design 3 — Cinematic Wide</h3>
+      <p>Video fills 60% of screen width with fade edge &nbsp;|&nbsp; Compact text panel on the right</p>
+      <button class="pick-btn" onclick="alert('You chose Design 3 — Cinematic Wide. Tell Samuel!')">Choose Design 3</button>
+    </div>
+    <div class="hero">
+      <div class="vid-panel">
+        <video controls playsinline preload="metadata">
+          <source src="images/samuel_intro.mp4" type="video/mp4">
+        </video>
+        <div class="vid-overlay"></div>
+        <div class="vid-label">
+          <strong>Samuel Nwafor</strong>
+          <span>AI &amp; Automation Specialist</span>
+        </div>
+      </div>
+      <div class="text-panel">
+        <div class="badge"><span class="badge-dot"></span> Available for Projects</div>
+        <h1><span class="g">AI-Powered</span><br>Automation</h1>
+        <p>Intelligent workflows, AI agents, and process automation that transform how your business operates.</p>
+        <div class="cta-row">
+          <button class="btn-p">View My Work →</button>
+          <button class="btn-s">Hire Me 🚀</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DESIGN 4 — Stacked Vertical
+  ══════════════════════════════════════ -->
+  <div class="design-section" id="d4">
+    <div class="design-label">
+      <h3>Design 4 — Stacked Vertical</h3>
+      <p>Name and description centered at top &nbsp;|&nbsp; Video below — great for impact first, video second</p>
+      <button class="pick-btn" onclick="alert('You chose Design 4 — Stacked Vertical. Tell Samuel!')">Choose Design 4</button>
+    </div>
+    <div class="hero">
+      <div class="inner">
+        <div class="top-text">
+          <div class="badge" style="margin: 0 auto 16px;"><span class="badge-dot"></span> Available for Projects</div>
+          <h1>Hi, I'm <span class="g">Samuel Nwafor</span></h1>
+          <p>I transform complex business processes into intelligent, automated workflows that save time, reduce costs, and scale effortlessly.</p>
+          <div class="cta-row" style="justify-content: center;">
+            <button class="btn-p">View My Work →</button>
+            <button class="btn-s">Start Your Project 🚀</button>
+          </div>
+        </div>
+        <div class="vid-container">
+          <video controls playsinline preload="metadata">
+            <source src="images/samuel_intro.mp4" type="video/mp4">
+          </video>
+          <p class="caption"><span class="dot"></span> 2-min work overview · click to play</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DESIGN 5 — Diagonal Split
+  ══════════════════════════════════════ -->
+  <div class="design-section" id="d5">
+    <div class="design-label">
+      <h3>Design 5 — Diagonal Split</h3>
+      <p>Angled divider between text and video — bold, editorial feel</p>
+      <button class="pick-btn" onclick="alert('You chose Design 5 — Diagonal Split. Tell Samuel!')">Choose Design 5</button>
+    </div>
+    <div class="hero">
+      <div class="text-panel">
+        <div class="badge"><span class="badge-dot"></span> Available for Projects</div>
+        <h1>Hi, I'm<br><span class="g">Samuel Nwafor</span></h1>
+        <p>AI &amp; Automation Specialist building intelligent workflows that scale your business effortlessly.</p>
+        <div class="cta-row">
+          <button class="btn-p">View My Work →</button>
+          <button class="btn-s">Hire Me 🚀</button>
+        </div>
+      </div>
+      <div class="vid-panel">
+        <video controls playsinline preload="metadata">
+          <source src="images/samuel_intro.mp4" type="video/mp4">
+        </video>
+        <div class="vid-tag">
+          <strong>Samuel Nwafor</strong>
+          <span>AI &amp; Automation Specialist</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DESIGN 6 — Full-Width Video Background
+  ══════════════════════════════════════ -->
+  <div class="design-section" id="d6">
+    <div class="design-label">
+      <h3>Design 6 — Video Background</h3>
+      <p>Video plays behind the whole hero at 25% opacity &nbsp;|&nbsp; Text centered on top</p>
+      <button class="pick-btn" onclick="alert('You chose Design 6 — Video Background. Tell Samuel!')">Choose Design 6</button>
+    </div>
+    <div class="hero">
+      <video class="bg-vid" autoplay muted loop playsinline>
+        <source src="images/samuel_intro.mp4" type="video/mp4">
+      </video>
+      <div class="overlay"></div>
+      <div class="content">
+        <div class="name-tag">👋 Samuel Nwafor · AI &amp; Automation Specialist</div>
+        <h1><span class="g">Building the Future</span><br>of Business Automation</h1>
+        <p>Intelligent workflows, AI agents, and process automation — turning complexity into clarity.</p>
+        <div class="cta-row" style="justify-content:center;">
+          <button class="btn-p">View My Work →</button>
+          <button class="btn-s">Start Your Project 🚀</button>
+        </div>
+        <div class="vid-play-hint">
+          <div class="play-icon">▶</div>
+          Video autoplays in the background — intro from Samuel Nwafor
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DESIGN 7 — Oversized Name + Floating Video Card
+  ══════════════════════════════════════ -->
+  <div class="design-section" id="d7">
+    <div class="design-label">
+      <h3>Design 7 — Oversized Name</h3>
+      <p>"Samuel Nwafor" watermarked huge in the background &nbsp;|&nbsp; Video card floats on the right</p>
+      <button class="pick-btn" onclick="alert('You chose Design 7 — Oversized Name. Tell Samuel!')">Choose Design 7</button>
+    </div>
+    <div class="hero">
+      <div class="bg-name">SAMUEL</div>
+      <div class="content">
+        <div class="text-col">
+          <div class="badge"><span class="badge-dot"></span> Available for Projects</div>
+          <h1>Hi, I'm<br><span class="g">Samuel Nwafor</span></h1>
+          <p>AI &amp; Automation Specialist building intelligent workflows and AI agents that transform business operations.</p>
+          <div class="cta-row">
+            <button class="btn-p">View My Work →</button>
+            <button class="btn-s">Start Your Project 🚀</button>
+          </div>
+        </div>
+        <div class="vid-float">
+          <video controls playsinline preload="metadata">
+            <source src="images/samuel_intro.mp4" type="video/mp4">
+          </video>
+          <div class="float-meta">
+            <div class="float-avatar">SN</div>
+            <div class="float-info">
+              <strong>Samuel Nwafor</strong>
+              <span>AI &amp; Automation Specialist</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DESIGN 8 — Glassmorphism Card
+  ══════════════════════════════════════ -->
+  <div class="design-section" id="d8">
+    <div class="design-label">
+      <h3>Design 8 — Glassmorphism Card</h3>
+      <p>Entire hero content inside a frosted glass card floating over a gradient background</p>
+      <button class="pick-btn" onclick="alert('You chose Design 8 — Glassmorphism. Tell Samuel!')">Choose Design 8</button>
+    </div>
+    <div class="hero">
+      <div class="glass-card">
+        <div class="text-col">
+          <div class="badge"><span class="badge-dot"></span> Available for Projects</div>
+          <h1>Hi, I'm <span class="g">Samuel<br>Nwafor</span></h1>
+          <p>I build AI agents and automation workflows that make businesses run 24/7 without the manual overhead.</p>
+          <div class="cta-row">
+            <button class="btn-p">View My Work →</button>
+            <button class="btn-s">Start Your Project 🚀</button>
+          </div>
+        </div>
+        <div class="vid-col">
+          <div class="vid-info">AI &amp; Automation Specialist</div>
+          <video controls playsinline preload="metadata">
+            <source src="images/samuel_intro.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DESIGN 9 — Terminal / Code Aesthetic
+  ══════════════════════════════════════ -->
+  <div class="design-section" id="d9">
+    <div class="design-label">
+      <h3>Design 9 — Terminal Style</h3>
+      <p>Tech-forward: video inside a macOS-style terminal window &nbsp;|&nbsp; Code-aesthetic typography</p>
+      <button class="pick-btn" onclick="alert('You chose Design 9 — Terminal Style. Tell Samuel!')">Choose Design 9</button>
+    </div>
+    <div class="hero">
+      <div class="inner">
+        <div class="text-col">
+          <div class="terminal-prefix">$ whoami</div>
+          <h1><span class="g">Samuel<br>Nwafor</span></h1>
+          <div class="terminal-prefix" style="margin: 8px 0 16px;">AI &amp; Automation Specialist</div>
+          <p>I build intelligent automation systems and AI agents that transform complex business processes into seamless workflows.</p>
+          <div class="cta-row">
+            <button class="btn-p">View My Work →</button>
+            <button class="btn-s">Start Your Project 🚀</button>
+          </div>
+        </div>
+        <div>
+          <div class="vid-terminal">
+            <div class="terminal-bar">
+              <div class="dot r"></div>
+              <div class="dot y"></div>
+              <div class="dot g"></div>
+              <span class="title">samuel_intro.mp4</span>
+            </div>
+            <video controls playsinline preload="metadata">
+              <source src="images/samuel_intro.mp4" type="video/mp4">
+            </video>
+            <div class="terminal-footer">▶ 2:00 · Samuel Nwafor · AI &amp; Automation</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       DESIGN 10 — Neon Glow Dark
+  ══════════════════════════════════════ -->
+  <div class="design-section" id="d10">
+    <div class="design-label">
+      <h3>Design 10 — Neon Glow</h3>
+      <p>Deep dark background + coral/pink neon glow halos around the video — dramatic and premium</p>
+      <button class="pick-btn" onclick="alert('You chose Design 10 — Neon Glow. Tell Samuel!')">Choose Design 10</button>
+    </div>
+    <div class="hero">
+      <div class="glow-orb1"></div>
+      <div class="glow-orb2"></div>
+      <div class="inner">
+        <div class="text-col">
+          <div class="badge"><span class="badge-dot"></span> Available for Projects</div>
+          <h1>Hi, I'm <span class="g">Samuel<br>Nwafor</span></h1>
+          <p>AI &amp; Automation Specialist building intelligent systems that save time, cut costs, and scale effortlessly — 24/7.</p>
+          <div class="cta-row">
+            <button class="btn-p">View My Work →</button>
+            <button class="btn-s">Start Your Project 🚀</button>
+          </div>
+        </div>
+        <div class="vid-glow">
+          <div class="vid-box">
+            <video controls playsinline preload="metadata">
+              <source src="images/samuel_intro.mp4" type="video/mp4">
+            </video>
+            <div class="vid-bottom">
+              <strong>Samuel Nwafor</strong>
+              <span>AI &amp; Automation Specialist</span>
+              <div class="neon-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+  // Highlight active sidebar link on scroll
+  const sections = document.querySelectorAll('.design-section');
+  const links = document.querySelectorAll('.sidebar a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    links.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>

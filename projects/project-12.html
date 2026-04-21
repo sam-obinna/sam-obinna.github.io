@@ -3,84 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Japan Hospitality Company - Samuel Nwafor</title>
+    <title>Japan Hospitality Company  - Samuel Nwafor</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23ff6d5a'/%3E%3Cstop offset='100%25' style='stop-color:%23ea4b71'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15' fill='url(%23g)'/%3E%3Ctext x='16' y='22' text-anchor='middle' fill='white' font-family='Arial' font-size='16' font-weight='bold'%3ESN%3C/text%3E%3C/svg%3E">
 </head>
 <body>
-    <div class="container">
-        <header class="project-header">
-            <a href="index.html" class="back-link">← Back to Portfolio</a>
-            <div class="nav-buttons">
-                <a href="project-11.html" class="nav-btn">← Previous</a>
-                <a href="index.html" class="nav-btn">Next →</a>
-            </div>
-        </header>
+<div class="animated-bg">
+    <div class="gradient-orb orb-1"></div>
+    <div class="gradient-orb orb-2"></div>
+    <div class="gradient-orb orb-3"></div>
+</div>
 
-        <div class="project-detail">
-            <div class="project-sidebar">
-                <span class="case-number">Case Study 12</span>
-                <h1 class="project-title">Japan Hospitality Company</h1>
-                <p class="project-meta">Hospitality / Travel • 7 weeks</p>
-                
-                <div class="meta-section">
-                    <div class="meta-label">Timeline</div>
-                    <div class="meta-value">7 weeks</div>
-                </div>
-                
-                <div class="meta-section">
-                    <div class="meta-label">Role</div>
-                    <div class="meta-value">Solo build</div>
-                </div>
-
-                <div class="tech-stack">
-                    <div class="meta-label">Tech Stack</div>
-                    <div class="tech-list">
-                            <div class="tech-item"><img src="tech/bokun.svg" alt="Bokun" class="tech-icon" onerror="this.parentElement.innerHTML='<span class=\"tech-icon\" style=\"font-size: 24px;\">🔧</span><span class=\"tech-name\">Bokun</span>'"><span class="tech-name">Bokun</span></div>
-                            <div class="tech-item"><img src="tech/softr.svg" alt="Softr" class="tech-icon" onerror="this.parentElement.innerHTML='<span class=\"tech-icon\" style=\"font-size: 24px;\">🔧</span><span class=\"tech-name\">Softr</span>'"><span class="tech-name">Softr</span></div>
-                            <div class="tech-item"><img src="tech/zapier.svg" alt="Zapier" class="tech-icon" onerror="this.parentElement.innerHTML='<span class=\"tech-icon\" style=\"font-size: 24px;\">🔧</span><span class=\"tech-name\">Zapier</span>'"><span class="tech-name">Zapier</span></div>
-                            <div class="tech-item"><img src="tech/next.js.svg" alt="Next.js" class="tech-icon" onerror="this.parentElement.innerHTML='<span class=\"tech-icon\" style=\"font-size: 24px;\">🔧</span><span class=\"tech-name\">Next.js</span>'"><span class="tech-name">Next.js</span></div>
-                            <div class="tech-item"><img src="tech/airtable.svg" alt="Airtable" class="tech-icon" onerror="this.parentElement.innerHTML='<span class=\"tech-icon\" style=\"font-size: 24px;\">🔧</span><span class=\"tech-name\">Airtable</span>'"><span class="tech-name">Airtable</span></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="project-main">
-                <div style="background: var(--color-background-secondary); border: 1px solid var(--color-border); border-radius: 12px; padding: 3rem; text-align: center; color: var(--color-text-secondary); aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center;">Project Image</div>
-                
-                <div class="content-section">
-                    <h3 class="section-title">Problem</h3>
-                    <p class="section-text">No way to connect Bokun (booking management platform) with Softr (website builder). Complex OAuth 2.0 authentication blocked direct integration. No customer-facing booking portal existed.</p>
-                </div>
-
-                <div class="content-section">
-                    <h3 class="section-title">Solution</h3>
-                    <p class="section-text">Custom OAuth middleware (Next.js on Vercel) acting as authentication bridge: Softr frontend to OAuth middleware (handles token storage via Vercel KV, HMAC signatures, API proxy endpoints, GraphQL queries) to Bokun API. Built Softr customer-facing booking portal integrated with middleware + Airtable database.</p>
-                </div>
-
-                <div class="outcomes-grid">
-                    <div class="outcomes-title">Results</div>
-                    <div class="outcomes-items">
-                            <div class="outcome-item"><div class="outcome-value">First</div><div class="outcome-label">Bokun-Softr integration created</div></div>
-                            <div class="outcome-item"><div class="outcome-value">Real-time</div><div class="outcome-label">booking sync achieved</div></div>
-                            <div class="outcome-item"><div class="outcome-value">Live</div><div class="outcome-label">customer portal launched</div></div>
-                            <div class="outcome-item"><div class="outcome-value">100%</div><div class="outcome-label">automated data pipeline</div></div>
-                    </div>
-                </div>
-            </div>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-back">← All Projects</a>
+        <div class="nav-project-controls">
+            <a href="project-11.html" class="nav-ctrl-btn" title="Previous">‹</a>
+            <span class="nav-counter">12 / 12</span>
+            <a href="index.html" class="nav-ctrl-btn" title="Back to all">›</a>
         </div>
-
-        <footer class="project-footer">
-            <div class="footer-nav">
-                <a href="project-11.html" class="footer-nav-btn">
-                    <span class="nav-label">← Previous Project</span>
-                    <span class="nav-title">Washington Property Management Company</span>
-                </a>
-                <a href="index.html" class="footer-nav-btn">
-                    <span class="nav-label">Next Project →</span>
-                    <span class="nav-title">Portfolio Home</span>
-                </a>
-            </div>
-        </footer>
+        <div class="nav-sn-logo">SN</div>
     </div>
+</nav>
+
+<section class="project-hero">
+    <img src="tech/VISIT JAPAN.jpg" alt="Japan Hospitality Company" class="hero-img">
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+        <span class="case-number">Case Study 12</span>
+        <h1 class="hero-title">Japan Hospitality Company</h1>
+        <div class="hero-tags">
+            <span class="hero-tag">Hospitality / Travel</span>
+            <span class="hero-tag">⏱ 7 weeks</span>
+            <span class="hero-tag">👤 Solo build</span>
+        </div>
+    </div>
+</section>
+
+<div class="page-content">
+    <div class="detail-layout">
+        <aside class="detail-sidebar">
+            <div class="sidebar-block">
+                <div class="sidebar-block-title">Project Details</div>
+                <div class="meta-rows">
+                    <div class="meta-row"><span class="meta-key">Industry</span><span class="meta-val">Hospitality / Travel</span></div>
+                    <div class="meta-row"><span class="meta-key">Location</span><span class="meta-val">Japan</span></div>
+                    <div class="meta-row"><span class="meta-key">Timeline</span><span class="meta-val">7 weeks</span></div>
+                    <div class="meta-row"><span class="meta-key">Role</span><span class="meta-val">Solo build</span></div>
+                </div>
+            </div>
+            <div class="sidebar-block">
+                <div class="sidebar-block-title">Tech Stack</div>
+                <div class="tech-icons-grid">
+                    <div class="tech-icon-item"><span class="tool-emoji">📅</span><span class="tool-name">Bokun</span></div>
+                    <div class="tech-icon-item"><img src="tech/softr.svg" alt="Softr" class="tool-icon"><span class="tool-name">Softr</span></div>
+                    <div class="tech-icon-item"><img src="tech/zapier.svg" alt="Zapier" class="tool-icon"><span class="tool-name">Zapier</span></div>
+                    <div class="tech-icon-item"><span class="tool-emoji">⚡</span><span class="tool-name">Next.js</span></div>
+                    <div class="tech-icon-item"><img src="tech/airtable.svg" alt="Airtable" class="tool-icon"><span class="tool-name">Airtable</span></div>
+                </div>
+            </div>
+            <a href="index.html" class="back-all-btn">← All Projects</a>
+        </aside>
+
+        <main class="detail-main">
+            <div class="content-block">
+                <div class="block-header">
+                    <div class="block-icon">⚠️</div>
+                    <h2 class="block-heading">The Problem</h2>
+                </div>
+                <p class="block-text">There was no way to connect Bokun (the company's booking management platform) with Softr (their website builder). Complex OAuth 2.0 authentication requirements completely blocked any direct integration path. As a result, no customer-facing booking portal existed  - guests couldn't self-serve, and the team was managing everything manually with no real-time sync between systems.</p>
+            </div>
+            <div class="content-block">
+                <div class="block-header">
+                    <div class="block-icon">⚙️</div>
+                    <h2 class="block-heading">The Solution</h2>
+                </div>
+                <p class="block-text">Built a custom OAuth 2.0 middleware in Next.js deployed on Vercel to act as the authentication bridge between Softr and Bokun's API. The middleware handles token storage via Vercel KV, HMAC signature verification, API proxy endpoints, and GraphQL queries. On top of this, built a full Softr customer-facing booking portal integrated with the middleware and an Airtable database  - creating the first-ever Bokun–Softr integration from scratch.</p>
+            </div>
+        </main>
+    </div>
+</div>
+
+<div class="results-wrapper">
+    <h2 class="results-heading">Results</h2>
+    <div class="results-grid">
+        <div class="result-card"><div class="result-value">First</div><div class="result-label">Bokun–Softr integration ever created</div></div>
+        <div class="result-card"><div class="result-value">Real-time</div><div class="result-label">Booking sync between all systems</div></div>
+        <div class="result-card"><div class="result-value">Live</div><div class="result-label">Customer self-service portal launched</div></div>
+        <div class="result-card"><div class="result-value">100%</div><div class="result-label">Automated data pipeline end-to-end</div></div>
+    </div>
+</div>
+
+<nav class="case-footer-nav">
+    <a href="project-11.html" class="case-nav-btn prev-btn">
+        <span class="case-nav-label">← Previous</span>
+        <span class="case-nav-title">Washington Property Management</span>
+    </a>
+    <a href="index.html" class="case-nav-btn next-btn">
+        <span class="case-nav-label">All Projects →</span>
+        <span class="case-nav-title">Back to Project Gallery</span>
+    </a>
+</nav>
+
+<footer class="page-footer">
+    <p>&copy; 2025 <a href="../index.html">Samuel Nwafor</a>. All rights reserved.</p>
+</footer>
 </body>
 </html>
