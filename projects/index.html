@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samuel Nwafor - Automation Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Samuel Nwafor</h1>
+            <p class="subtitle">AI & Automation Specialist - Portfolio</p>
+            <div class="contact-info">
+                <a href="mailto:samuelobinnanwafor@gmail.com">samuelobinnanwafor@gmail.com</a>
+                <span>•</span>
+                <a href="https://linkedin.com/in/samuelnwafor" target="_blank">LinkedIn</a>
+                <span>•</span>
+                <a href="https://github.com/sam-obinna" target="_blank">GitHub</a>
+                <span>•</span>
+                <a href="https://sam-obinna.github.io" target="_blank">Portfolio</a>
+            </div>
+        </header>
+
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+            <button class="filter-btn" onclick="filterProjects('architecture')">Architecture</button>
+            <button class="filter-btn" onclick="filterProjects('government')">Government</button>
+            <button class="filter-btn" onclick="filterProjects('legal')">Legal</button>
+            <button class="filter-btn" onclick="filterProjects('marketing')">Marketing</button>
+            <button class="filter-btn" onclick="filterProjects('hospitality')">Hospitality</button>
+            <button class="filter-btn" onclick="filterProjects('music')">Music</button>
+            <button class="filter-btn" onclick="filterProjects('nonprofit')">Nonprofit</button>
+            <button class="filter-btn" onclick="filterProjects('ecommerce')">E-commerce</button>
+            <button class="filter-btn" onclick="filterProjects('healthcare')">Healthcare</button>
+            <button class="filter-btn" onclick="filterProjects('real-estate')">Real Estate</button>
+        </div>
+
+        <div class="projects-grid">
+            <a href="project-01.html" class="project-card" data-category="architecture">
+                <img src="tech/teeple.png" alt="Architecture Firm" class="project-image">
+                <div class="project-content">
+                    <span class="case-number">Case Study 01</span>
+                    <h2 class="project-title">Canadian Architecture Firm</h2>
+                    <p class="project-meta">Architecture & Design • 1 month</p>
+                    <p class="project-snippet">AI-powered lead generation system capturing opportunities 6-12 months before RFP stage with 90% automated source coverage.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">n8n</span>
+                        <span class="tech-badge">Airtable</span>
+                        <span class="tech-badge">Gemini</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+
+            <a href="project-02.html" class="project-card" data-category="government">
+                <img src="tech/funded.png" alt="Government Program" class="project-image">
+                <div class="project-content">
+                    <span class="case-number">Case Study 02</span>
+                    <h2 class="project-title">Government Training Program</h2>
+                    <p class="project-meta">Government / Education • 12 weeks</p>
+                    <p class="project-snippet">Built 10+ AI agents for Nigerian government tech training program serving 3,000+ trainees with automated newsletters and placement matching.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">GPT-4</span>
+                        <span class="tech-badge">Claude</span>
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Power BI</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+
+            <a href="project-03.html" class="project-card" data-category="legal">
+                <img src="tech/architecture.jpg" alt="Legal Firm" class="project-image">
+                <div class="project-content">
+                    <span class="case-number">Case Study 03</span>
+                    <h2 class="project-title">Personal Injury Law Firm</h2>
+                    <p class="project-meta">Legal Services • Less than 2 weeks</p>
+                    <p class="project-snippet">Automated police report processing with OCR and retainer generation, reducing speed-to-lead from 24-48 hours to under 1 hour.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">n8n</span>
+                        <span class="tech-badge">Gemini</span>
+                        <span class="tech-badge">Clio</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+
+            <a href="project-04.html" class="project-card" data-category="marketing">
+                <img src="tech/support.png" alt="Marketing Agency" class="project-image">
+                <div class="project-content">
+                    <span class="case-number">Case Study 04</span>
+                    <h2 class="project-title">Insurance Marketing Agency</h2>
+                    <p class="project-meta">Marketing / Insurance • 2+ months</p>
+                    <p class="project-snippet">Internal ops automation with AI knowledge bot and meeting transcript system, reducing client setup from 2 weeks to 3 days.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">Fireflies</span>
+                        <span class="tech-badge">Zapier</span>
+                        <span class="tech-badge">Slack</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+
+            <a href="project-05.html" class="project-card" data-category="hospitality">
+                <img src="tech/attic-apartment-paris-airbnb-nordroom3.jpg" alt="Motorcycle Storage" class="project-image">
+                <div class="project-content">
+                    <span class="case-number">Case Study 05</span>
+                    <h2 class="project-title">UK Motorcycle Storage Company</h2>
+                    <p class="project-meta">Hospitality / Storage • 2 weeks</p>
+                    <p class="project-snippet">Complete operational infrastructure built in 2 weeks with QR code tracking, automated contracts, and booking portal, launching 6 weeks ahead of schedule.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">Airtable</span>
+                        <span class="tech-badge">Make.com</span>
+                        <span class="tech-badge">QR codes</span>
+                        <span class="tech-badge">Softr</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+
+            <a href="project-06.html" class="project-card" data-category="music">
+                <img src="tech/music_festival.avif" alt="Music Festival" class="project-image">
+                <div class="project-content">
+                    <span class="case-number">Case Study 06</span>
+                    <h2 class="project-title">US Music Festival Company</h2>
+                    <p class="project-meta">Music & Entertainment • 1 month</p>
+                    <p class="project-snippet">Automated artist discovery system surfacing 50 qualified emerging electronic artists weekly with weighted momentum scoring across platforms.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">Make.com</span>
+                        <span class="tech-badge">Soundchart</span>
+                        <span class="tech-badge">Airtable</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+
+            <a href="project-07.html" class="project-card" data-category="nonprofit">
+                <img src="tech/plastic-recycle-machine.webp" alt="Ocean Cleanup" class="project-image">
+                <div class="project-content">
+                    <span class="case-number">Case Study 07</span>
+                    <h2 class="project-title">Ocean Cleanup Nonprofit</h2>
+                    <p class="project-meta">Nonprofit / Environmental • 1 month</p>
+                    <p class="project-snippet">Order processing automation freeing 15+ hours per week for ocean cleanup operations with 100% automation rate and zero errors.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">ClickFunnels</span>
+                        <span class="tech-badge">Zapier</span>
+                        <span class="tech-badge">Shopify</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+
+            <a href="project-08.html" class="project-card" data-category="ecommerce">
+                <img src="tech/img_4112_edits.jpg" alt="Coffee Company" class="project-image">
+                <div class="project-content">
+                    <span class="case-number">Case Study 08</span>
+                    <h2 class="project-title">Danish Specialty Coffee Company</h2>
+                    <p class="project-meta">E-commerce / Food & Beverage • 5 weeks</p>
+                    <p class="project-snippet">Multi-platform automation connecting CRM, email marketing, and order management for 400+ B2B clients with real-time reporting.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">Pipedrive</span>
+                        <span class="tech-badge">Klaviyo</span>
+                        <span class="tech-badge">Make.com</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+
+            <a href="project-09.html" class="project-card" data-category="ecommerce">
+                <img src="tech/shopping_cart_banner.jpg" alt="Jewelry Company" class="project-image">
+                <div class="project-content">
+                    <span class="case-number">Case Study 09</span>
+                    <h2 class="project-title">B2B Wholesale Jewelry Company</h2>
+                    <p class="project-meta">E-commerce / Wholesale • 12 weeks</p>
+                    <p class="project-snippet">Commission tracking and order automation processing 3,000 orders with 26K+ line items, contributing to 128.58% revenue increase.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">Shopify</span>
+                        <span class="tech-badge">Monday.com</span>
+                        <span class="tech-badge">Zapier</span>
+                        <span class="tech-badge">Python</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+
+            <a href="project-10.html" class="project-card" data-category="healthcare">
+                <img src="tech/378-018.jpg" alt="Health Startup" class="project-image">
+                <div class="project-content">
+                    <span class="case-number">Case Study 10</span>
+                    <h2 class="project-title">Digital Health Startup</h2>
+                    <p class="project-meta">Healthcare / Research • Ongoing</p>
+                    <p class="project-snippet">HIPAA-compliant clinical research automation with 9+ scenarios orchestrating participant enrollment, surveys, and data collection.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">Airtable</span>
+                        <span class="tech-badge">Make.com</span>
+                        <span class="tech-badge">Typeform</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+
+            <a href="project-11.html" class="project-card" data-category="real-estate">
+                <img src="tech/leadsimple.jpg" alt="Property Management" class="project-image">
+                <div class="project-content">
+                    <span class="case-number">Case Study 11</span>
+                    <h2 class="project-title">Washington Property Management Company</h2>
+                    <p class="project-meta">Property Management • 2-3 months</p>
+                    <p class="project-snippet">Document automation suite processing 400+ monthly documents for 500+ apartments, saving 80+ hours every month.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">Zapier</span>
+                        <span class="tech-badge">LeadSimple</span>
+                        <span class="tech-badge">DocuSign</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+
+            <a href="project-12.html" class="project-card" data-category="hospitality">
+                <div style="background: var(--color-background-secondary); height: 200px; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">Japan Hospitality Platform</div>
+                <div class="project-content">
+                    <span class="case-number">Case Study 12</span>
+                    <h2 class="project-title">Japan Hospitality Company</h2>
+                    <p class="project-meta">Hospitality / Travel • 7 weeks</p>
+                    <p class="project-snippet">Custom OAuth middleware creating the first Bokun-Softr integration with real-time booking sync and live customer portal.</p>
+                    <div class="tech-preview">
+                        <span class="tech-badge">Bokun</span>
+                        <span class="tech-badge">Softr</span>
+                        <span class="tech-badge">Next.js</span>
+                    </div>
+                    <div class="read-more">Read full case study →</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const cardCategory = card.getAttribute('data-category');
+                    card.style.display = cardCategory === category ? 'block' : 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
