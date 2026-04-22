@@ -23,9 +23,12 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://www.loom.com">
+    <link rel="dns-prefetch" href="https://cdn.loom.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
 
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/style.css">
@@ -151,14 +154,16 @@
                 <!-- Right: Video -->
                 <div class="hero-vid-col">
                     <div class="hero-vid-card">
-                        <div class="hero-vid-wrapper">
-                            <iframe
-                                class="hero-vid-player"
-                                src="https://www.loom.com/embed/db68f3c97bc44be9a318b442f8931bde?hide_owner=true&hide_share=true&hideEmbedTopBar=true"
-                                title="Samuel Nwafor - AI & Automation Work Overview"
-                                frameborder="0"
-                                webkitallowfullscreen mozallowfullscreen allowfullscreen>
-                            </iframe>
+                        <div class="hero-vid-wrapper loom-facade" id="loomFacade" onclick="loadLoom(this)">
+                            <img
+                                src="https://cdn.loom.com/sessions/thumbnails/db68f3c97bc44be9a318b442f8931bde-with-play.gif"
+                                alt="Watch Samuel Nwafor - AI & Automation Work Overview"
+                                class="loom-thumb"
+                                loading="eager">
+                            <div class="loom-play-btn">
+                                <div class="play-ring"></div>
+                                <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
                         </div>
                         <p class="hero-vid-caption">
                             <span class="hero-vid-dot"></span> 2-min work overview · click to play
@@ -234,98 +239,98 @@
                 <!-- First Row - Moving Left -->
                 <div class="apps-row apps-row-1">
                     <div class="app-item">
-                        <img src="images/tech/monday.svg" alt="Monday.com" class="app-icon"
+                        <img loading="lazy" src="images/tech/monday.svg" alt="Monday.com" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📅</span>
                         <span class="app-name">Monday.com</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/airtable.svg" alt="Airtable" class="app-icon"
+                        <img loading="lazy" src="images/tech/airtable.svg" alt="Airtable" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📊</span>
                         <span class="app-name">Airtable</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/gdocs.svg" alt="Google Docs" class="app-icon"
+                        <img loading="lazy" src="images/tech/gdocs.svg" alt="Google Docs" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📄</span>
                         <span class="app-name">Google Docs</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/gdrive.svg" alt="Google Drive" class="app-icon"
+                        <img loading="lazy" src="images/tech/gdrive.svg" alt="Google Drive" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">☁️</span>
                         <span class="app-name">Google Drive</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/gcalendar.svg" alt="Google Calendar" class="app-icon"
+                        <img loading="lazy" src="images/tech/gcalendar.svg" alt="Google Calendar" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📅</span>
                         <span class="app-name">Google Calendar</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/slack.svg" alt="Slack" class="app-icon"
+                        <img loading="lazy" src="images/tech/slack.svg" alt="Slack" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">💬</span>
                         <span class="app-name">Slack</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/trello.svg" alt="Trello" class="app-icon"
+                        <img loading="lazy" src="images/tech/trello.svg" alt="Trello" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📋</span>
                         <span class="app-name">Trello</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/asana.svg" alt="Asana" class="app-icon"
+                        <img loading="lazy" src="images/tech/asana.svg" alt="Asana" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">✅</span>
                         <span class="app-name">Asana</span>
                     </div>
                     <!-- Duplicate for seamless loop -->
                     <div class="app-item">
-                        <img src="images/tech/monday.svg" alt="Monday.com" class="app-icon"
+                        <img loading="lazy" src="images/tech/monday.svg" alt="Monday.com" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📅</span>
                         <span class="app-name">Monday.com</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/airtable.svg" alt="Airtable" class="app-icon"
+                        <img loading="lazy" src="images/tech/airtable.svg" alt="Airtable" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📊</span>
                         <span class="app-name">Airtable</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/gdocs.svg" alt="Google Docs" class="app-icon"
+                        <img loading="lazy" src="images/tech/gdocs.svg" alt="Google Docs" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📄</span>
                         <span class="app-name">Google Docs</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/gdrive.svg" alt="Google Drive" class="app-icon"
+                        <img loading="lazy" src="images/tech/gdrive.svg" alt="Google Drive" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">☁️</span>
                         <span class="app-name">Google Drive</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/gcalendar.svg" alt="Google Calendar" class="app-icon"
+                        <img loading="lazy" src="images/tech/gcalendar.svg" alt="Google Calendar" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📅</span>
                         <span class="app-name">Google Calendar</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/slack.svg" alt="Slack" class="app-icon"
+                        <img loading="lazy" src="images/tech/slack.svg" alt="Slack" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">💬</span>
                         <span class="app-name">Slack</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/trello.svg" alt="Trello" class="app-icon"
+                        <img loading="lazy" src="images/tech/trello.svg" alt="Trello" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📋</span>
                         <span class="app-name">Trello</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/asana.svg" alt="Asana" class="app-icon"
+                        <img loading="lazy" src="images/tech/asana.svg" alt="Asana" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">✅</span>
                         <span class="app-name">Asana</span>
@@ -335,96 +340,96 @@
                 <!-- Second Row - Moving Right -->
                 <div class="apps-row apps-row-2">
                     <div class="app-item">
-                        <img src="images/tech/hubspot.svg" alt="HubSpot" class="app-icon"
+                        <img loading="lazy" src="images/tech/hubspot.svg" alt="HubSpot" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">🎯</span>
                         <span class="app-name">HubSpot</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/salesforce.svg" alt="Salesforce" class="app-icon"
+                        <img loading="lazy" src="images/tech/salesforce.svg" alt="Salesforce" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">☁️</span>
                         <span class="app-name">Salesforce</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/shopify.svg" alt="Shopify" class="app-icon"
+                        <img loading="lazy" src="images/tech/shopify.svg" alt="Shopify" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">🛒</span>
                         <span class="app-name">Shopify</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/mailchimp.svg" alt="Mailchimp" class="app-icon"
+                        <img loading="lazy" src="images/tech/mailchimp.svg" alt="Mailchimp" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📧</span>
                         <span class="app-name">Mailchimp</span>
                     </div>
                     <!-- <div class="app-item">
-                        <img src="images/tech/typeform.svg" alt="Typeform" class="app-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <img loading="lazy" src="images/tech/typeform.svg" alt="Typeform" class="app-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📝</span>
                         <span class="app-name">Typeform</span>
                     </div> -->
                     <div class="app-item">
-                        <img src="images/tech/zendesk.svg" alt="Zendesk" class="app-icon"
+                        <img loading="lazy" src="images/tech/zendesk.svg" alt="Zendesk" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">🎧</span>
                         <span class="app-name">Zendesk</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/quickbooks.svg" alt="QuickBooks" class="app-icon"
+                        <img loading="lazy" src="images/tech/quickbooks.svg" alt="QuickBooks" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">💰</span>
                         <span class="app-name">QuickBooks</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/xero.svg" alt="Xero" class="app-icon"
+                        <img loading="lazy" src="images/tech/xero.svg" alt="Xero" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📊</span>
                         <span class="app-name">Xero</span>
                     </div>
                     <!-- Duplicate for seamless loop -->
                     <div class="app-item">
-                        <img src="images/tech/hubspot.svg" alt="HubSpot" class="app-icon"
+                        <img loading="lazy" src="images/tech/hubspot.svg" alt="HubSpot" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">🎯</span>
                         <span class="app-name">HubSpot</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/salesforce.svg" alt="Salesforce" class="app-icon"
+                        <img loading="lazy" src="images/tech/salesforce.svg" alt="Salesforce" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">☁️</span>
                         <span class="app-name">Salesforce</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/shopify.svg" alt="Shopify" class="app-icon"
+                        <img loading="lazy" src="images/tech/shopify.svg" alt="Shopify" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">🛒</span>
                         <span class="app-name">Shopify</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/mailchimp.svg" alt="Mailchimp" class="app-icon"
+                        <img loading="lazy" src="images/tech/mailchimp.svg" alt="Mailchimp" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📧</span>
                         <span class="app-name">Mailchimp</span>
                     </div>
                     <!-- <div class="app-item">
-                        <img src="images/tech/typeform.svg" alt="Typeform" class="app-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <img loading="lazy" src="images/tech/typeform.svg" alt="Typeform" class="app-icon" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📝</span>
                         <span class="app-name">Typeform</span>
                     </div> -->
                     <div class="app-item">
-                        <img src="images/tech/zendesk.svg" alt="Zendesk" class="app-icon"
+                        <img loading="lazy" src="images/tech/zendesk.svg" alt="Zendesk" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">🎧</span>
                         <span class="app-name">Zendesk</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/quickbooks.svg" alt="QuickBooks" class="app-icon"
+                        <img loading="lazy" src="images/tech/quickbooks.svg" alt="QuickBooks" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">💰</span>
                         <span class="app-name">QuickBooks</span>
                     </div>
                     <div class="app-item">
-                        <img src="images/tech/xero.svg" alt="Xero" class="app-icon"
+                        <img loading="lazy" src="images/tech/xero.svg" alt="Xero" class="app-icon"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                         <span style="display:none;">📊</span>
                         <span class="app-name">Xero</span>
@@ -576,7 +581,7 @@
                         <div class="tech-item">
                             <div class="tech-card">
                                 <div class="tech-icon">
-                                    <img src="images/tech/n8n.svg" alt="n8n"
+                                    <img loading="lazy" src="images/tech/n8n.svg" alt="n8n"
                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                     <span style="display:none;">🔗</span>
                                 </div>
@@ -590,7 +595,7 @@
                         <div class="tech-item">
                             <div class="tech-card">
                                 <div class="tech-icon">
-                                    <img src="images/tech/zapier.svg" alt="Zapier"
+                                    <img loading="lazy" src="images/tech/zapier.svg" alt="Zapier"
                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                     <span style="display:none;">⚡</span>
                                 </div>
@@ -604,7 +609,7 @@
                         <div class="tech-item">
                             <div class="tech-card">
                                 <div class="tech-icon">
-                                    <img src="images/tech/make.svg" alt="Make.com"
+                                    <img loading="lazy" src="images/tech/make.svg" alt="Make.com"
                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                     <span style="display:none;">🔄</span>
                                 </div>
@@ -618,7 +623,7 @@
                         <div class="tech-item">
                             <div class="tech-card">
                                 <div class="tech-icon">
-                                    <img src="images/tech/airtable.svg" alt="Airtable"
+                                    <img loading="lazy" src="images/tech/airtable.svg" alt="Airtable"
                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                     <span style="display:none;">📊</span>
                                 </div>
@@ -644,7 +649,7 @@
                         <div class="tech-item">
                             <div class="tech-card">
                                 <div class="tech-icon">
-                                    <img src="images/tech/Python.svg" alt="Python"
+                                    <img loading="lazy" src="images/tech/Python.svg" alt="Python"
                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                     <span style="display:none;">🐍</span>
                                 </div>
@@ -658,7 +663,7 @@
                         <div class="tech-item">
                             <div class="tech-card">
                                 <div class="tech-icon">
-                                    <img src="images/tech/javascript.svg" alt="JavaScript"
+                                    <img loading="lazy" src="images/tech/javascript.svg" alt="JavaScript"
                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                     <span style="display:none;">📜</span>
                                 </div>
@@ -672,7 +677,7 @@
                         <div class="tech-item">
                             <div class="tech-card">
                                 <div class="tech-icon">
-                                    <img src="images/tech/api.svg" alt="APIs"
+                                    <img loading="lazy" src="images/tech/api.svg" alt="APIs"
                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                     <span style="display:none;">🌐</span>
                                 </div>
@@ -686,7 +691,7 @@
                         <div class="tech-item">
                             <div class="tech-card">
                                 <div class="tech-icon">
-                                    <img src="images/tech/git.svg" alt="Git"
+                                    <img loading="lazy" src="images/tech/git.svg" alt="Git"
                                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                                     <span style="display:none;">📦</span>
                                 </div>
@@ -977,8 +982,8 @@
                             Automated early-stage opportunity discovery across municipal, institutional, and RFP sources using AI agents — replacing manual research that was letting competitors get in first.
                         </p>
                         <div class="project-tech">
-                            <img src="images/tech/n8n.svg" alt="n8n" class="tech-icon-small">
-                            <img src="images/tech/airtable.svg" alt="Airtable" class="tech-icon-small">
+                            <img loading="lazy" src="images/tech/n8n.svg" alt="n8n" class="tech-icon-small">
+                            <img loading="lazy" src="images/tech/airtable.svg" alt="Airtable" class="tech-icon-small">
                             <span class="tech-tag">Gemini Flash 2.0</span>
                         </div>
                         <div class="project-metrics">
@@ -1042,9 +1047,9 @@
                             Eliminated manual order routing and rep assignment for a high-volume wholesale business — turning a 26,000-line-item backlog into a fully automated real-time pipeline.
                         </p>
                         <div class="project-tech">
-                            <img src="images/tech/shopify.svg" alt="Shopify" class="tech-icon-small">
-                            <img src="images/tech/monday.svg" alt="Monday.com" class="tech-icon-small">
-                            <img src="images/tech/zapier.svg" alt="Zapier" class="tech-icon-small">
+                            <img loading="lazy" src="images/tech/shopify.svg" alt="Shopify" class="tech-icon-small">
+                            <img loading="lazy" src="images/tech/monday.svg" alt="Monday.com" class="tech-icon-small">
+                            <img loading="lazy" src="images/tech/zapier.svg" alt="Zapier" class="tech-icon-small">
                             <span class="tech-tag">Python</span>
                         </div>
                         <div class="project-metrics">
@@ -1108,8 +1113,8 @@
                             Built the full participant management infrastructure for a clinical research study — from automated enrollment to payment processing — with zero manual intervention and full HIPAA compliance.
                         </p>
                         <div class="project-tech">
-                            <img src="images/tech/airtable.svg" alt="Airtable" class="tech-icon-small">
-                            <img src="images/tech/make.svg" alt="Make.com" class="tech-icon-small">
+                            <img loading="lazy" src="images/tech/airtable.svg" alt="Airtable" class="tech-icon-small">
+                            <img loading="lazy" src="images/tech/make.svg" alt="Make.com" class="tech-icon-small">
                             <span class="tech-tag">Typeform</span>
                             <span class="tech-tag">Metabase</span>
                         </div>
@@ -1571,7 +1576,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p class="copyright">&copy; 2025 Samuel Nwafor. All rights reserved.</p>
+                <p class="copyright">&copy; 2026 Samuel Nwafor. All rights reserved.</p>
                 <div class="footer-legal">
                     <a href="#">Privacy Policy</a>
                     <span class="separator">•</span>
@@ -1587,8 +1592,23 @@
     </button>
 
     <!-- Scripts -->
-    <script src="https://server.fillout.com/embed/v1/"></script>
-    <script src="js/main.js"></script>
+    <script src="https://server.fillout.com/embed/v1/" defer></script>
+    <script src="js/main.js" defer></script>
+    <script>
+        function loadLoom(el) {
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.loom.com/embed/db68f3c97bc44be9a318b442f8931bde?hide_owner=true&hide_share=true&hideEmbedTopBar=true&autoplay=1';
+            iframe.className = 'hero-vid-player';
+            iframe.setAttribute('webkitallowfullscreen', '');
+            iframe.setAttribute('mozallowfullscreen', '');
+            iframe.setAttribute('allowfullscreen', '');
+            iframe.setAttribute('frameborder', '0');
+            el.innerHTML = '';
+            el.appendChild(iframe);
+            el.classList.remove('loom-facade');
+            el.onclick = null;
+        }
+    </script>
 </body>
 
 </html>
