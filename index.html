@@ -154,19 +154,19 @@
                 <!-- Right: Video -->
                 <div class="hero-vid-col">
                     <div class="hero-vid-card">
-                        <div class="hero-vid-wrapper loom-facade" id="loomFacade" onclick="loadLoom(this)">
-                            <img
-                                src="https://cdn.loom.com/sessions/thumbnails/db68f3c97bc44be9a318b442f8931bde-with-play.gif"
-                                alt="Watch Samuel Nwafor - AI & Automation Work Overview"
-                                class="loom-thumb"
-                                loading="eager">
-                            <div class="loom-play-btn">
-                                <div class="play-ring"></div>
-                                <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M8 5v14l11-7z"/></svg>
-                            </div>
+                        <div class="hero-vid-wrapper">
+                            <iframe
+                                src="https://www.loom.com/embed/db68f3c97bc44be9a318b442f8931bde?hide_owner=true&hide_share=true&hideEmbedTopBar=true"
+                                class="hero-vid-player"
+                                frameborder="0"
+                                webkitallowfullscreen
+                                mozallowfullscreen
+                                allowfullscreen
+                                loading="lazy">
+                            </iframe>
                         </div>
                         <p class="hero-vid-caption">
-                            <span class="hero-vid-dot"></span> 2-min work overview · click to play
+                            <span class="hero-vid-dot"></span> 2-min work overview
                         </p>
                     </div>
                 </div>
@@ -1594,21 +1594,6 @@
     <!-- Scripts -->
     <script src="https://server.fillout.com/embed/v1/" defer></script>
     <script src="js/main.js" defer></script>
-    <script>
-        function loadLoom(el) {
-            const iframe = document.createElement('iframe');
-            iframe.src = 'https://www.loom.com/embed/db68f3c97bc44be9a318b442f8931bde?hide_owner=true&hide_share=true&hideEmbedTopBar=true&autoplay=1';
-            iframe.className = 'hero-vid-player';
-            iframe.setAttribute('webkitallowfullscreen', '');
-            iframe.setAttribute('mozallowfullscreen', '');
-            iframe.setAttribute('allowfullscreen', '');
-            iframe.setAttribute('frameborder', '0');
-            el.innerHTML = '';
-            el.appendChild(iframe);
-            el.classList.remove('loom-facade');
-            el.onclick = null;
-        }
-    </script>
 </body>
 
 </html>
